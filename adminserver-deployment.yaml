@@ -29,7 +29,7 @@ spec:
           value: awacs
         - name: spring.security.user.password
           value: awacs
-        image: gcr.io/awacs-cloud-prod/adminserver:latest
+        image: gcr.io/awacs-cloud-prod/admin-server:latest
         imagePullPolicy: ""
         name: adminserver
         ports:

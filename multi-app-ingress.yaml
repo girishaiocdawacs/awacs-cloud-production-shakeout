@@ -17,28 +17,24 @@ spec:
           serviceName: productservice
           servicePort: 8181
         path: /productservice/
-  - host: app.awacscloud.tech
     http:
       paths:
       - backend:
           serviceName: authserver
           servicePort: 8100
         path: /authserver/
-  - host: app.awacscloud.tech
     http:
       paths:
       - backend:
           serviceName: socialweb
           servicePort: 9393
         path: /socialweb/
-  - host: app.awacscloud.tech
     http:
       paths:
       - backend:
           serviceName: adminserver
           servicePort: 8765
         path: /adminserver/
-  - host: app.awacscloud.tech
     http:
       paths:
       - backend:

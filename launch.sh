@@ -52,7 +52,11 @@ kubectl apply -f nginx-service.yaml
 sleep 10;
 
 kubectl apply -f multi-app-ingress.yaml
+kubectl expose service/nginx --port=80 --target-port=8080 --name=nginx-ingress --type=LoadBalancer
 
 sleep 10
 
+
 kubectl get all
+
+minikube service nginx
