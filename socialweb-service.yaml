@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f awacs-cloud.yml
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: socialweb
+  name: socialweb
+spec:
+  ports:
+  - name: "9393"
+    port: 9393
+    targetPort: 9393
+  selector:
+    io.kompose.service: socialweb
+status:
+  loadBalancer: {}

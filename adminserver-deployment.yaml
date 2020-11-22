@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f awacs-cloud.yml
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: adminserver
+  name: adminserver
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: adminserver
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -f awacs-cloud.yml
+        kompose.version: 1.21.0 (992df58d8)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: adminserver
+    spec:
+      containers:
+      - env:
+        - name: spring.security.user.name
+          value: awacs
+        - name: spring.security.user.password
+          value: awacs
+        image: gcr.io/awacs-cloud-prod/adminserver:latest
+        imagePullPolicy: ""
+        name: adminserver
+        ports:
+        - containerPort: 8765
+        resources: {}
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes: null
+status: {}

@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f awacs-cloud.yml
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: socialweb
+  name: socialweb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: socialweb
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -f awacs-cloud.yml
+        kompose.version: 1.21.0 (992df58d8)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: socialweb
+    spec:
+      containers:
+      - env:
+        - name: social_login_type
+          value: github, facebook, google
+        image: gcr.io/awacs-cloud-prod/smart-pharmacy-user-management:latest
+        imagePullPolicy: ""
+        name: socialweb
+        ports:
+        - containerPort: 9393
+        resources: {}
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes: null
+status: {}

@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f awacs-cloud.yml
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: productservice
+  name: productservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: productservice
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -f awacs-cloud.yml
+        kompose.version: 1.21.0 (992df58d8)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: productservice
+    spec:
+      containers:
+      - env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: dev
+        - name: awacs.cloud.auth-server.check-token
+          value: http://authserver:8100/oauth/check_token
+        - name: spring.activemq.broker-url
+          value: tcp://jms:61616
+        - name: spring.activemq.in-memory
+          value: "false"
+        - name: spring.boot.admin.client.password
+          value: awacs
+        - name: spring.boot.admin.client.url
+          value: http://adminserver:8765
+        - name: spring.boot.admin.client.username
+          value: awacs
+        - name: spring.cloud.gcp.project-id
+          value: awacs-cloud-prod
+        image: gcr.io/awacs-cloud-prod/smart-pharmacy-product-service:latest
+        imagePullPolicy: ""
+        name: productservice
+        ports:
+        - containerPort: 8181
+        resources: {}
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes: null
+status: {}
