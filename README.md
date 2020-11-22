@@ -19,16 +19,16 @@
 			ProxyPassReverse / ${minikube service nginx | grep 443 | sed -e 's/.*http/https/g' -e 's/ .*//g'}
       
    ```
-   ```
-   giris@bastion-1:~/awacs-cloud-production-shakeout$ minikube service nginx | grep 443 | sed -e 's/.*http/https/g' -e 's/ .*//g'
-   https://192.168.49.2:30847
-   giris@bastion-1:~/awacs-cloud-production-shakeout$ grep 192.168 /etc/apache2/sites-enabled/default-ssl.conf
-                        ProxyPass /     https://192.168.49.2:30847/
-                        ProxyPassReverse / https://192.168.49.2:30847/
-   giris@bastion-1:~/awacs-cloud-production-shakeout$
+  > 
+  >  giris@bastion-1:~/awacs-cloud-production-shakeout$ minikube service nginx | grep 443 | sed -e 's/.*http/https/g' -e 's/ .*//g'
+  >  https://192.168.49.2:30847
+  >  giris@bastion-1:~/awacs-cloud-production-shakeout$ grep 192.168 /etc/apache2/sites-enabled/default-ssl.conf
+  >           ProxyPass /     https://192.168.49.2:30847/
+  >           ProxyPassReverse / https://192.168.49.2:30847/
+  > giris@bastion-1:~/awacs-cloud-production-shakeout$
 
-   ```
-- ./launch.sh to spin up minikube staging environment
+  
+- ./launch.sh to spin up minikube staging environment including ingress arrangments
 
 - minikube delete
 
