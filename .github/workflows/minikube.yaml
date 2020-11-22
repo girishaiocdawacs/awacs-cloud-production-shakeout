@@ -27,7 +27,7 @@ jobs:
             
             kubectl delete all --all
             
-            kubectl create secret tls app.awacscloud.tech --cert=zerossl/certificate.crt --key=zerossl/private.key
+            #kubectl create secret tls app.awacscloud.tech --cert=zerossl/certificate.crt --key=zerossl/private.key
             
             kubectl apply -f adminer-deployment.yaml
             kubectl apply -f adminer-service.yaml
