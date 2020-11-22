@@ -17,8 +17,10 @@ jobs:
           cachain:  'ca-chain.crt'
       - name: Use generated certificates
         run: |
-            # openssl x509 -in hostcert.pem -noout -text
             mkdir zerossl
+            # sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout zerossl/cert.key -out zerossl/cert.crt
+            # openssl x509 -in hostcert.pem -noout -text
+            
             cp certificate.crt zerossl/
             cp private.key zerossl/
       - name: Setup Minikube
