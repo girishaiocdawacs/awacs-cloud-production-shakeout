@@ -1,15 +1,25 @@
-name: Example workflow
+name: Minikube Staging
 
 on: [push]
 
 jobs:
   example:
-    name: Example Minikube-Kubernetes Cluster interaction
+    name: Minikube-Kubernetes Build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v1
-
+      - name: Generate certificates
+        uses: kofemann/action-create-certificate@v0.0.4
+        with:
+          hostcert: 'hostcert.pem'
+          hostkey:  'hostkey.pem'
+          cachain:  'ca-chain.pem'
+      - name: Use generated certificates
+        run: |
+            openssl x509 -in hostcert.pem -noout -text
+            mkdir zerossl
+            cp hostcert.pem certificate.crt
       - name: Setup Minikube
         uses: manusa/actions-setup-minikube@master
         with:
@@ -18,17 +28,11 @@ jobs:
           github token: ${{ secrets.GITHUB_TOKEN }}
       - name: Interact with the cluster
         run: |
-         kubectl config get-contexts
+            kubectl config get-contexts
             kubectl config use-context minikube
-            
             kubectl get all
-            
             kubectl config view
-            
-            kubectl delete all --all
-            
-            #kubectl create secret tls app.awacscloud.tech --cert=zerossl/certificate.crt --key=zerossl/private.key
-            
+            kubectl create secret tls app.awacscloud.tech --cert=zerossl/certificate.crt --key=zerossl/private.key
             kubectl apply -f adminer-deployment.yaml
             kubectl apply -f adminer-service.yaml
             
@@ -57,8 +61,11 @@ jobs:
             kubectl apply -f nginx-deployment.yaml
             kubectl apply -f nginx-service.yaml
             
-            sleep 30      
-            kubectl get all
+            sleep 30;
             
-            # mikube service nginx
-
+            # kubectl apply -f multi-app-ingress.yaml
+            # kubectl expose service/nginx --port=80 --target-port=8080 --name=nginx-ingress --type=LoadBalancer
+            
+            sleep 10
+            kubectl get all
+            # minikube service nginx
