@@ -33,7 +33,7 @@ jobs:
             kubectl apply -f jms-deployment.yaml
             kubectl apply -f jms-service.yaml
             
-            sleep 10
+            sleep 20
             
             kubectl apply -f productservice-deployment.yaml
             kubectl apply -f productservice-service.yaml
@@ -47,16 +47,16 @@ jobs:
             kubectl apply -f authserver-deployment.yaml
             kubectl apply -f authserver-service.yaml
             
-            sleep 30
+            sleep 20
             
             kubectl apply -f nginx-deployment.yaml
             kubectl apply -f nginx-service.yaml
             
-            sleep 30;
+            sleep 60;
             
             # kubectl apply -f multi-app-ingress.yaml
             # kubectl expose service/nginx --port=80 --target-port=8080 --name=nginx-ingress --type=LoadBalancer
             
-            sleep 10
+            sleep 30
             kubectl get all
             # minikube service nginx
