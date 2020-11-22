@@ -45,8 +45,8 @@ spec:
         configMap:
           name: nginx-config
       - name: nginx-ssl
-        secret:
-          secretName: app.awacscloud.tech
+        configMap:
+          name: nginx-ssl
 
 status: {}
 
