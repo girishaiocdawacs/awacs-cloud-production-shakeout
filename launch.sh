@@ -60,8 +60,6 @@ kubectl create configmap nginx-ssl  --from-file=zerossl/certificate.crt --from-f
 
 # kubectl apply -f multi-app-ingress.yaml
 
-kubectl expose service/nginx --port=80 --target-port=8080 --name=nginx-ingress --type=LoadBalancer
-
 sleep 10
 
 

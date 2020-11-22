@@ -31,7 +31,7 @@ spec:
         - containerPort: 80
         - containerPort: 443
         volumeMounts:
-          - mountPath: /etc/nginx/awacs/
+          - mountPath: /etc/nginx/zerossl/
             name: nginx-ssl
             readOnly: true
           - mountPath: /etc/nginx/conf.d/
