@@ -47,12 +47,19 @@ kubectl apply -f authserver-service.yaml
 
 sleep 30
 
-kubectl create -f nginx.yaml
+#kubectl create -f nginx.yaml
+
+kubectl apply -f nginx-deployment.yaml
+kubectl apply -f nginx-service.yaml
 
 sleep 10;
 
 kubectl create configmap nginx-config --from-file=awacs-nginx.conf
-kubectl apply -f multi-app-ingress.yaml
+
+kubectl create configmap nginx-ssl  --from-file=zerossl/certificate.crt --from-file=zerossl/private.key
+
+# kubectl apply -f multi-app-ingress.yaml
+
 kubectl expose service/nginx --port=80 --target-port=8080 --name=nginx-ingress --type=LoadBalancer
 
 sleep 10
