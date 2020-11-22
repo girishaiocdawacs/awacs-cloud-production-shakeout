@@ -12,14 +12,15 @@ jobs:
       - name: Generate certificates
         uses: kofemann/action-create-certificate@v0.0.4
         with:
-          hostcert: 'hostcert.pem'
-          hostkey:  'hostkey.pem'
-          cachain:  'ca-chain.pem'
+          hostcert: 'certificate.crt'
+          hostkey:  'private.key'
+          cachain:  'ca-chain.crt'
       - name: Use generated certificates
         run: |
-            openssl x509 -in hostcert.pem -noout -text
+            # openssl x509 -in hostcert.pem -noout -text
             mkdir zerossl
-            cp hostcert.pem certificate.crt
+            cp certificate.crt zerossl/
+            cp private.key zerossl/
       - name: Setup Minikube
         uses: manusa/actions-setup-minikube@master
         with:
