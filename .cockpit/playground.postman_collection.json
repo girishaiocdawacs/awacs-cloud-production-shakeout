@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "3921d890-e526-4ac8-9dfe-f47ebbfe2ae5",
 		"name": "playground",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
@@ -31,10 +31,18 @@
 			"request": {
 				"auth": {
 					"type": "basic",
-					"basic": {
-						"password": "{{client_secret}}",
-						"username": "{{client_id}}"
-					}
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{client_secret}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{client_id}}",
+							"type": "string"
+						}
+					]
 				},
 				"method": "POST",
 				"header": [],
@@ -66,16 +74,13 @@
 			"response": []
 		},
 		{
-			"name": "002_user_me",
+			"name": "002_check_token",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
 			"request": {
 				"auth": {
-					"type": "bearer",
-					"bearer": {
-						"token": "{{download.access_token}}"
-					}
+					"type": "noauth"
 				},
 				"method": "GET",
 				"header": [],
@@ -83,7 +88,22 @@
 					"mode": "formdata",
 					"formdata": []
 				},
-				"url": "{{authserver}}/api/users/me"
+				"url": {
+					"raw": "{{authserver}}/oauth/check_token?token={{access_token}}",
+					"host": [
+						"{{authserver}}"
+					],
+					"path": [
+						"oauth",
+						"check_token"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "{{access_token}}"
+						}
+					]
+				}
 			},
 			"response": []
 		},
@@ -95,9 +115,13 @@
 			"request": {
 				"auth": {
 					"type": "bearer",
-					"bearer": {
-						"token": "{{access_token}}"
-					}
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
 				},
 				"method": "GET",
 				"header": [],
@@ -105,7 +129,90 @@
 					"mode": "formdata",
 					"formdata": []
 				},
-				"url": "{{productservice}}/api/product/all"
+				"url": {
+					"raw": "{{productservice}}/api/product/344",
+					"host": [
+						"{{productservice}}"
+					],
+					"path": [
+						"api",
+						"product",
+						"344"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "004_get_all_products",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "{{productservice}}/api/product/all",
+					"host": [
+						"{{productservice}}"
+					],
+					"path": [
+						"api",
+						"product",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "005_get_all_product_order",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "{{productservice}}/api/product/order/all",
+					"host": [
+						"{{productservice}}"
+					],
+					"path": [
+						"api",
+						"product",
+						"order",
+						"all"
+					]
+				}
 			},
 			"response": []
 		}
