@@ -1,4 +1,4 @@
-#!/bin/sh -l
-set -eu
+#!/bin/sh -x
 
 /bin/sh -c "${1}"
+
