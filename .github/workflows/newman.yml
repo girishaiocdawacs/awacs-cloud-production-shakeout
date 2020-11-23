@@ -23,5 +23,5 @@ jobs:
          timeoutScript: Infinity
          delayRequest: 0
          ignoreRedirects: false
-         suppressExitCode: false
+         suppressExitCode: true
          color: auto
