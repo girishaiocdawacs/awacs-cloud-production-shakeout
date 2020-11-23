@@ -1,0 +1,17 @@
+name: Vagrant Dev
+
+on: [push]
+
+jobs:
+  virtualbox:
+    name: Vagrant Minikube Spin
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Use oxr463/setup-vagrant
+        uses: oxr463/setup-vagrant@0.0.1
+        with:
+          exec: |
+           vagrant up
+    
