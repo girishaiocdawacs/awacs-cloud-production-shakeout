@@ -3,7 +3,7 @@ terraform {
     organization = "AWACS-CLOUD"
 
     workspaces {
-      name = "awacs-cloud-github-actions"
+      name = "awacs-cloud-production-shakeout"
     }
   }
 }
