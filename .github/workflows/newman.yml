@@ -5,14 +5,32 @@ on:
     branches:
     - main
 jobs:
-  newman:
+  qa:
     runs-on: ubuntu-latest
+  #  steps:
+  #    - uses: actions/checkout@master
+  #    - uses: matt-ball/newman-action@master
+  #      with:
+  #       collection: .cockpit/playground.postman_collection.json
+  #      environment: .cockpit/qa.awacscloud.tech.postman_environment.json
+  #       insecure: true
+  #       reporters: cli
+  #       color: auto
     steps:
-      - uses: actions/checkout@master
-      - uses: matt-ball/newman-action@master
-        with:
-         collection: .cockpit/playground.postman_collection.json
-         environment: .cockpit/qa.awacscloud.tech.postman_environment.json
-         insecure: true
-         reporters: cli
-         color: auto
+     - name: Checkout
+       uses: actions/checkout@master
+     - uses: actions/setup-node@v1 #this installs node and npm for us
+       with:
+         node-version: '15.x'
+     - uses: actions/cache@v1 # this allows for re-using node_modules caching, making builds a bit faster.
+       with:
+         path: ~/.npm
+         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+         restore-keys: |
+             ${{ runner.os }}-node-
+     - name: Play
+       run: |
+           npm install
+           npm install -g newman
+           newman run -e .cockpit/qa.awacscloud.tech.postman_environment.json .cockpit/playground.postman_collection.json --insecure
+           
