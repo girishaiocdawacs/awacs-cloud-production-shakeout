@@ -13,4 +13,15 @@ jobs:
         with:
          collection: .cockpit/playground.postman_collection.json
          environment: .cockpit/qa.awacscloud.tech.postman_environment.json
-         
+         iterationCount: 4
+         insecure: true
+         reporters: cli
+         bail: true
+         insecureFileRead: true
+         timeout: Infinity
+         timeoutRequest: Infinity
+         timeoutScript: Infinity
+         delayRequest: 0
+         ignoreRedirects: false
+         suppressExitCode: false
+         color: auto
