@@ -1,4 +1,4 @@
-name: Vagrant Dev
+name: Vagrant
 
 on: [push]
 
@@ -10,8 +10,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
       - name: Use oxr463/setup-vagrant
-        uses: oxr463/setup-vagrant@0.0.1
+        uses: ./
         with:
           exec: |
-           vagrant up
-    
+             vagrant up
+             echo "done"
