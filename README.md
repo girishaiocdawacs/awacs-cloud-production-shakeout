@@ -2,7 +2,10 @@
 
 ![Minikube Staging](https://github.com/girishaiocdawacs/awacs-cloud-production-shakeout/workflows/Minikube%20Staging/badge.svg)
 
-## Staging (Done) - Minikube
+# ops status - 
+## Production - AWS/GCP/Ali Terraform Kubernetes with Helm charts (Pending)
+## QA (Done) - Docker Bastion
+## Staging (Done) - Minikube Bastion + Vagrant virtualbox, here's steps
 - minikube start
 - mkdir zerossl
 - copy zerossl/certificate.crt and zerossl/private.key for SSL made to cluster LB host (apache2 in my case), same pair used by nginx for https ingress purpose
