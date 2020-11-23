@@ -41,3 +41,5 @@
 - helm install nginx-release bitnami/nginx
 - sleep 10; kubectl get svc (check load balancer ip)
 - helm repo update
+
+- steps from ./gcp_kubernetes_production.sh
