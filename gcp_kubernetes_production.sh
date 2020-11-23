@@ -1,17 +1,12 @@
 #! /bin/bash
 
-[[ ! -d zerossl ]] && echo "ssl directory zerossl not found with certificate and key, unable to proceed, abort"
+gcloud compute instances list
 
-minikube version
+gcloud container clusters get-credentials cluster-1 --region us-central1-c
 
-minikube delete
+kubectl config get-contexts
 
-minikube stop
-
-#minikube start --cpus 4 --memory 8192
-minikube start
-
-kubectl config use-context minikube
+kubectl config use-context gke_awacs-cloud-prod_us-central1-c_cluster-1
 
 kubectl get all
 
@@ -45,16 +40,14 @@ kubectl apply -f authserver-deployment.yaml
 kubectl apply -f authserver-service.yaml
 
 
-sleep 30
-
-#kubectl create -f nginx.yaml
+sleep 20
 
 kubectl apply -f nginx-deployment.yaml
-kubectl apply -f nginx-service.yaml
+kubectl apply -f nginx-service-gcp.yaml
 
 sleep 10;
 
-kubectl create configmap nginx-config --from-file=awacs-nginx.conf
+kubectl create configmap nginx-config --from-file=awacs-nginx-gcp.conf
 
 kubectl create configmap nginx-ssl  --from-file=zerossl/certificate.crt --from-file=zerossl/private.key
 
@@ -62,7 +55,8 @@ kubectl create configmap nginx-ssl  --from-file=zerossl/certificate.crt --from-f
 
 sleep 10
 
-
 kubectl get all
 
-minikube service nginx
+kubectl get nodes
+
+

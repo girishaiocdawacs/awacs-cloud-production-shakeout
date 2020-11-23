@@ -1,7 +1,7 @@
 <IfModule mod_ssl.c>
 	<VirtualHost _default_:443>
-		ServerAdmin webmaster@localhost
-		ServerName app.awacscloud.tech
+		ServerAdmin team@awacscloud.tech
+		ServerName qa.awacscloud.tech
 
 		DocumentRoot /var/www/html
 
@@ -30,9 +30,9 @@
 		#   /usr/share/doc/apache2/README.Debian.gz for more info.
 		#   If both key and certificate are stored in the same file, only the
 		#   SSLCertificateFile directive is needed.
-		SSLCertificateFile	/etc/ssl/app.awacscloud.tech/certificate.crt
-		SSLCertificateKeyFile /etc/ssl/app.awacscloud.tech/private.key
-		SSLCertificateChainFile /etc/ssl/app.awacscloud.tech/ca_bundle.crt
+		SSLCertificateFile	/etc/ssl/qa.awacscloud.tech/certificate.crt
+		SSLCertificateKeyFile /etc/ssl/qa.awacscloud.tech/private.key
+		SSLCertificateChainFile /etc/ssl/qa.awacscloud.tech/ca_bundle.crt
 
 		#   Server Certificate Chain:
 		#   Point SSLCertificateChainFile at a file containing the
@@ -133,8 +133,8 @@
 		ProxyPreserveHost On
 		SSLProxyEngine on
 
-			ProxyPass /	https://192.168.49.2:30847/
-			ProxyPassReverse / https://192.168.49.2:30847/
+		    ProxyPass /	https://192.168.49.2:30847/
+		    ProxyPassReverse / https://192.168.49.2:30847/
 
 	</VirtualHost>
 </IfModule>

@@ -1,12 +1,17 @@
 #! /bin/bash
 
-gcloud compute instances list
+[[ ! -d zerossl ]] && echo "ssl directory zerossl not found with certificate and key, unable to proceed, abort"
 
-gcloud container clusters get-credentials cluster-1 --region us-central1-c
+minikube version
 
-kubectl config get-contexts
+minikube delete
 
-kubectl config use-context gke_awacs-cloud-prod_us-central1-c_cluster-1
+minikube stop
+
+#minikube start --cpus 4 --memory 8192
+minikube start
+
+kubectl config use-context minikube
 
 kubectl get all
 
@@ -14,7 +19,7 @@ kubectl config view
 
 kubectl delete all --all
 
-kubectl create secret tls app.awacscloud.tech --cert=zerossl/certificate.crt --key=zerossl/private.key
+kubectl create secret tls qa.awacscloud.tech --cert=zerossl/qa_certificate.crt --key=zerossl/qa_private.key
 
 kubectl apply -f adminer-deployment.yaml
 kubectl apply -f adminer-service.yaml
@@ -40,23 +45,24 @@ kubectl apply -f authserver-deployment.yaml
 kubectl apply -f authserver-service.yaml
 
 
-sleep 20
+sleep 30
+
+#kubectl create -f nginx.yaml
 
 kubectl apply -f nginx-deployment.yaml
-kubectl apply -f nginx-service-gcp.yaml
+kubectl apply -f nginx-service.yaml
 
 sleep 10;
 
-kubectl create configmap nginx-config --from-file=awacs-nginx.conf
+kubectl create configmap nginx-config --from-file=awacs-nginx-qa.conf
 
-kubectl create configmap nginx-ssl  --from-file=zerossl/certificate.crt --from-file=zerossl/private.key
+kubectl create configmap nginx-ssl  --from-file=zerossl/qa_certificate.crt --from-file=zerossl/qa_private.key
 
 # kubectl apply -f multi-app-ingress.yaml
 
 sleep 10
 
+
 kubectl get all
 
-kubectl get nodes
-
-
+minikube service nginx
