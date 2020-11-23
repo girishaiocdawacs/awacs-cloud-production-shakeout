@@ -3,7 +3,7 @@ name: Newman Run
 on:
   push:
     branches:
-    - master
+    - main
 jobs:
   newman:
     runs-on: ubuntu-latest
