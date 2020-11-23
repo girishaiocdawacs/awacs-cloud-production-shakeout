@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "3921d890-e526-4ac8-9dfe-f47ebbfe2ae5",
 		"name": "playground",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
 		{
@@ -17,8 +17,12 @@
 							"    pm.response.to.have.status(200);\r",
 							"});\r",
 							"\r",
-							"pm.globals.set(\"access_token\", pm.response.json().access_token);\r",
-							""
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"access_token\");\r",
+							"});\r",
+							"\r",
+							"pm.globals.set(\"access_token\", pm.response.json().access_token);"
 						],
 						"type": "text/javascript"
 					}
@@ -27,18 +31,10 @@
 			"request": {
 				"auth": {
 					"type": "basic",
-					"basic": [
-						{
-							"key": "password",
-							"value": "{{client_secret}}",
-							"type": "string"
-						},
-						{
-							"key": "username",
-							"value": "{{client_id}}",
-							"type": "string"
-						}
-					]
+					"basic": {
+						"password": "{{client_secret}}",
+						"username": "{{client_id}}"
+					}
 				},
 				"method": "POST",
 				"header": [],
@@ -77,13 +73,9 @@
 			"request": {
 				"auth": {
 					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{download.access_token}}",
-							"type": "string"
-						}
-					]
+					"bearer": {
+						"token": "{{download.access_token}}"
+					}
 				},
 				"method": "GET",
 				"header": [],
@@ -91,17 +83,7 @@
 					"mode": "formdata",
 					"formdata": []
 				},
-				"url": {
-					"raw": "{{authserver}}/api/users/me",
-					"host": [
-						"{{authserver}}"
-					],
-					"path": [
-						"api",
-						"users",
-						"me"
-					]
-				}
+				"url": "{{authserver}}/api/users/me"
 			},
 			"response": []
 		},
@@ -113,13 +95,9 @@
 			"request": {
 				"auth": {
 					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{access_token}}",
-							"type": "string"
-						}
-					]
+					"bearer": {
+						"token": "{{access_token}}"
+					}
 				},
 				"method": "GET",
 				"header": [],
@@ -127,17 +105,7 @@
 					"mode": "formdata",
 					"formdata": []
 				},
-				"url": {
-					"raw": "{{productservice}}/api/product/all",
-					"host": [
-						"{{productservice}}"
-					],
-					"path": [
-						"api",
-						"product",
-						"all"
-					]
-				}
+				"url": "{{productservice}}/api/product/all"
 			},
 			"response": []
 		}
