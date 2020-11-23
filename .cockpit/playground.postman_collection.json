@@ -28,6 +28,9 @@
 					}
 				}
 			],
+			"protocolProfileBehavior": {
+				"strictSSL": true
+			},
 			"request": {
 				"auth": {
 					"type": "basic",
@@ -80,7 +83,19 @@
 			},
 			"request": {
 				"auth": {
-					"type": "noauth"
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{client_secret}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{client_id}}",
+							"type": "string"
+						}
+					]
 				},
 				"method": "GET",
 				"header": [],
@@ -102,6 +117,42 @@
 							"key": "token",
 							"value": "{{access_token}}"
 						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "002_check_authorities",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "{{authserver}}/api/users/me",
+					"host": [
+						"{{authserver}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"me"
 					]
 				}
 			},
