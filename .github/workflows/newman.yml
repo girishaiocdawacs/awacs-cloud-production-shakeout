@@ -9,7 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-	    - uses: matt-ball/newman-action@master
-	      with:
-	        collection: .cockpit/playground.postman_collection.json
-	        environment: .cockpit/qa.awacscloud.tech.postman_environment.json
+      - uses: matt-ball/newman-action@master
+        with:
+         collection: .cockpit/playground.postman_collection.json
+         environment: .cockpit/qa.awacscloud.tech.postman_environment.json
+         
