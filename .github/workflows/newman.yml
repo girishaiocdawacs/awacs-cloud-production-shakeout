@@ -32,5 +32,13 @@ jobs:
        run: |
            npm install
            npm install -g newman
-           newman run -e .cockpit/qa.awacscloud.tech.postman_environment.json .cockpit/playground.postman_collection.json --insecure
+           
+           echo "playing tests"
+           newman run \
+           -e .cockpit/qa.awacscloud.tech.postman_environment.json \
+           .cockpit/playground.postman_collection.json \
+           --insecure --verbose --delay-request 100 --reporters cli,json --reporter-json-export outputfile.json
+            echo " --------------------- "
+            cat  outputfile.json
+            echo " --------------------- "
            
