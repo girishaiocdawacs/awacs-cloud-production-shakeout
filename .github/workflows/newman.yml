@@ -45,7 +45,7 @@ jobs:
            newman run \
            -e .cockpit/app.awacscloud.tech.postman_environment.json \
            .cockpit/playground.postman_collection.json \
-           --insecure --verbose -n 1000 --delay-request 100 --reporters cli,json --reporter-json-export outputfile-prod.json
+           --insecure --verbose -n 3 --delay-request 100 --reporters cli,json --reporter-json-export outputfile-prod.json
            
      - name:  oauth2 curls (qa and production)
        run: | 
