@@ -53,7 +53,7 @@ jobs:
            echo "------------ QA -----------------"
            echo "------------ grant_type=password --------"
            curl -kSs -X POST \
-              https://app.awacscloud.tech/authserver/oauth/token \
+              https://qa.awacscloud.tech/authserver/oauth/token \
               -u "morpheus:morpheus" \
               -F grant_type=password \
               -F username=admin \
@@ -63,7 +63,7 @@ jobs:
            echo "------------ QA -----------------"
            echo "------------ grant_type=client_credentials --------"
            curl -ksS -X POST \
-              https://app.awacscloud.tech/authserver/oauth/token \
+              https://qa.awacscloud.tech/authserver/oauth/token \
               -u "spring-security-oauth2-read-client:spring-security-oauth2-read-client-password1234" \
               -F grant_type=client_credentials | json_pp
 
