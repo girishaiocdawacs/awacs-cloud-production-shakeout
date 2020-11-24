@@ -1,5 +1,7 @@
 name: Newman Run
 on:
+  schedule:
+    - cron:  '0 */2 * * *' # every 4 hour
   push:
     branches:
     - main
