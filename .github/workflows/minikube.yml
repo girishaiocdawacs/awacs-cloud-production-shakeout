@@ -57,21 +57,21 @@ jobs:
             # kubectl apply -f multi-app-ingress.yaml
             # kubectl expose service/nginx --port=80 --target-port=8080 --name=nginx-ingress --type=LoadBalancer
 
-            sudo apt-get -y install links2
+            # sudo apt-get -y install links2
              
             sleep 60
             kubectl get all
 
-            minikube_host=$(minikube service nginx | grep 443 | sed -e 's/.*http/https/g' -e 's/ .*//g')
-
+            # minikube_host=$(minikube service nginx | grep 443 | sed -e 's/.*http/https/g' -e 's/ .*//g')
+            minikube_host=$(kubectl get services nginx --output jsonpath={.status.loadBalancer.ingress[0].ip})
             echo "Hoping at $(minikube_host)"
 
             curl -k -X POST \
-              ${minikube_host}/authserver/oauth/token \
-              -u "spring-security-oauth2-read-client:spring-security-oauth2-read-client-password1234" \
+              https://$minikube_host/authserver/oauth/token \
+              -u "neo:neo" \
               -F grant_type=password \
               -F username=admin \
               -F password=admin1234 \
-              -F client_id=spring-security-oauth2-read-client | json_pp
+              -F client_id=neo | json_pp
 
             # minikube service nginx
