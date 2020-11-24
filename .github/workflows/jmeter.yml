@@ -1,15 +1,18 @@
 name: JMeter
 
-on: [push]
-
+on: 
+  push:
+    branches:
+      - main
 jobs:
-  example:
-    name: Minikube-Jmeter-Play
-    runs-on: ubuntu-latest 
-    - name: Run JMeter Tests
-      uses: rbhadti94/apache-jmeter-action@master
-      with:
-        testFilePath: .cockpit/jmeter/play.jmx
-        outputReportsFolder: reports/
-        args: "--loglevel DEBUG -Jname=production --jmeterlogconf=.cockpit/jmeter/log.conf"
-        
+  jmeter:
+    runs-on: ubuntu-latest
+    steps:
+     - name: Checkout
+       uses: actions/checkout@master
+     - name: Minikube-Jmeter-Play
+       uses: rbhadti94/apache-jmeter-action@master
+       with:
+         testFilePath: .cockpit/jmeter/play.jmx
+         outputReportsFolder: reports/
+         args: "--loglevel DEBUG -Jname=production --jmeterlogconf=.cockpit/jmeter/log.conf"
