@@ -2,6 +2,10 @@
 
 ![Minikube Staging](https://github.com/girishaiocdawacs/awacs-cloud-production-shakeout/workflows/Minikube%20Staging/badge.svg)
 
+![Newman QA](https://github.com/girishaiocdawacs/awacs-cloud-production-shakeout/workflows/Newman%20Run/badge.svg)
+![Newman PROD](https://github.com/girishaiocdawacs/awacs-cloud-production-shakeout/workflows/Newman%20Run/badge.svg)
+
+
 # ops status - 
 ## Production - AWS/GCP/Ali Terraform Kubernetes with Helm charts (Pending)
 ## QA (Done) - Docker Bastion
