@@ -45,18 +45,41 @@ jobs:
            .cockpit/playground.postman_collection.json \
            --insecure --verbose --delay-request 100 --reporters cli,json --reporter-json-export outputfile-prod.json
            
-           curl -k -X POST \
-            https://qa.awacscloud.tech/authserver/oauth/token \
-            -u "spring-security-oauth2-read-client:spring-security-oauth2-read-client-password1234" \
-            -F grant_type=password \
-            -F username=admin \
-            -F password=admin1234 \
-            -F client_id=spring-security-oauth2-read-client | json_pp
-
-           curl -k -X POST \
+     - name:  oauth2 curls (qa and production)
+       run: | 
+           echo "Sample OAUTH2 Curls"
+           echo "------------ QA -----------------"
+           echo "------------ grant_type=password --------"
+           curl -kSs -X POST \
               http://app.awacscloud.tech/authserver/oauth/token \
-              -u "spring-security-oauth2-read-client:spring-security-oauth2-read-client-password1234" \
+              -u "morpheus:morpheus" \
               -F grant_type=password \
               -F username=admin \
               -F password=admin1234 \
-              -F client_id=spring-security-oauth2-read-client  | json_pp
+              -F client_id=morpheus  | json_pp
+
+           echo "------------ QA -----------------"
+           echo "------------ grant_type=client_credentials --------"
+           curl -ksS -X POST \
+              http://app.awacscloud.tech/authserver/oauth/token \
+              -u "spring-security-oauth2-read-client:spring-security-oauth2-read-client-password1234" \
+              -F grant_type=client_credentials | json_pp
+
+
+           echo "------------ PRODUCTION -----------------"
+           echo "------------ grant_type=password --------"
+           curl -kSs -X POST \
+              http://app.awacscloud.tech/authserver/oauth/token \
+              -u "trinity:trinity" \
+              -F grant_type=password \
+              -F username=admin \
+              -F password=admin1234 \
+              -F client_id=trinity  | json_pp
+
+
+           echo "------------ PRODUCTION -----------------"
+           echo "------------ grant_type=client_credentials --------"
+           curl -ksS -X POST \
+              http://app.awacscloud.tech/authserver/oauth/token \
+              -u "spring-security-oauth2-read-client:spring-security-oauth2-read-client-password1234" \
+              -F grant_type=client_credentials | json_pp
