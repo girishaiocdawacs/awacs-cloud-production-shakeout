@@ -57,6 +57,8 @@ jobs:
             # kubectl apply -f multi-app-ingress.yaml
             # kubectl expose service/nginx --port=80 --target-port=8080 --name=nginx-ingress --type=LoadBalancer
 
+            sudo apt-get -y install links2
+             
             sleep 60
             kubectl get all
 
