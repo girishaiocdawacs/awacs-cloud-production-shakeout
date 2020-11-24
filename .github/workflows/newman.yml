@@ -51,7 +51,7 @@ jobs:
            echo "------------ QA -----------------"
            echo "------------ grant_type=password --------"
            curl -kSs -X POST \
-              http://app.awacscloud.tech/authserver/oauth/token \
+              https://app.awacscloud.tech/authserver/oauth/token \
               -u "morpheus:morpheus" \
               -F grant_type=password \
               -F username=admin \
@@ -61,7 +61,7 @@ jobs:
            echo "------------ QA -----------------"
            echo "------------ grant_type=client_credentials --------"
            curl -ksS -X POST \
-              http://app.awacscloud.tech/authserver/oauth/token \
+              https://app.awacscloud.tech/authserver/oauth/token \
               -u "spring-security-oauth2-read-client:spring-security-oauth2-read-client-password1234" \
               -F grant_type=client_credentials | json_pp
 
@@ -69,7 +69,7 @@ jobs:
            echo "------------ PRODUCTION -----------------"
            echo "------------ grant_type=password --------"
            curl -kSs -X POST \
-              http://app.awacscloud.tech/authserver/oauth/token \
+              https://app.awacscloud.tech/authserver/oauth/token \
               -u "trinity:trinity" \
               -F grant_type=password \
               -F username=admin \
@@ -80,6 +80,6 @@ jobs:
            echo "------------ PRODUCTION -----------------"
            echo "------------ grant_type=client_credentials --------"
            curl -ksS -X POST \
-              http://app.awacscloud.tech/authserver/oauth/token \
+              https://app.awacscloud.tech/authserver/oauth/token \
               -u "spring-security-oauth2-read-client:spring-security-oauth2-read-client-password1234" \
               -F grant_type=client_credentials | json_pp
