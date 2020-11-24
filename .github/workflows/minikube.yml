@@ -59,7 +59,7 @@ jobs:
 
             # sudo apt-get -y install links2
              
-            sleep 60
+            sleep 240
             kubectl get all
 
             # minikube_host=$(minikube service nginx | grep 443 | sed -e 's/.*http/https/g' -e 's/ .*//g')
