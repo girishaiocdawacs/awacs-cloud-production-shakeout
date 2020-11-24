@@ -398,7 +398,7 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "{{productservice}}/api/files/excel/tenant/swami_samarth_medical/test.xlsx",
+					"raw": "{{productservice}}/api/files/excel/tenant/swami_samarth_medical/distributor/test.xlsx",
 					"host": [
 						"{{productservice}}"
 					],
