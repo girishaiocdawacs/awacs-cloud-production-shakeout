@@ -1,4 +1,4 @@
-name: Minikube Staging
+name: JMeter
 
 on: [push]
 
