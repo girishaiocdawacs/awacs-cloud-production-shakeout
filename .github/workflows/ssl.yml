@@ -1,0 +1,23 @@
+Name: SSL Certificate Check
+  
+name: Newman Run
+on:
+  schedule:
+    - cron:  '0 */4 * * *' 
+  push:
+    branches:
+    - main
+jobs:
+  certificate:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check SSL
+      uses: padurean/https-certificate-expiry-health-check-action@v1.0.0
+      with:
+        url: https://qa.awacscloud.tech/|http://app.awacscloud.tech/
+        check-cert: yes
+        port: 443
+        max-cert-days-left: 95
+        follow-redirect: yes
+        max-attempts: 3
+        retry-delay: 3s
