@@ -59,25 +59,25 @@ jobs:
 
             # sudo apt-get -y install links2
              
-            sleep 240
             kubectl get all
 
             # minikube_host=$(minikube service nginx | grep 443 | sed -e 's/.*http/https/g' -e 's/ .*//g')
             # minikube_host=$(kubectl get services nginx --output jsonpath={.status.loadBalancer.ingress[0].ip})
             # echo "Hoping at $minikube_host"
 
-            curl -m 30 -k -X POST \
-              https://192.168.42.71/authserver/oauth/token \
-              -u "neo:neo" \
-              -F grant_type=password \
-              -F username=admin \
-              -F password=admin1234 \
-              -F client_id=neo | json_pp
+            #curl -m 30 -k -X POST \
+            #  https://192.168.42.71/authserver/oauth/token \
+            #  -u "neo:neo" \
+            #  -F grant_type=password \
+            #  -F username=admin \
+            #  -F password=admin1234 \
+            #  -F client_id=neo | json_pp
+            #
+            #echo "Implicit and client credentials call"
+            #curl -m 30 -k -X POST \
+            #   https://192.168.42.71/authserver/oauth/token \
+            #  -u "spring-security-oauth2-read-write-client:spring-security-oauth2-read-write-client-password1234*" \
+            #  -F grant_type=client_credentials | json_pp
             
-            echo "Implicit and client credentials call"
-            curl -m 30 -k -X POST \
-               https://192.168.42.71/authserver/oauth/token \
-              -u "spring-security-oauth2-read-write-client:spring-security-oauth2-read-write-client-password1234*" \
-              -F grant_type=client_credentials | json_pp
 
             # minikube service nginx
