@@ -271,6 +271,148 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "007_upload_pdf_file",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": ".cockpit/demo.pdf"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{productservice}}/api/files/",
+					"host": [
+						"{{productservice}}"
+					],
+					"path": [
+						"api",
+						"files",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "008_process_pdf",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{productservice}}/api/files/pdf/tenant/swami_samarth_medical/demo.pdf",
+					"host": [
+						"{{productservice}}"
+					],
+					"path": [
+						"api",
+						"files",
+						"pdf",
+						"tenant",
+						"swami_samarth_medical",
+						"demo.pdf"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "009_upload_excel_file",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": ".cockpit/test.xlsx"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{productservice}}/api/files/",
+					"host": [
+						"{{productservice}}"
+					],
+					"path": [
+						"api",
+						"files",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "010_process_excel",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{access_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{productservice}}/api/files/excel/tenant/swami_samarth_medical/test.xlsx",
+					"host": [
+						"{{productservice}}"
+					],
+					"path": [
+						"api",
+						"files",
+						"excel",
+						"tenant",
+						"swami_samarth_medical",
+						"test.xlsx"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"protocolProfileBehavior": {}
