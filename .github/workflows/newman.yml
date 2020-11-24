@@ -45,14 +45,14 @@ jobs:
            newman run \
            -e .cockpit/app.awacscloud.tech.postman_environment.json \
            .cockpit/playground.postman_collection.json \
-           --insecure --verbose -n 1 --delay-request 100 --reporters cli,json --reporter-json-export outputfile-prod.json
+           --insecure --verbose -n 1 --timeout-request 8000 --delay-request 250 --reporters cli,json --reporter-json-export outputfile-prod.json
            
      - name:  oauth2 curls (qa and production)
        run: | 
            echo "Sample OAUTH2 Curls"
            echo "------------ QA -----------------"
            echo "------------ grant_type=password --------"
-           curl -kSs -X POST \
+           curl -kvSs -X POST \
               https://qa.awacscloud.tech/authserver/oauth/token \
               -u "morpheus:morpheus" \
               -F grant_type=password \
@@ -62,7 +62,7 @@ jobs:
 
            echo "------------ QA -----------------"
            echo "------------ grant_type=client_credentials --------"
-           curl -ksS -X POST \
+           curl -kvsS -X POST \
               https://qa.awacscloud.tech/authserver/oauth/token \
               -u "spring-security-oauth2-read-client:spring-security-oauth2-read-client-password1234" \
               -F grant_type=client_credentials | json_pp
@@ -70,7 +70,7 @@ jobs:
 
            echo "------------ PRODUCTION -----------------"
            echo "------------ grant_type=password --------"
-           curl -kSs -X POST \
+           curl -kvSs -X POST \
               https://app.awacscloud.tech/authserver/oauth/token \
               -u "trinity:trinity" \
               -F grant_type=password \
@@ -78,10 +78,9 @@ jobs:
               -F password=admin1234 \
               -F client_id=trinity  | json_pp
 
-
            echo "------------ PRODUCTION -----------------"
            echo "------------ grant_type=client_credentials --------"
-           curl -ksS -X POST \
+           curl -kvsS -X POST \
               https://app.awacscloud.tech/authserver/oauth/token \
               -u "spring-security-oauth2-read-client:spring-security-oauth2-read-client-password1234" \
               -F grant_type=client_credentials | json_pp
