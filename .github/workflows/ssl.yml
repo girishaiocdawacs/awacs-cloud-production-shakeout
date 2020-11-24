@@ -14,8 +14,5 @@ jobs:
       with:
         url: https://qa.awacscloud.tech|https://app.awacscloud.tech
         check-cert: yes
-        port: 443
         max-cert-days-left: 95
-        follow-redirect: yes
-        max-attempts: 3
-        retry-delay: 3s
+        max-attempts: 1
