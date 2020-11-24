@@ -1,6 +1,4 @@
-Name: SSL Certificate Check
-  
-name: Newman Run
+name: SSL Certificate Check
 on:
   schedule:
     - cron:  '0 */4 * * *' 
@@ -14,7 +12,7 @@ jobs:
     - name: Check SSL
       uses: padurean/https-certificate-expiry-health-check-action@v1.0.0
       with:
-        url: https://qa.awacscloud.tech/|http://app.awacscloud.tech/
+        url: https://qa.awacscloud.tech/|https://app.awacscloud.tech/
         check-cert: yes
         port: 443
         max-cert-days-left: 95
