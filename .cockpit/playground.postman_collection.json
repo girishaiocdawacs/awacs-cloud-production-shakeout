@@ -18,18 +18,23 @@
 							"});\r",
 							"\r",
 							"\r",
-							"pm.test(\"Body matches string\", function () {\r",
+							"pm.test(\"Body contains access_token\", function () {\r",
 							"    pm.expect(pm.response.text()).to.include(\"access_token\");\r",
 							"});\r",
 							"\r",
-							"pm.globals.set(\"access_token\", pm.response.json().access_token);"
+							"/*pm.globals.set(\"access_token\", pm.response.json().access_token);*/\r",
+							"\r",
+							"var jsonData = JSON.parse(responseBody);\r",
+							"postman.setEnvironmentVariable(\"access_token\", jsonData.access_token);\r",
+							""
 						],
 						"type": "text/javascript"
 					}
 				}
 			],
 			"protocolProfileBehavior": {
-				"strictSSL": true
+				"strictSSL": false,
+				"followAuthorizationHeader": true
 			},
 			"request": {
 				"auth": {
@@ -123,7 +128,7 @@
 			"response": []
 		},
 		{
-			"name": "002_check_authorities",
+			"name": "003_check_authorities",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},

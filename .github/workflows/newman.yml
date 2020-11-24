@@ -1,5 +1,4 @@
 name: Newman Run
-
 on:
   push:
     branches:
@@ -32,18 +31,34 @@ jobs:
        run: |
            npm install
            npm install -g newman
-           
+
            echo "playing qa tests"
            newman run \
            -e .cockpit/qa.awacscloud.tech.postman_environment.json \
            .cockpit/playground.postman_collection.json \
            --insecure --verbose --delay-request 100 --reporters cli,json --reporter-json-export outputfile.json
-          
-          
+
+
            echo "playing production tests"
            newman run \
            -e .cockpit/app.awacscloud.tech.postman_environment.json \
            .cockpit/playground.postman_collection.json \
            --insecure --verbose --delay-request 100 --reporters cli,json --reporter-json-export outputfile-prod.json
-          
-          
+
+
+          curl -k -X POST \
+            https://qa.awacscloud.tech/authserver/oauth/token \
+            -u "spring-security-oauth2-read-client:spring-security-oauth2-read-client-password1234" \
+            -F grant_type=password \
+            -F username=admin \
+            -F password=admin1234 \
+            -F client_id=spring-security-oauth2-read-client | json_pp
+
+
+           curl -k -X POST \
+              http://app.awacscloud.tech/authserver/oauth/token \
+              -u "spring-security-oauth2-read-client:spring-security-oauth2-read-client-password1234" \
+              -F grant_type=password \
+              -F username=admin \
+              -F password=admin1234 \
+              -F client_id=spring-security-oauth2-read-client  | json_pp
