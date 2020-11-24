@@ -2,8 +2,7 @@
 
 ![Minikube Staging](https://github.com/girishaiocdawacs/awacs-cloud-production-shakeout/workflows/Minikube%20Staging/badge.svg)
 
-![Newman QA](https://github.com/girishaiocdawacs/awacs-cloud-production-shakeout/workflows/Newman%20Run/badge.svg)
-![Newman PROD](https://github.com/girishaiocdawacs/awacs-cloud-production-shakeout/workflows/Newman%20Run/badge.svg)
+![Newman Run](https://github.com/girishaiocdawacs/awacs-cloud-production-shakeout/workflows/Newman%20Run/badge.svg)
 
 
 # ops status - 
@@ -14,7 +13,7 @@
 - mkdir zerossl
 - copy zerossl/certificate.crt and zerossl/private.key for SSL made to cluster LB host (apache2 in my case), same pair used by nginx for https ingress purpose
 - copy default-ssl.conf.apache2 on cluster /etc/apache2/conf/sites-enabled/ directory
-- It has a SSL proxy enabled https://app.awacscloud.tech/ like
+- It has a SSL proxy enabled https://qa.awacscloud.tech/ like
  
    ```
       SSLEngine on
