@@ -15,6 +15,9 @@
 | QA          | https://qa.awacscloud.tech/    |
 | PROD        | https://app.awacscloud.tech/   |
 
+
+![ops_nutshell](https://github.com/girishaiocdawacs/awacs-cloud-production-shakeout/blob/master/.cockpit/ops.png?raw=true)
+
 # ops status - 
 ## Production - AWS/GCP/Ali Terraform Kubernetes with Helm charts (Pending)
 ## QA (Done) - Docker Bastion
