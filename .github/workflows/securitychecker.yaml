@@ -16,8 +16,5 @@ jobs:
           sudo apt-get install python3
           pip install wheel
           pip install -r requirements.txt
-     - name: Environments Security Report
-       run: |
-          cd securityheaders
-          python3 securityheaders.py https://qa.awacscloud.tech,https://app.awacscloud.tech
+          python securityheaders.py https://qa.awacscloud.tech/authserver/,https://app.awacscloud.tech/authserver/
           
