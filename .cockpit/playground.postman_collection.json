@@ -6,414 +6,869 @@
 	},
 	"item": [
 		{
-			"name": "001_get_token",
+			"name": "auth-service",
+			"item": [
+				{
+					"name": "dummy_csp_incident_report",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"csp-report\":{\r\n      \"document-uri\":\"https://example.com/foo/bar\",\r\n      \"referrer\":\"https://www.google.com/\",\r\n      \"violated-directive\":\"default-src self\",\r\n      \"original-policy\":\"default-src self; report-uri /csp-hotline.php\",\r\n      \"blocked-uri\":\"http://evilhackerscripts.com\"\r\n   }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{authserver}}/actuator/csp/report",
+							"host": [
+								"{{authserver}}"
+							],
+							"path": [
+								"actuator",
+								"csp",
+								"report"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "actuator_health",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{authserver}}/actuator/info",
+							"host": [
+								"{{authserver}}"
+							],
+							"path": [
+								"actuator",
+								"info"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "001_get_token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7ec62c79-d745-462f-a48c-87cfebdec2e2",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Body contains access_token\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"access_token\");\r",
+									"});\r",
+									"\r",
+									"var jsonData = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"access_token\", jsonData.access_token);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"strictSSL": false,
+						"followAuthorizationHeader": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{client_secret}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{client_id}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{authserver}}/oauth/token?grant_type=password&username={{username}}&password={{password}}",
+							"host": [
+								"{{authserver}}"
+							],
+							"path": [
+								"oauth",
+								"token"
+							],
+							"query": [
+								{
+									"key": "grant_type",
+									"value": "password"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}"
+								},
+								{
+									"key": "password",
+									"value": "{{password}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "002_check_token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8e416673-013d-4568-a605-d72916058ad2",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{client_secret}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{client_id}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{authserver}}/oauth/check_token?token={{access_token}}",
+							"host": [
+								"{{authserver}}"
+							],
+							"path": [
+								"oauth",
+								"check_token"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "{{access_token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "003_new_user_signup",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "cf4fc95e-fa58-480b-9043-ad1906fb9135",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Body contains user id\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"id\");\r",
+									"});\r",
+									"\r",
+									"var jsonData = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"userId\", jsonData.id);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"girish1234\",\r\n    \"email\": \"girish.mahajan1234@aiocdawacs.com\",\r\n    \"msisdn\": \"+919168116879\",\r\n    \"password\": \"girish1234\",\r\n    \"accountExpired\": false,\r\n    \"accountLocked\": false,\r\n    \"credentialsExpired\": false,\r\n    \"enabled\": true,\r\n    \"accountNonLocked\": true,\r\n    \"accountNonExpired\": true,\r\n    \"credentialsNonExpired\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{authserver}}/api/users/temporary/signup",
+							"host": [
+								"{{authserver}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"temporary",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "003_get_that_new_user",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{authserver}}/api/users/{{userId}}",
+							"host": [
+								"{{authserver}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{userId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete_another_user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a5f75118-65fc-4bcb-bdcb-e4f2a60b7a07",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{authserver}}/api/users/{{userId}}",
+							"host": [
+								"{{authserver}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{userId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "001_get_token_again",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "42325032-1089-4c40-a1b1-29b01cfeefce",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Body contains access_token\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"access_token\");\r",
+									"});\r",
+									"\r",
+									"var jsonData = JSON.parse(responseBody);\r",
+									"postman.setEnvironmentVariable(\"access_token\", jsonData.access_token);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"strictSSL": false,
+						"followAuthorizationHeader": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{client_secret}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{client_id}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{authserver}}/oauth/token?grant_type=password&username={{username}}&password={{password}}",
+							"host": [
+								"{{authserver}}"
+							],
+							"path": [
+								"oauth",
+								"token"
+							],
+							"query": [
+								{
+									"key": "grant_type",
+									"value": "password"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}"
+								},
+								{
+									"key": "password",
+									"value": "{{password}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "003_get_principal",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{authserver}}/api/users/principal",
+							"host": [
+								"{{authserver}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"principal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "003_update_password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"password\": \"admin1234\",\r\n    \"accountExpired\": false,\r\n    \"accountLocked\": false,\r\n    \"credentialsExpired\": false,\r\n    \"enabled\": true,\r\n    \"accountNonLocked\": true,\r\n    \"credentialsNonExpired\": true,\r\n    \"accountNonExpired\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{authserver}}/api/users/{{userId}}",
+							"host": [
+								"{{authserver}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{userId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "003_update_email_address",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "28b33f48-9468-4fb4-a210-ce3271404f70",
+								"exec": [
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"success\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"girish.mahajan@yahoo.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{authserver}}/api/users/{{userId}}",
+							"host": [
+								"{{authserver}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{userId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "003_update_phone",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f382faaa-4401-48db-aade-8a9668157cfd",
+								"exec": [
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"success\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"msisdn\": \"+91 9423178879\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{authserver}}/api/users/{{userId}}",
+							"host": [
+								"{{authserver}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{userId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			],
 			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "204edad3-f6b6-4269-834f-e52647ed1147",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
 				{
 					"listen": "test",
 					"script": {
-						"id": "7ec62c79-d745-462f-a48c-87cfebdec2e2",
+						"id": "38df8b14-da59-4a82-b191-f53da378c869",
+						"type": "text/javascript",
 						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
-							"});\r",
-							"\r",
-							"\r",
-							"pm.test(\"Body contains access_token\", function () {\r",
-							"    pm.expect(pm.response.text()).to.include(\"access_token\");\r",
-							"});\r",
-							"\r",
-							"/*pm.globals.set(\"access_token\", pm.response.json().access_token);*/\r",
-							"\r",
-							"var jsonData = JSON.parse(responseBody);\r",
-							"postman.setEnvironmentVariable(\"access_token\", jsonData.access_token);\r",
 							""
-						],
-						"type": "text/javascript"
+						]
 					}
 				}
 			],
-			"protocolProfileBehavior": {
-				"strictSSL": false,
-				"followAuthorizationHeader": true
-			},
-			"request": {
-				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "password",
-							"value": "{{client_secret}}",
-							"type": "string"
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "product-service",
+			"item": [
+				{
+					"name": "003_get_products",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
 						},
-						{
-							"key": "username",
-							"value": "{{client_id}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"url": {
-					"raw": "{{authserver}}/oauth/token?grant_type=password&username={{username}}&password={{password}}",
-					"host": [
-						"{{authserver}}"
-					],
-					"path": [
-						"oauth",
-						"token"
-					],
-					"query": [
-						{
-							"key": "grant_type",
-							"value": "password"
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
 						},
-						{
-							"key": "username",
-							"value": "{{username}}"
+						"url": {
+							"raw": "{{productservice}}/api/product/344",
+							"host": [
+								"{{productservice}}"
+							],
+							"path": [
+								"api",
+								"product",
+								"344"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "004_get_all_products",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
 						},
-						{
-							"key": "password",
-							"value": "{{password}}"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "002_check_token",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"auth": {
-					"type": "basic",
-					"basic": [
-						{
-							"key": "password",
-							"value": "{{client_secret}}",
-							"type": "string"
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
 						},
-						{
-							"key": "username",
-							"value": "{{client_id}}",
-							"type": "string"
+						"url": {
+							"raw": "{{productservice}}/api/product/all",
+							"host": [
+								"{{productservice}}"
+							],
+							"path": [
+								"api",
+								"product",
+								"all"
+							]
 						}
-					]
+					},
+					"response": []
 				},
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": []
-				},
-				"url": {
-					"raw": "{{authserver}}/oauth/check_token?token={{access_token}}",
-					"host": [
-						"{{authserver}}"
-					],
-					"path": [
-						"oauth",
-						"check_token"
-					],
-					"query": [
-						{
-							"key": "token",
-							"value": "{{access_token}}"
+				{
+					"name": "005_get_all_product_order",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{productservice}}/api/product/order/all",
+							"host": [
+								"{{productservice}}"
+							],
+							"path": [
+								"api",
+								"product",
+								"order",
+								"all"
+							]
 						}
-					]
+					},
+					"response": []
+				},
+				{
+					"name": "007_upload_pdf_file",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": ".cockpit/demo.pdf"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{productservice}}/api/files/",
+							"host": [
+								"{{productservice}}"
+							],
+							"path": [
+								"api",
+								"files",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "008_process_pdf",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{productservice}}/api/files/pdf/tenant/swami_samarth_medical/demo.pdf",
+							"host": [
+								"{{productservice}}"
+							],
+							"path": [
+								"api",
+								"files",
+								"pdf",
+								"tenant",
+								"swami_samarth_medical",
+								"demo.pdf"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "009_upload_excel_file",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": ".cockpit/test.xlsx"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{productservice}}/api/files/",
+							"host": [
+								"{{productservice}}"
+							],
+							"path": [
+								"api",
+								"files",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "010_process_excel",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{productservice}}/api/files/excel/tenant/swami_samarth_medical/distributor/test.xlsx",
+							"host": [
+								"{{productservice}}"
+							],
+							"path": [
+								"api",
+								"files",
+								"excel",
+								"tenant",
+								"swami_samarth_medical",
+								"distributor",
+								"test.xlsx"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
-		},
-		{
-			"name": "003_check_authorities",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{access_token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": []
-				},
-				"url": {
-					"raw": "{{authserver}}/api/users/me",
-					"host": [
-						"{{authserver}}"
-					],
-					"path": [
-						"api",
-						"users",
-						"me"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "003_get_products",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{access_token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": []
-				},
-				"url": {
-					"raw": "{{productservice}}/api/product/344",
-					"host": [
-						"{{productservice}}"
-					],
-					"path": [
-						"api",
-						"product",
-						"344"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "004_get_all_products",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{access_token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": []
-				},
-				"url": {
-					"raw": "{{productservice}}/api/product/all",
-					"host": [
-						"{{productservice}}"
-					],
-					"path": [
-						"api",
-						"product",
-						"all"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "005_get_all_product_order",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{access_token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": []
-				},
-				"url": {
-					"raw": "{{productservice}}/api/product/order/all",
-					"host": [
-						"{{productservice}}"
-					],
-					"path": [
-						"api",
-						"product",
-						"order",
-						"all"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "007_upload_pdf_file",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{access_token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "file",
-							"type": "file",
-							"src": ".cockpit/demo.pdf"
-						}
-					]
-				},
-				"url": {
-					"raw": "{{productservice}}/api/files/",
-					"host": [
-						"{{productservice}}"
-					],
-					"path": [
-						"api",
-						"files",
-						""
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "008_process_pdf",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{access_token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{productservice}}/api/files/pdf/tenant/swami_samarth_medical/demo.pdf",
-					"host": [
-						"{{productservice}}"
-					],
-					"path": [
-						"api",
-						"files",
-						"pdf",
-						"tenant",
-						"swami_samarth_medical",
-						"demo.pdf"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "009_upload_excel_file",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{access_token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "file",
-							"type": "file",
-							"src": ".cockpit/test.xlsx"
-						}
-					]
-				},
-				"url": {
-					"raw": "{{productservice}}/api/files/",
-					"host": [
-						"{{productservice}}"
-					],
-					"path": [
-						"api",
-						"files",
-						""
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "010_process_excel",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{access_token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"url": {
-					"raw": "{{productservice}}/api/files/excel/tenant/swami_samarth_medical/distributor/test.xlsx",
-					"host": [
-						"{{productservice}}"
-					],
-					"path": [
-						"api",
-						"files",
-						"excel",
-						"tenant",
-						"swami_samarth_medical",
-						"distributor",
-						"test.xlsx"
-					]
-				}
-			},
-			"response": []
+			],
+			"protocolProfileBehavior": {}
 		}
 	],
 	"protocolProfileBehavior": {}
