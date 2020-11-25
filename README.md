@@ -4,6 +4,12 @@
 
 ![Newman Run](https://github.com/girishaiocdawacs/awacs-cloud-production-shakeout/workflows/Newman%20Run/badge.svg)
 
+## Environments
+
+| Environment |  Links                         |
+| ----------- | -------------------------------|
+| QA          | https://qa.awacscloud.tech/    |
+| PROD        | https://app.awacscloud.tech/   |
 
 # ops status - 
 ## Production - AWS/GCP/Ali Terraform Kubernetes with Helm charts (Pending)
