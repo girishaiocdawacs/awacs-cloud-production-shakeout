@@ -4,7 +4,7 @@
 
 ![Newman Run](https://github.com/girishaiocdawacs/awacs-cloud-production-shakeout/workflows/Newman%20Run/badge.svg)
 
-## Environments
+## Environments (check security at https://securityheaders.com)
 
 | Environment |  Links                         |
 | ----------- | -------------------------------|
