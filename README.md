@@ -4,6 +4,10 @@
 
 ![Newman Run](https://github.com/girishaiocdawacs/awacs-cloud-production-shakeout/workflows/Newman%20Run/badge.svg)
 
+![JMeter](https://github.com/girishaiocdawacs/awacs-cloud-production-shakeout/workflows/JMeter/badge.svg)
+
+![Security](https://github.com/girishaiocdawacs/awacs-cloud-production-shakeout/workflows/Security/badge.svg)
+
 ## Environments (check security at https://securityheaders.com)
 
 | Environment |  Links                         |
