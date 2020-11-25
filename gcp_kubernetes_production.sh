@@ -61,4 +61,5 @@ kubectl get all
 
 kubectl get nodes
 
+gcloud container clusters list
 
