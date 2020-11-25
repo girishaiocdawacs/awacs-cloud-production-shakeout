@@ -47,8 +47,10 @@ kubectl apply -f nginx-service-gcp.yaml
 
 sleep 10;
 
-kubectl create configmap nginx-config --from-file=awacs-nginx-gcp.conf
+kubectl delete configmap nginx-config
+kubectl delete configmap nginx-ssl
 
+kubectl create configmap nginx-config --from-file=awacs-nginx-gcp.conf
 kubectl create configmap nginx-ssl  --from-file=zerossl/certificate.crt --from-file=zerossl/private.key
 
 # kubectl apply -f multi-app-ingress.yaml
