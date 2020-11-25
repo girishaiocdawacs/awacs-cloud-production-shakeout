@@ -1,0 +1,19 @@
+name: Security
+
+on: 
+  push:
+    branches:
+      - main
+jobs:
+  csp:
+    runs-on: ubuntu-latest
+    steps:
+     - name: Preparing koenbuyens's security checker
+       run: |
+          git clone https://github.com/koenbuyens/securityheaders
+          cd securityheaders
+          sudo apt-get install python
+          pip install -r requirements.txt
+     - name: Environments Security Report
+          python securityheaders.py https://qa.awacscloud.tech,https://app.awacscloud.tech
+          
