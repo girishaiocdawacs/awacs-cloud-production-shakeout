@@ -491,9 +491,7 @@
 							"script": {
 								"id": "28b33f48-9468-4fb4-a210-ce3271404f70",
 								"exec": [
-									"pm.test(\"Body matches string\", function () {\r",
-									"    pm.expect(pm.response.text()).to.include(\"success\");\r",
-									"});"
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -543,9 +541,7 @@
 							"script": {
 								"id": "f382faaa-4401-48db-aade-8a9668157cfd",
 								"exec": [
-									"pm.test(\"Body matches string\", function () {\r",
-									"    pm.expect(pm.response.text()).to.include(\"success\");\r",
-									"});"
+									""
 								],
 								"type": "text/javascript"
 							}
