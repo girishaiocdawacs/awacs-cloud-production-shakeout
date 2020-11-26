@@ -2,6 +2,8 @@
 
 [[ ! -d zerossl ]] && echo "ssl directory zerossl not found with certificate and key, unable to proceed, abort"
 
+. ./.concat.sh
+
 minikube version
 
 minikube delete
@@ -56,7 +58,7 @@ sleep 10;
 
 kubectl create configmap nginx-config --from-file=awacs-nginx-qa.conf
 
-kubectl create configmap nginx-ssl  --from-file=zerossl/qa_certificate.crt --from-file=zerossl/qa_private.key
+kubectl create configmap nginx-ssl  --from-file=zerossl/qa.awacscloud.tech.crt --from-file=zerossl/qa.awacscloud.tech.key
 
 # kubectl apply -f multi-app-ingress.yaml
 
@@ -66,3 +68,5 @@ sleep 10
 kubectl get all
 
 minikube service nginx
+
+rm -rf zerossl/*awacscloud*

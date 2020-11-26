@@ -16,8 +16,6 @@ spec:
   - name: "443"
     port: 443
     targetPort: 443
-  externalIPs:
-      - 35.222.193.72
   selector:
     io.kompose.service: nginx
   type: LoadBalancer

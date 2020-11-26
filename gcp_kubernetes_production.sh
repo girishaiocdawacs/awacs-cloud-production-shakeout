@@ -1,5 +1,7 @@
 #! /bin/bash
 
+. ./.concat.sh
+
 gcloud compute instances list
 
 gcloud container clusters get-credentials cluster-1 --region us-central1-c
@@ -14,7 +16,7 @@ kubectl config view
 
 kubectl delete all --all
 
-kubectl create secret tls app.awacscloud.tech --cert=zerossl/certificate.crt --key=zerossl/private.key
+kubectl create secret tls app.awacscloud.tech --cert=zerossl/app.awacscloud.tech.crt --key=zerossl/app.awacscloud.tech.key
 
 kubectl apply -f adminer-deployment.yaml
 kubectl apply -f adminer-service.yaml
@@ -51,7 +53,7 @@ kubectl delete configmap nginx-config
 kubectl delete configmap nginx-ssl
 
 kubectl create configmap nginx-config --from-file=awacs-nginx-gcp.conf
-kubectl create configmap nginx-ssl  --from-file=zerossl/certificate.crt --from-file=zerossl/private.key
+kubectl create configmap nginx-ssl  --from-file=zerossl/app.awacscloud.tech.crt --from-file=zerossl/app.awacscloud.tech.key
 
 # kubectl apply -f multi-app-ingress.yaml
 
@@ -63,3 +65,4 @@ kubectl get nodes
 
 gcloud container clusters list
 
+rm -rf zerossl/*awacscloud*
