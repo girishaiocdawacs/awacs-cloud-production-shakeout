@@ -84,7 +84,8 @@
 					],
 					"protocolProfileBehavior": {
 						"strictSSL": false,
-						"followAuthorizationHeader": true
+						"followAuthorizationHeader": true,
+						"followRedirects": false
 					},
 					"request": {
 						"auth": {
@@ -918,7 +919,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{otpservice}}/api/whatsapp/pushText/9168116879?text=postman_test_run_{{$timestamp}}",
+							"raw": "{{otpservice}}/api/whatsapp/pushText/+919168116879?text=postman_test_run_{{$isoTimestamp}}",
 							"host": [
 								"{{otpservice}}"
 							],
@@ -926,12 +927,12 @@
 								"api",
 								"whatsapp",
 								"pushText",
-								"9168116879"
+								"+919168116879"
 							],
 							"query": [
 								{
 									"key": "text",
-									"value": "postman_test_run_{{$timestamp}}"
+									"value": "postman_test_run_{{$isoTimestamp}}"
 								}
 							]
 						}
