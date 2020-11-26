@@ -46,6 +46,7 @@ kubectl apply -f adminserver-service.yaml
 kubectl apply -f authserver-deployment.yaml
 kubectl apply -f authserver-service.yaml
 
+kubectl apply -f otpservice.yaml
 
 sleep 30
 
