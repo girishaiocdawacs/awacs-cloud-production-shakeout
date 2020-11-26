@@ -13,3 +13,5 @@ for file in qa_certificate.crt qa_ca_bundle.crt; do cat $file >> qa.awacscloud.t
 cp private.key app.awacscloud.tech.key
 
 cp qa_private.key qa.awacscloud.tech.key
+
+cd ../
