@@ -45,13 +45,13 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{authserver}}/actuator/info",
+							"raw": "{{authserver}}/actuator/health",
 							"host": [
 								"{{authserver}}"
 							],
 							"path": [
 								"actuator",
-								"info"
+								"health"
 							]
 						}
 					},
@@ -858,6 +858,134 @@
 								"swami_samarth_medical",
 								"distributor",
 								"test.xlsx"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "otp-service",
+			"item": [
+				{
+					"name": "send_success_whatsapp",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9cf37564-8e9c-4c80-81a3-bd7c641b025a",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Body contains access_token\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"sid\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"strictSSL": true,
+						"followAuthorizationHeader": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{otpservice}}/api/whatsapp/pushText/9168116879?text=postman_test_run_{{$timestamp}}",
+							"host": [
+								"{{otpservice}}"
+							],
+							"path": [
+								"api",
+								"whatsapp",
+								"pushText",
+								"9168116879"
+							],
+							"query": [
+								{
+									"key": "text",
+									"value": "postman_test_run_{{$timestamp}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "send_success_sms_otp",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f9f0e49f-54a1-4a1e-8b5d-ad8a788e43be",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"followAuthorizationHeader": true,
+						"strictSSL": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"numbers\": [\r\n    \"919168116879\"\r\n  ],\r\n  \"message\": \"newman calling {{$isoTimestamp}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{otpservice}}/api/send-messages",
+							"host": [
+								"{{otpservice}}"
+							],
+							"path": [
+								"api",
+								"send-messages"
 							]
 						}
 					},
