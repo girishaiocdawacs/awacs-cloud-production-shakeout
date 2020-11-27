@@ -16,7 +16,7 @@
 | PROD        | https://app.awacscloud.tech/   |
 
 
-![ops_nutshell](https://github.com/girishaiocdawacs/awacs-cloud-production-shakeout/blob/master/.cockpit/ops.png?raw=true)
+![ops_nutshell](https://raw.githubusercontent.com/girishaiocdawacs/awacs-cloud-production-shakeout/main/.cockpit/ops.png)
 
 # ops status - 
 ## Production - AWS/GCP/Ali Terraform Kubernetes with Helm charts (Pending)
