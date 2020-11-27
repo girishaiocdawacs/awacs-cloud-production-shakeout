@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "3921d890-e526-4ac8-9dfe-f47ebbfe2ae5",
+		"_postman_id": "4a456d37-21f4-4aed-bd1a-f661bc78f411",
 		"name": "playground",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -63,7 +63,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "7ec62c79-d745-462f-a48c-87cfebdec2e2",
+								"id": "20a089dc-2797-4383-8ea3-8c3393fcbe1a",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
@@ -138,7 +138,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "8e416673-013d-4568-a605-d72916058ad2",
+								"id": "fa3aa3be-f7fa-4b23-b56f-be88000b5f6d",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
@@ -198,7 +198,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "cf4fc95e-fa58-480b-9043-ad1906fb9135",
+								"id": "5f0646ac-d2e9-4a4b-a760-8d588674c017",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
@@ -295,7 +295,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "a5f75118-65fc-4bcb-bdcb-e4f2a60b7a07",
+								"id": "0899605a-e3d9-4c4c-93ce-468e8f85ba2b",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
@@ -342,7 +342,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "42325032-1089-4c40-a1b1-29b01cfeefce",
+								"id": "6526b2ad-656f-4635-899a-7151c048cf91",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
@@ -490,7 +490,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "28b33f48-9468-4fb4-a210-ce3271404f70",
+								"id": "fdb3ee30-2f00-495c-8b48-1d3569fd556f",
 								"exec": [
 									""
 								],
@@ -540,7 +540,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "f382faaa-4401-48db-aade-8a9668157cfd",
+								"id": "65200449-058b-4e84-9bd7-2b35826bd78c",
 								"exec": [
 									""
 								],
@@ -589,7 +589,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "204edad3-f6b6-4269-834f-e52647ed1147",
+						"id": "9666d988-6ce0-4de5-b182-251c9cfb2ce2",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -599,7 +599,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "38df8b14-da59-4a82-b191-f53da378c869",
+						"id": "611ab6b2-f1f0-47ad-9a81-138f8dfe9e91",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -876,16 +876,9 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "9cf37564-8e9c-4c80-81a3-bd7c641b025a",
+								"id": "8eeabaca-b3fd-4739-a75a-8155cdb888f8",
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
 									"\r",
-									"\r",
-									"pm.test(\"Body contains access_token\", function () {\r",
-									"    pm.expect(pm.response.text()).to.include(\"sid\");\r",
-									"});\r",
 									""
 								],
 								"type": "text/javascript"
@@ -945,7 +938,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "f9f0e49f-54a1-4a1e-8b5d-ad8a788e43be",
+								"id": "afbdcdaf-f39c-481a-bd5c-85049ae7910e",
 								"exec": [
 									""
 								],
