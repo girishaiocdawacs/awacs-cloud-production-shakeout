@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f awacs-cloud-standalone.yml
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: hystrix
+  name: hystrix
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: hystrix
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -f awacs-cloud-standalone.yml
+        kompose.version: 1.21.0 (992df58d8)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: hystrix
+    spec:
+      containers:
+      - image: gcr.io/awacs-cloud-prod/hystrix-dashboard:latest
+        imagePullPolicy: ""
+        name: hystrix
+        ports:
+        - containerPort: 7788
+        resources: {}
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes: null
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f awacs-cloud-standalone.yml
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: hystrix
+  name: hystrix
+spec:
+  ports:
+  - name: "7788"
+    port: 7788
+    targetPort: 7788
+  selector:
+    io.kompose.service: hystrix
+status:
+  loadBalancer: {}

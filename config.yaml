@@ -1,0 +1,63 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f awacs-cloud-standalone.yml
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: config
+  name: config
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: config
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -f awacs-cloud-standalone.yml
+        kompose.version: 1.21.0 (992df58d8)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: config
+    spec:
+      containers:
+      - env:
+        - name: GITHUB_TOKEN
+          value: f84da4037f35a07ad5ba12805083fafce3c745db
+        - name: PORT
+          value: "80"
+        - name: spring.cloud.config.server.git.uri
+          value: https://github.com/girishaiocdawacs/scotch-repo
+        image: config
+        imagePullPolicy: ""
+        name: config
+        ports:
+        - containerPort: 80
+        resources: {}
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes: null
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f awacs-cloud-standalone.yml
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: config
+  name: config
+spec:
+  ports:
+  - name: "80"
+    port: 80
+    targetPort: 80
+  selector:
+    io.kompose.service: config
+status:
+  loadBalancer: {}

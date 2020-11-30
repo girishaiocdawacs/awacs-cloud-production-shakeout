@@ -23,6 +23,13 @@ kubectl delete all --all
 
 kubectl create secret tls qa.awacscloud.tech --cert=zerossl/qa_certificate.crt --key=zerossl/qa_private.key
 
+
+kubectl apply -f config.yml
+kubectl apply -f hystrix.yml
+kubectl apply -f peer1.yml
+
+sleep 30
+
 kubectl apply -f adminer-deployment.yaml
 kubectl apply -f adminer-service.yaml
 
