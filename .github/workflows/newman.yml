@@ -49,7 +49,7 @@ jobs:
            
      - name:  oauth2 curls (qa and production)
        run: | 
-           echo "Sample OAUTH2 Curls"
+           echo "Sample OAuth2 Curls"
            echo "------------ QA -----------------"
            echo "------------ grant_type=password --------"
            curl -kvSs -X POST \
