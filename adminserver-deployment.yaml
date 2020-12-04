@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    kompose.cmd: kompose convert -f awacs-cloud.yml
+    kompose.cmd: kompose convert -f awacs-cloud-standalone.yml
     kompose.version: 1.21.0 (992df58d8)
   creationTimestamp: null
   labels:
@@ -17,7 +17,7 @@ spec:
   template:
     metadata:
       annotations:
-        kompose.cmd: kompose convert -f awacs-cloud.yml
+        kompose.cmd: kompose convert -f awacs-cloud-standalone.yml
         kompose.version: 1.21.0 (992df58d8)
       creationTimestamp: null
       labels:
@@ -25,15 +25,17 @@ spec:
     spec:
       containers:
       - env:
-        - name: spring.security.user.name
-          value: awacs
-        - name: spring.security.user.password
-          value: awacs
-        image: gcr.io/awacs-cloud-prod/admin-server:latest
+        - name: PORT
+          value: "80"
+        - name: spring.application.name
+          value: adminserver
+        - name: spring.cloud.bootstrap.enabled
+          value: "true"
+        image: adminserver
         imagePullPolicy: ""
         name: adminserver
         ports:
-        - containerPort: 8765
+        - containerPort: 80
         resources: {}
       restartPolicy: Always
       serviceAccountName: ""

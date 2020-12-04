@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    kompose.cmd: kompose convert -f awacs-cloud.yml
+    kompose.cmd: kompose convert -f awacs-cloud-standalone.yml
     kompose.version: 1.21.0 (992df58d8)
   creationTimestamp: null
   labels:
@@ -17,7 +17,7 @@ spec:
   template:
     metadata:
       annotations:
-        kompose.cmd: kompose convert -f awacs-cloud.yml
+        kompose.cmd: kompose convert -f awacs-cloud-standalone.yml
         kompose.version: 1.21.0 (992df58d8)
       creationTimestamp: null
       labels:
@@ -25,27 +25,41 @@ spec:
     spec:
       containers:
       - env:
-        - name: SPRING_PROFILES_ACTIVE
-          value: dev
-        - name: awacs.cloud.auth-server.check-token
-          value: http://authserver:8100/oauth/check_token
-        - name: spring.activemq.broker-url
-          value: tcp://jms:61616
-        - name: spring.activemq.in-memory
+        - name: AUTH_SERVER
+          value: authserver
+        - name: GRPC_PORT
+          value: "9345"
+        - name: JAVA_OPTIONS
+          value: -Dawacs_grpc_host=authserver
+        - name: PORT
+          value: "80"
+        - name: awacs_grpc_host
+          value: authserver
+        - name: eureka.client.service-url.defaultZone
+          value: http://admin:admin@peer1/eureka/
+        - name: grpc.client.__name__.negotiationType
+          value: PLAINTEXT
+        - name: server.forward-headers-strategy
+          value: native
+        - name: spring.application.name
+          value: product-service
+        - name: spring.cloud.config.enabled
+          value: "true"
+        - name: spring.cloud.config.fail-fast
+          value: "true"
+        - name: spring.cloud.config.uri
+          value: http://config/
+        - name: spring.cloud.discovery.enabled
           value: "false"
-        - name: spring.boot.admin.client.password
-          value: awacs
-        - name: spring.boot.admin.client.url
-          value: http://adminserver:8765
-        - name: spring.boot.admin.client.username
-          value: awacs
-        - name: spring.cloud.gcp.project-id
-          value: awacs-cloud-prod
-        image: gcr.io/awacs-cloud-prod/smart-pharmacy-product-service:latest
+        - name: spring.cloud.service-registry.auto-registration.enabled
+          value: "false"
+        - name: spring.profiles.active
+          value: prod
+        image: productservice
         imagePullPolicy: ""
         name: productservice
         ports:
-        - containerPort: 8181
+        - containerPort: 80
         resources: {}
       restartPolicy: Always
       serviceAccountName: ""

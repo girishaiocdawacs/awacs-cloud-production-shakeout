@@ -6,13 +6,13 @@ metadata:
     kompose.version: 1.21.0 (992df58d8)
   creationTimestamp: null
   labels:
-    io.kompose.service: socialweb
-  name: socialweb
+    io.kompose.service: peer1
+  name: peer1
 spec:
   replicas: 1
   selector:
     matchLabels:
-      io.kompose.service: socialweb
+      io.kompose.service: peer1
   strategy: {}
   template:
     metadata:
@@ -21,7 +21,7 @@ spec:
         kompose.version: 1.21.0 (992df58d8)
       creationTimestamp: null
       labels:
-        io.kompose.service: socialweb
+        io.kompose.service: peer1
     spec:
       containers:
       - env:
@@ -29,28 +29,25 @@ spec:
           value: "80"
         - name: eureka.client.service-url.defaultZone
           value: http://admin:admin@peer1/eureka/
-        - name: server.forward-headers-strategy
-          value: native
         - name: spring.application.name
-          value: authserver
+          value: discovery
         - name: spring.cloud.config.enabled
-          value: "true"
-        - name: spring.cloud.config.fail-fast
           value: "true"
         - name: spring.cloud.config.uri
           value: http://config/
         - name: spring.cloud.discovery.enabled
           value: "false"
         - name: spring.cloud.service-registry.auto-registration.enabled
-          value: "false"
+          value: "true"
         - name: spring.profiles.active
-          value: prod
-        image: socialweb
+          value: peer1
+        image: peer1
         imagePullPolicy: ""
-        name: socialweb
+        name: peer1
         ports:
         - containerPort: 80
         resources: {}
+      hostname: peer1
       restartPolicy: Always
       serviceAccountName: ""
       volumes: null

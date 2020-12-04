@@ -6,13 +6,13 @@ metadata:
     kompose.version: 1.21.0 (992df58d8)
   creationTimestamp: null
   labels:
-    io.kompose.service: socialweb
-  name: socialweb
+    io.kompose.service: otpservice
+  name: otpservice
 spec:
   replicas: 1
   selector:
     matchLabels:
-      io.kompose.service: socialweb
+      io.kompose.service: otpservice
   strategy: {}
   template:
     metadata:
@@ -21,7 +21,7 @@ spec:
         kompose.version: 1.21.0 (992df58d8)
       creationTimestamp: null
       labels:
-        io.kompose.service: socialweb
+        io.kompose.service: otpservice
     spec:
       containers:
       - env:
@@ -32,7 +32,7 @@ spec:
         - name: server.forward-headers-strategy
           value: native
         - name: spring.application.name
-          value: authserver
+          value: otpservice
         - name: spring.cloud.config.enabled
           value: "true"
         - name: spring.cloud.config.fail-fast
@@ -45,9 +45,9 @@ spec:
           value: "false"
         - name: spring.profiles.active
           value: prod
-        image: socialweb
+        image: otpservice
         imagePullPolicy: ""
-        name: socialweb
+        name: otpservice
         ports:
         - containerPort: 80
         resources: {}

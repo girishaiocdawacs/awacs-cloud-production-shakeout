@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    kompose.cmd: kompose convert -f awacs-cloud.yml
+    kompose.cmd: kompose convert -f awacs-cloud-standalone.yml
     kompose.version: 1.21.0 (992df58d8)
   creationTimestamp: null
   labels:
@@ -17,7 +17,7 @@ spec:
   template:
     metadata:
       annotations:
-        kompose.cmd: kompose convert -f awacs-cloud.yml
+        kompose.cmd: kompose convert -f awacs-cloud-standalone.yml
         kompose.version: 1.21.0 (992df58d8)
       creationTimestamp: null
       labels:
@@ -26,11 +26,16 @@ spec:
       containers:
       - args:
         - --default-authentication-plugin=mysql_native_password
+        - --explicit-defaults-for-timestamp=ON
         env:
         - name: MYSQL_DATABASE
           value: awacs_cloud
+        - name: MYSQL_PASSWORD
+          value: devbot
         - name: MYSQL_ROOT_PASSWORD
           value: secret
+        - name: MYSQL_USER
+          value: devbot
         image: mysql
         imagePullPolicy: ""
         name: db

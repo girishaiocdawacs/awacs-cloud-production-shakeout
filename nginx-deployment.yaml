@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    kompose.cmd: kompose convert -f awacs-cloud.yml
+    kompose.cmd: kompose convert -f awacs-cloud-standalone.yml
     kompose.version: 1.21.0 (992df58d8)
   creationTimestamp: null
   labels:
@@ -17,7 +17,7 @@ spec:
   template:
     metadata:
       annotations:
-        kompose.cmd: kompose convert -f awacs-cloud.yml
+        kompose.cmd: kompose convert -f awacs-cloud-standalone.yml
         kompose.version: 1.21.0 (992df58d8)
       creationTimestamp: null
       labels:
@@ -30,23 +30,8 @@ spec:
         ports:
         - containerPort: 80
         - containerPort: 443
-        volumeMounts:
-          - mountPath: /etc/nginx/zerossl/
-            name: nginx-ssl
-            readOnly: true
-          - mountPath: /etc/nginx/conf.d/
-            name: nginx-config
-            readOnly: true
         resources: {}
       restartPolicy: Always
       serviceAccountName: ""
-      volumes:
-      - name: nginx-config
-        configMap:
-          name: nginx-config
-      - name: nginx-ssl
-        configMap:
-          name: nginx-ssl
-
+      volumes: null
 status: {}
-

@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    kompose.cmd: kompose convert -f awacs-cloud.yml
+    kompose.cmd: kompose convert -f awacs-cloud-standalone.yml
     kompose.version: 1.21.0 (992df58d8)
   creationTimestamp: null
   labels:
@@ -17,7 +17,7 @@ spec:
   template:
     metadata:
       annotations:
-        kompose.cmd: kompose convert -f awacs-cloud.yml
+        kompose.cmd: kompose convert -f awacs-cloud-standalone.yml
         kompose.version: 1.21.0 (992df58d8)
       creationTimestamp: null
       labels:
@@ -25,27 +25,34 @@ spec:
     spec:
       containers:
       - env:
-        - name: spring.boot.admin.client.password
-          value: awacs
-        - name: spring.boot.admin.client.url
-          value: http://adminserver:8765
-        - name: spring.boot.admin.client.username
-          value: awacs
-        - name: spring.datasource.password
-          value: secret
-        - name: spring.datasource.url
-          value: jdbc:mysql://db:3306/awacs_cloud
-        - name: spring.datasource.username
-          value: root
-        - name: spring.jpa.properties.hibernate.dialect
-          value: org.hibernate.dialect.MySQL8Dialect
-        - name: spring.jpa.show-sql
+        - name: GRPC_PORT
+          value: "9345"
+        - name: PORT
+          value: "80"
+        - name: eureka.client.service-url.defaultZone
+          value: http://admin:admin@peer1/eureka/
+        - name: server.forward-headers-strategy
+          value: native
+        - name: spring.application.name
+          value: authserver
+        - name: spring.cloud.config.enabled
           value: "true"
-        image: gcr.io/awacs-cloud-prod/awacs-cloud-auth-server:latest
+        - name: spring.cloud.config.fail-fast
+          value: "true"
+        - name: spring.cloud.config.uri
+          value: http://config/
+        - name: spring.cloud.discovery.enabled
+          value: "false"
+        - name: spring.cloud.service-registry.auto-registration.enabled
+          value: "false"
+        - name: spring.profiles.active
+          value: prod
+        image: authserver
         imagePullPolicy: ""
         name: authserver
         ports:
-        - containerPort: 8100
+        - containerPort: 80
+        - containerPort: 9345
         resources: {}
       restartPolicy: Always
       serviceAccountName: ""
