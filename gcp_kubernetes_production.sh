@@ -18,9 +18,18 @@ kubectl delete all --all
 
 kubectl create secret tls app.awacscloud.tech --cert=zerossl/app.awacscloud.tech.crt --key=zerossl/app.awacscloud.tech.key
 
-kubectl apply -f config.yaml
-kubectl apply -f peer1.yml
-kubectl apply -f hystrix.yml
+sed -i 's/here_goes_github_token/4660eabfc92d3842555f829c14d2add8620f13fb/g' config-deployment.yaml
+kubectl apply -f config-deployment.yaml
+sed -i 's/4660eabfc92d3842555f829c14d2add8620f13fb/here_goes_github_token/g' config-deployment.yaml
+
+kubectl apply -f config-service.yaml
+
+kubectl apply -f peer1-deployment.yaml
+kubectl apply -f peer1-service.yaml
+
+kubectl apply -f hystrix-deployment.yml
+kubectl apply -f hystrix-service.yml
+
 sleep 30
 
 kubectl apply -f adminer-deployment.yaml
