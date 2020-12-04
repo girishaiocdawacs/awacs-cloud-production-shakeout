@@ -45,7 +45,7 @@ spec:
           value: "false"
         - name: spring.profiles.active
           value: prod
-        image: socialweb
+        image: gcr.io/awacs-cloud-prod/smart-pharmacy-user-management:latest
         imagePullPolicy: ""
         name: socialweb
         ports:
