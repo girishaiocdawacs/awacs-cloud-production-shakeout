@@ -49,7 +49,7 @@ spec:
           value: "false"
         - name: spring.profiles.active
           value: prod
-        image: productservice
+        image: gcr.io/awacs-cloud-prod/smart-pharmacy-product-service:latest
         imagePullPolicy: ""
         name: productservice
         ports:
