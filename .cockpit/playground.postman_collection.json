@@ -231,7 +231,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"username\": \"girish1234\",\r\n    \"email\": \"girish.mahajan1234@aiocdawacs.com\",\r\n    \"msisdn\": \"+919168116879\",\r\n    \"password\": \"girish1234\",\r\n    \"accountExpired\": false,\r\n    \"accountLocked\": false,\r\n    \"credentialsExpired\": false,\r\n    \"enabled\": true,\r\n    \"accountNonLocked\": true,\r\n    \"accountNonExpired\": true,\r\n    \"credentialsNonExpired\": true\r\n}",
+							"raw": "{\r\n    \"username\": \"girish1234\",\r\n    \"email\": \"girish.mahajan1234@aiocdawacs.com\",\r\n    \"msisdn\": \"+919168116879\",\r\n    \"aadhar\": \"9999 8888 7777 6666\",\r\n    \"password\": \"girish1234\",\r\n    \"accountExpired\": false,\r\n    \"accountLocked\": false,\r\n    \"credentialsExpired\": false,\r\n    \"enabled\": true,\r\n    \"accountNonLocked\": true,\r\n    \"accountNonExpired\": true,\r\n    \"credentialsNonExpired\": true\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -563,7 +563,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"msisdn\": \"+91 9423178879\"\r\n}",
+							"raw": "{\r\n    \"msisdn\": \"+91 9423178879\",\r\n    \"aadhar\":\"9999 0000 8888 1111\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
