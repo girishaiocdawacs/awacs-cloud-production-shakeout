@@ -39,7 +39,7 @@ spec:
           value: "true"
         - name: spring.profiles.active
           value: prod
-        image: gcr.io/awacs-cloud-prod/services-dashboard:latest
+        image: bootstrap
         imagePullPolicy: ""
         name: bootstrap
         ports:

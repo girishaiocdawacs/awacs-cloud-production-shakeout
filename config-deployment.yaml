@@ -30,12 +30,12 @@ spec:
         - name: PORT
           value: "80"
         - name: debug
-          value: "true"
+          value: "false"
         - name: logging.level.org.springframework.cloud.config
           value: debug
         - name: spring.cloud.config.server.git.uri
           value: https://github.com/girishaiocdawacs/scotch-repo
-        image: gcr.io/awacs-cloud-prod/awacs-cloud-config-server:latest
+        image: config
         imagePullPolicy: ""
         name: config
         ports:

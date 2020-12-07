@@ -27,8 +27,12 @@ spec:
       - env:
         - name: PORT
           value: "80"
+        - name: awacs_grpc_host
+          value: authserver
         - name: eureka.client.service-url.defaultZone
           value: http://admin:admin@peer1/eureka/
+        - name: grpc.client.__name__.negotiationType
+          value: PLAINTEXT
         - name: server.forward-headers-strategy
           value: native
         - name: spring.application.name
@@ -45,7 +49,7 @@ spec:
           value: "false"
         - name: spring.profiles.active
           value: prod
-        image: gcr.io/awacs-cloud-prod/twilio-connector-service:latest
+        image: otpservice
         imagePullPolicy: ""
         name: otpservice
         ports:

@@ -31,7 +31,7 @@ spec:
           value: adminserver
         - name: spring.cloud.bootstrap.enabled
           value: "true"
-        image: gcr.io/awacs-cloud-prod/admin-server:latest
+        image: adminserver
         imagePullPolicy: ""
         name: adminserver
         ports:
