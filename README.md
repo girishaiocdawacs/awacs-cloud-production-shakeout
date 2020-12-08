@@ -15,7 +15,7 @@
 | QA          | https://qa.awacscloud.tech/    |
 | PROD        | https://app.awacscloud.tech/   |
 
-# ops strategy (balkrisha)
+# ops strategy
 ![ops_nutshell](https://raw.githubusercontent.com/girishaiocdawacs/awacs-cloud-production-shakeout/main/.cockpit/ops.png)
 
 # ops status - 
