@@ -1,9 +1,7 @@
 name: Minikube Staging
-
 on: [push]
-
 jobs:
-  example:
+  play:
     name: Minikube-Kubernetes Spin
     runs-on: ubuntu-latest
     steps:
@@ -19,10 +17,46 @@ jobs:
         run: |
             kubectl config get-contexts
             kubectl config use-context minikube
+            kubectl get all
             kubectl config view
-            ./minikube_qa.sh
-            
-            sleep 10;
+            # known bug
+            #kubectl create secret tls app.awacscloud.tech --cert=zerossl/certificate.crt --key=zerossl/private.key
+
+            kubectl apply -f adminer-deployment.yaml
+            kubectl apply -f adminer-service.yaml
+
+            kubectl apply -f db-deployment.yaml
+            kubectl apply -f db-service.yaml
+
+            kubectl apply -f jms-deployment.yaml
+            kubectl apply -f jms-service.yaml
+
+            sleep 20
+
+            kubectl apply -f productservice-deployment.yaml
+            kubectl apply -f productservice-service.yaml
+
+            kubectl apply -f socialweb-deployment.yaml
+            kubectl apply -f socialweb-service.yaml
+
+            kubectl apply -f adminserver-deployment.yaml
+            kubectl apply -f adminserver-service.yaml
+
+            kubectl apply -f authserver-deployment.yaml
+            kubectl apply -f authserver-service.yaml
+
+            sleep 20
+
+            kubectl apply -f nginx-deployment.yaml
+            kubectl apply -f nginx-service.yaml
+
+            sleep 60;
+
+            # kubectl apply -f multi-app-ingress.yaml
+            # kubectl expose service/nginx --port=80 --target-port=8080 --name=nginx-ingress --type=LoadBalancer
+
+            # sudo apt-get -y install links2
+             
             kubectl get all
 
             # minikube_host=$(minikube service nginx | grep 443 | sed -e 's/.*http/https/g' -e 's/ .*//g')
