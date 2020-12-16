@@ -38,14 +38,13 @@ jobs:
            newman run \
            -e .cockpit/qa.awacscloud.tech.postman_environment.json \
            .cockpit/playground.postman_collection.json \
-           --insecure --verbose --delay-request 100 --reporters cli,json --reporter-json-export outputfile.json
-
+           --insecure --verbose -n 100 --timeout-request 5000 --delay-request 100 --reporters cli,json --reporter-json-export outputfile.json
 
            # echo "playing production tests"
            # newman run \
            # -e .cockpit/app.awacscloud.tech.postman_environment.json \
            # .cockpit/playground.postman_collection.json \
-           # --insecure --verbose -n 1 --timeout-request 8000 --delay-request 250 --reporters cli,json --reporter-json-export outputfile-prod.json
+           # --insecure --verbose -n 100 --timeout-request 8000 --delay-request 250 --reporters cli,json --reporter-json-export outputfile-prod.json
            
      - name:  oauth2 curls (qa and production)
        run: | 
