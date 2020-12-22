@@ -239,15 +239,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{authserver}}/api/users/temporary/signup",
+							"raw": "{{authserver}}/api/Users/SignUp",
 							"host": [
 								"{{authserver}}"
 							],
 							"path": [
 								"api",
-								"users",
-								"temporary",
-								"signup"
+								"Users",
+								"SignUp"
 							]
 						}
 					},
@@ -270,53 +269,6 @@
 							]
 						},
 						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "formdata",
-							"formdata": []
-						},
-						"url": {
-							"raw": "{{authserver}}/api/users/{{userId}}",
-							"host": [
-								"{{authserver}}"
-							],
-							"path": [
-								"api",
-								"users",
-								"{{userId}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "delete_another_user",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "0899605a-e3d9-4c4c-93ce-468e8f85ba2b",
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{access_token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
 						"header": [],
 						"body": {
 							"mode": "formdata",
@@ -433,13 +385,13 @@
 							"formdata": []
 						},
 						"url": {
-							"raw": "{{authserver}}/api/users/principal",
+							"raw": "{{authserver}}/api/Users/principal",
 							"host": [
 								"{{authserver}}"
 							],
 							"path": [
 								"api",
-								"users",
+								"Users",
 								"principal"
 							]
 						}
@@ -471,13 +423,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{authserver}}/api/users/{{userId}}",
+							"raw": "{{authserver}}/api/Users/{{userId}}",
 							"host": [
 								"{{authserver}}"
 							],
 							"path": [
 								"api",
-								"users",
+								"Users",
 								"{{userId}}"
 							]
 						}
@@ -513,7 +465,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"girish.mahajan@yahoo.com\"\r\n}",
+							"raw": "{\r\n    \"email\": \"girish.mahajan@yahoo.com\",\r\n    \"aadhar\": \"9999 9929 2999\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -521,13 +473,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{authserver}}/api/users/{{userId}}",
+							"raw": "{{authserver}}/api/Users/{{userId}}",
 							"host": [
 								"{{authserver}}"
 							],
 							"path": [
 								"api",
-								"users",
+								"Users",
 								"{{userId}}"
 							]
 						}
@@ -563,12 +515,59 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"msisdn\": \"+91 9423178879\",\r\n    \"aadhar\":\"9999 0000 8888 1111\"\r\n}",
+							"raw": "{\r\n    \"msisdn\": \"+91 9423178879\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
+						},
+						"url": {
+							"raw": "{{authserver}}/api/Users/{{userId}}",
+							"host": [
+								"{{authserver}}"
+							],
+							"path": [
+								"api",
+								"Users",
+								"{{userId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete_another_user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0899605a-e3d9-4c4c-93ce-468e8f85ba2b",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
 						},
 						"url": {
 							"raw": "{{authserver}}/api/users/{{userId}}",
