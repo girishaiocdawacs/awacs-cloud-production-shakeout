@@ -2,12 +2,11 @@
 
 
 curl -kSs -X POST \
-  https://app.awacscloud.tech/authserver/oauth/token \
+  https://qa.awacscloud.tech/authserver/oauth/token \
   -u "trinity:trinity" \
   -F grant_type=password \
   -F username=admin \
-  -F password=admin1234 \
-  -F client_id=trinity | json_pp
+  -F password=admin1234 | json_pp
 
 
 
@@ -27,3 +26,5 @@ curl -kiSs -X POST \
   -F client_id=trinity \
   -F client_secret=trinity \
   -F "redirect_uri=http://smartservice.aiocdawacs.com/" 
+
+
