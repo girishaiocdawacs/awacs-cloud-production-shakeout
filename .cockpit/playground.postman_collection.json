@@ -58,7 +58,7 @@
 					"response": []
 				},
 				{
-					"name": "001_get_token",
+					"name": "001_get_token (authenticate)",
 					"event": [
 						{
 							"listen": "test",
@@ -595,6 +595,107 @@
 							""
 						]
 					}
+				}
+			]
+		},
+		{
+			"name": "order-service",
+			"item": [
+				{
+					"name": "001_myorders",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{authserver}}/api/Order/MyOrders?Workspace=603387",
+							"host": [
+								"{{authserver}}"
+							],
+							"path": [
+								"api",
+								"Order",
+								"MyOrders"
+							],
+							"query": [
+								{
+									"key": "Workspace",
+									"value": "603387"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "002_myorders_lite",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{authserver}}/api/Order/MyOrdersLite?Workspace=603387",
+							"host": [
+								"{{authserver}}"
+							],
+							"path": [
+								"api",
+								"Order",
+								"MyOrdersLite"
+							],
+							"query": [
+								{
+									"key": "Workspace",
+									"value": "603387"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
