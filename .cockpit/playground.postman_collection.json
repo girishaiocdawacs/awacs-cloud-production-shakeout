@@ -678,7 +678,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{authserver}}/api/Order/MyOrdersLite?Workspace=603387",
+							"raw": "{{authserver}}/api/Order/MyOrdersLite?Workspace=123049&FromDate=15-12-2020&ToDate=17-12-2020",
 							"host": [
 								"{{authserver}}"
 							],
@@ -690,7 +690,15 @@
 							"query": [
 								{
 									"key": "Workspace",
-									"value": "603387"
+									"value": "123049"
+								},
+								{
+									"key": "FromDate",
+									"value": "15-12-2020"
+								},
+								{
+									"key": "ToDate",
+									"value": "17-12-2020"
 								}
 							]
 						}
