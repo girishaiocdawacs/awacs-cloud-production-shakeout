@@ -3,15 +3,18 @@ on:
   schedule:
     - cron:  '30 16 * * *' 
 jobs:
-  stop:
+  gcp:
     name: Stop Instance Nightly
     runs-on: ubuntu-latest
     steps:
-    - name: Setup
+    - name: Checkout
+    - uses: actions/checkout@v2
+      # setup google CLI
     - uses: google-github-actions/setup-gcloud@master
       with:
         service_account_key: ${{ secrets.GKE_SA_KEY }}
         project_id: ${{ secrets.GKE_PROJECT }}
     - run: |-
+        gcloud --quiet auth configure-docker
         gcloud sql instances patch awacs-test-db --activation-policy NEVER
         
