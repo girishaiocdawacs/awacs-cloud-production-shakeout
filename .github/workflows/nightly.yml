@@ -2,9 +2,6 @@ name: Stop SQL
 on:
   schedule:
     - cron:  '30 16 * * *' 
-env:
-  PROJECT_ID: ${{ secrets.GKE_PROJECT }}
-  SQL_INSTANCE_NAME: "awacs-test-db"
 jobs:
   stop:
     name: Stop Instance Nightly
@@ -16,5 +13,5 @@ jobs:
         service_account_key: ${{ secrets.GKE_SA_KEY }}
         project_id: ${{ secrets.GKE_PROJECT }}
     - run: |-
-        gcloud sql instances patch ${{SQL_INSTANCE_NAME}} --activation-policy NEVER
+        gcloud sql instances patch awacs-test-db --activation-policy NEVER
         
