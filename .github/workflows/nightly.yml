@@ -1,7 +1,7 @@
 name: Stop SQL
 on:
-  schedule:
-    - cron:  '30 16 * * *' 
+  push:
+    branches:  [master] 
 jobs:
   gcp:
     name: Stop Instance Nightly
