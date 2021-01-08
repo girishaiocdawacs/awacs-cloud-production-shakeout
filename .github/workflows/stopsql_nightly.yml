@@ -1,7 +1,7 @@
 name: Stopping SQL Instance Nightly
-on:
-  schedule:
-    - cron: '05 07 * * *'    
+on:  
+ schedule:
+  - cron:  '10 07 * * *'     
 env:
   PROJECT_ID: ${{ secrets.GKE_PROJECT }}
   SQL_INSTANCE_NAME: "awacs-test-db"
