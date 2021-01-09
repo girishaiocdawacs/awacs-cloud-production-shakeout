@@ -602,7 +602,7 @@
 			"name": "order-service",
 			"item": [
 				{
-					"name": "001_myorders",
+					"name": "001_myorders_rest",
 					"event": [
 						{
 							"listen": "test",
@@ -644,6 +644,53 @@
 									"key": "Workspace",
 									"value": "603387"
 								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "001_myorders_graphql",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query {\r\n  myOrders(workspaceId:123049,  fromDate: \"01-12-2020\", toDate:\"20-12-2020\"){\r\n    orderDate,\r\n    orderNumber,\r\n    id,\r\n    supplierId,\r\n    buyerId,\r\n\t  buyerProductCode,\r\n    buyerProductName,\r\n    quantity\r\n  }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{authserver}}/graphql",
+							"host": [
+								"{{authserver}}"
+							],
+							"path": [
+								"graphql"
 							]
 						}
 					},
@@ -700,6 +747,180 @@
 									"key": "ToDate",
 									"value": "17-12-2020"
 								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "003_ordersummary",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{authserver}}/api/Order/OrderSummary?OrderNumber=SO00696071",
+							"host": [
+								"{{authserver}}"
+							],
+							"path": [
+								"api",
+								"Order",
+								"OrderSummary"
+							],
+							"query": [
+								{
+									"key": "OrderNumber",
+									"value": "SO00696071"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "004_dashboard",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{authserver}}/api/Dashboard/",
+							"host": [
+								"{{authserver}}"
+							],
+							"path": [
+								"api",
+								"Dashboard",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "005_dashboard_v1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{authserver}}/api/Dashboard/v1",
+							"host": [
+								"{{authserver}}"
+							],
+							"path": [
+								"api",
+								"Dashboard",
+								"v1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "005_supplier_info",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{authserver}}/api/Supplier/AIOCD2843",
+							"host": [
+								"{{authserver}}"
+							],
+							"path": [
+								"api",
+								"Supplier",
+								"AIOCD2843"
 							]
 						}
 					},
