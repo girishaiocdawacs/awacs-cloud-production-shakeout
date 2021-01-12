@@ -599,6 +599,58 @@
 			]
 		},
 		{
+			"name": "workspace-service",
+			"item": [
+				{
+					"name": "001_workspace_by_id_graphql",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query {\r\n  workspace(workspace: \"MHTH200005\") {\r\n    id\r\n    name\r\n    address1\r\n    address2\r\n    address3\r\n    lastIpAddress\r\n    email\r\n    phoneNo\r\n    liveorderCount\r\n    workspace\r\n    timeZoneId\r\n  }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{authserver}}/graphql",
+							"host": [
+								"{{authserver}}"
+							],
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "order-service",
 			"item": [
 				{
@@ -1452,7 +1504,102 @@
 		},
 		{
 			"name": "payment-service",
-			"item": []
+			"item": [
+				{
+					"name": "001_all_payments_by_supplier_id_graphql",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query {\r\n  paymentsBySupplierId(supplierId: \"MHTH200015\") {\r\n    id\r\n    urn\r\n    date\r\n    supplierId\r\n    buyerId\r\n    billNumber\r\n    billAmount\r\n    status\r\n    reason\r\n    reference\r\n  }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{authserver}}/graphql",
+							"host": [
+								"{{authserver}}"
+							],
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "002_all_payments_by_buyer_id_graphql",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query {\r\n  paymentsByBuyerId(buyerId: \"DOM2001662\",\r\n  fromDate: \"01-01-2017\",\r\n  toDate: \"01-02-2021\"){\r\n    id\r\n    buyerId\r\n    billDate\r\n    billNumber\r\n    billAmount\r\n    supplierId\r\n    paymentDate\r\n    paymentAmount\r\n    urn\r\n    date\r\n  }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{authserver}}/graphql",
+							"host": [
+								"{{authserver}}"
+							],
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		},
 		{
 			"name": "receipts-service",

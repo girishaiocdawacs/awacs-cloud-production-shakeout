@@ -47,7 +47,7 @@ spec:
           value: "false"
         - name: spring.profiles.active
           value: prod
-        image: gcr.io/awacs-cloud-prod/awacs-cloud-auth-server:latest
+        image: gcr.io/awacs-dev/awacs-cloud-auth-server:latest
         imagePullPolicy: ""
         name: authserver
         ports:
