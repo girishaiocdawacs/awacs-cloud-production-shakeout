@@ -914,7 +914,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query {\r\n  dashboard(userName: \"MHTH200005\") {\r\n    workspaceId\r\n    lastLogin\r\n    orders\r\n    orderStatus\r\n    schemes\r\n    invoices\r\n    bills\r\n  }\r\n}",
+								"query": "query {\r\n  dashboard(userName: \"MHTH200005\") {\r\n    workspaceId\r\n    loginInfo {key, value}\r\n    lastLogin\r\n    orders\t\r\n    orderStatus\r\n    schemes\r\n    invoices\r\n    bills\r\n  }\r\n}",
 								"variables": ""
 							}
 						},
@@ -1433,6 +1433,114 @@
 							"mode": "graphql",
 							"graphql": {
 								"query": "query{\r\n  \r\n  invoicesBySupplierId(supplierId: \"AIOCDW625\"){\r\n    id\r\n    buyerId\r\n    billNumber\r\n    supplierId\r\n    netInvoiceAmount\r\n    orderNumber\r\n  }\r\n}\r\n",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{authserver}}/graphql",
+							"host": [
+								"{{authserver}}"
+							],
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "payment-service",
+			"item": []
+		},
+		{
+			"name": "receipts-service",
+			"item": [
+				{
+					"name": "001_receipt_by_workspace_graphql",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query {\r\n  receiptsByWorkspaceId(workspaceId: 2){\r\n    date\r\n    modeOfPayment\r\n    amount\r\n    againstOf\r\n    buyerId\r\n    bank\r\n    chequeNumber\r\n    workspaceId\r\n  }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{authserver}}/graphql",
+							"host": [
+								"{{authserver}}"
+							],
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "companion-service",
+			"item": [
+				{
+					"name": "001_companion_by_workspace_graphql",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query {\r\n  companionByWorkspaceId(workspaceId: 1){\r\n    companionId\r\n    userId\r\n    name\r\n    bank\r\n    ifscCode\r\n    pan\r\n    phone\r\n    email\r\n    salesmenCode\r\n    workspaceId\r\n  }\r\n}",
 								"variables": ""
 							}
 						},
