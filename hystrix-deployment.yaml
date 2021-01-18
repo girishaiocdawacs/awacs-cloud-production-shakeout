@@ -24,7 +24,7 @@ spec:
         io.kompose.service: hystrix
     spec:
       containers:
-      - image: gcr.io/awacs-cloud-prod/hystrix-dashboard:latest
+      - image: hystrix
         imagePullPolicy: ""
         name: hystrix
         ports:

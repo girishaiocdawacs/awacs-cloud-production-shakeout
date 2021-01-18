@@ -6,14 +6,14 @@ metadata:
     kompose.version: 1.21.0 (992df58d8)
   creationTimestamp: null
   labels:
-    io.kompose.service: db
-  name: db
+    io.kompose.service: search
+  name: search
 spec:
   ports:
-  - name: "1433"
-    port: 1433
-    targetPort: 1433
+  - name: "8081"
+    port: 8081
+    targetPort: 8081
   selector:
-    io.kompose.service: db
+    io.kompose.service: search
 status:
   loadBalancer: {}

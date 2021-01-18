@@ -41,7 +41,7 @@ spec:
           value: "true"
         - name: spring.profiles.active
           value: peer1
-        image: gcr.io/awacs-cloud-prod/awacs-cloud-discovery:latest
+        image: peer1
         imagePullPolicy: ""
         name: peer1
         ports:

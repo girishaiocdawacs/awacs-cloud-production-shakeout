@@ -26,7 +26,7 @@ spec:
       containers:
       - env:
         - name: GITHUB_TOKEN
-          value: c25e434a9e599a1cfccd03746477b2ea2d462e5b
+          value: df7b782bba762dfce870cd290d1960a1ea66e8a2
         - name: PORT
           value: "80"
         - name: debug
@@ -35,7 +35,7 @@ spec:
           value: debug
         - name: spring.cloud.config.server.git.uri
           value: https://github.com/girishaiocdawacs/scotch-repo
-        image: gcr.io/awacs-dev/awacs-cloud-config-server:latest
+        image: config
         imagePullPolicy: ""
         name: config
         ports:

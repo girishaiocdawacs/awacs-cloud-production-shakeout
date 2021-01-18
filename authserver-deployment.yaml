@@ -45,9 +45,11 @@ spec:
           value: "false"
         - name: spring.cloud.service-registry.auto-registration.enabled
           value: "false"
+        - name: spring.jpa.hibernate.ddl-auto
+          value: none
         - name: spring.profiles.active
           value: prod
-        image: gcr.io/awacs-dev/awacs-cloud-auth-server:latest
+        image: authserver
         imagePullPolicy: ""
         name: authserver
         ports:

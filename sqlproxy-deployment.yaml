@@ -6,13 +6,13 @@ metadata:
     kompose.version: 1.21.0 (992df58d8)
   creationTimestamp: null
   labels:
-    io.kompose.service: db
-  name: db
+    io.kompose.service: sqlproxy
+  name: sqlproxy
 spec:
   replicas: 1
   selector:
     matchLabels:
-      io.kompose.service: db
+      io.kompose.service: sqlproxy
   strategy: {}
   template:
     metadata:
@@ -21,28 +21,20 @@ spec:
         kompose.version: 1.21.0 (992df58d8)
       creationTimestamp: null
       labels:
-        io.kompose.service: db
+        io.kompose.service: sqlproxy
     spec:
       containers:
-      - env:
-        - name: ACCEPT_EULA
-          value: Y
-        - name: MSSQL_DB
-          value: SmartStockist
-        - name: MSSQL_PASSWORD
-          value: test
-        - name: MSSQL_PID
-          value: Express
-        - name: MSSQL_USER
-          value: sqlserver
-        - name: SA_PASSWORD
-          value: P@ssw0rd#
-        image: mcr.microsoft.com/mssql/server:2017-latest
+      - args:
+        - /cloud_sql_proxy
+        - -instances=awacs-dev:asia-south1:awacs-test-db=tcp:0.0.0.0:1433
+        - -credential_file=/secrets/cloudsql/gcp.json
+        image: gcr.io/cloudsql-docker/gce-proxy:1.19.1
         imagePullPolicy: ""
-        name: db
+        name: sqlproxy
         ports:
         - containerPort: 1433
         resources: {}
+      hostname: sqlproxy
       restartPolicy: Always
       serviceAccountName: ""
       volumes: null

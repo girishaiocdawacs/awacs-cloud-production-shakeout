@@ -1,0 +1,69 @@
+version: '3.3'
+services:
+  sqlproxy:
+    image: gcr.io/cloudsql-docker/gce-proxy:1.19.1
+    hostname: sqlproxy
+    restart: always
+    expose:
+      - 1433
+    command: /cloud_sql_proxy -instances=awacs-dev:asia-south1:awacs-test-db=tcp:0.0.0.0:1433 -credential_file=/secrets/cloudsql/gcp.json
+    volumes:
+     - ./sqlproxy/gcp.json:/secrets/cloudsql/gcp.json
+
+  config:
+    build: extras/awacs-cloud-config-server
+    expose:
+      - 80
+    environment:
+       PORT: 80
+       debug: 'false'
+       GITHUB_TOKEN: df7b782bba762dfce870cd290d1960a1ea66e8a2
+       logging.level.org.springframework.cloud.config: debug
+       spring.cloud.config.server.git.uri: https://github.com/girishaiocdawacs/scotch-repo
+
+  authserver:
+    build: awacs-cloud-auth-server
+    restart: always
+    expose:
+     - 80
+     - 9345
+    links:
+      - config
+      - sqlproxy
+    depends_on:
+      - sqlproxy
+      - config
+    environment:
+        PORT: 80
+        GRPC_PORT: 9345
+        spring.cloud.config.uri: http://config/
+        spring.application.name: 'authserver'
+        spring.profiles.active: prod
+        spring.cloud.config.enabled: 'true'
+        spring.jpa.hibernate.ddl-auto: 'none'
+        spring.cloud.discovery.enabled: 'false'
+        spring.cloud.service-registry.auto-registration.enabled: 'false'
+        server.forward-headers-strategy: native
+        spring.cloud.config.fail-fast: 'true'
+        eureka.client.service-url.defaultZone: http://admin:admin@peer1/eureka/
+
+  nginx:
+    build:
+      context: awacs-nginx
+      dockerfile: Dockerfile.nginx.qa
+    container_name: awacs_nginx
+    restart: always
+    ports:
+    - 80:80
+    - 443:443
+    expose:
+    - 80
+    - 443
+    links:
+    - authserver
+    depends_on:
+    - config
+    - authserver
+
+networks:
+  overlay:

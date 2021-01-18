@@ -32,7 +32,7 @@ spec:
         - name: server.forward-headers-strategy
           value: native
         - name: spring.application.name
-          value: authserver
+          value: socialweb
         - name: spring.cloud.config.enabled
           value: "true"
         - name: spring.cloud.config.fail-fast
@@ -45,7 +45,7 @@ spec:
           value: "false"
         - name: spring.profiles.active
           value: prod
-        image: gcr.io/awacs-cloud-prod/smart-pharmacy-user-management:latest
+        image: socialweb
         imagePullPolicy: ""
         name: socialweb
         ports:
