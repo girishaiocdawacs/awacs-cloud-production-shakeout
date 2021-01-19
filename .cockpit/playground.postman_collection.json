@@ -228,7 +228,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"changePasswordOnLogon\": false,\r\n    \"pictureId\": null,\r\n    \"workspaceId\": null,\r\n    \"userSerial\": null,\r\n    \"adhocSerial\": null,\r\n    \"username\": \"girish.mahajan\",\r\n    \"password\": \"girish123\",\r\n    \"role\": \"Customer\",\r\n    \"resetKey\": null,\r\n    \"name\": \"Girish Test 123\",\r\n    \"address1\": \"Test address1\",\r\n    \"address2\": \"Test address2\",\r\n    \"address3\": \"Test address3\",\r\n    \"cityId\": null,\r\n    \"stateId\": null,\r\n    \"country\": null,\r\n    \"phoneNo\": \"9492929343\",\r\n    \"mobile\": null,\r\n    \"email\": \"nobody112@nowhere.com\",\r\n    \"contactPerson\": null,\r\n    \"awacsMTD\": true,\r\n    \"isAdminDelegate\": \"1\",\r\n    \"isAdhoc\": \"1\",\r\n    \"deviceId\": null,\r\n    \"gCMRegisterKey\": null,\r\n    \"type\": null,\r\n    \"loginType\": null,\r\n    \"providerId\": null,\r\n    \"providerType\": null,\r\n    \"awacsId\": null,\r\n    \"pSPACode\": null,\r\n    \"uniqueMobileCode\": null,\r\n    \"thirdPartySoftware\": null,\r\n    \"thirdPartyCode\": null,\r\n    \"thirdPartyLUM\": null,\r\n    \"thirdPartyLUT\": null,\r\n    \"dlic1\": null,\r\n    \"dlic2\": null,\r\n    \"dlic3\": null,\r\n    \"dlic4\": null,\r\n    \"dlic5\": null,\r\n    \"dlic6\": null,\r\n    \"pOBOTP\": null,\r\n    \"gSTIN\": null,\r\n    \"pAN\": null,\r\n    \"xSource\": null,\r\n    \"pincode\": null,\r\n    \"remarks\": null,\r\n    \"registrationId\": null,\r\n    \"source\": null,\r\n    \"sourceType\": null,\r\n    \"signSource\": null,\r\n    \"signDetail\": null,\r\n    \"createdBy\": null,\r\n    \"createdOn\": null,\r\n    \"modifiedBy\": null,\r\n    \"modifiedOn\": null,\r\n    \"deleted\": \"1\",\r\n    \"deletedBy\": null,\r\n    \"deletedOn\": null,\r\n    \"licenseExpireMailOn\": null,\r\n    \"sync\": true,\r\n    \"lastActivity\": null,\r\n    \"orderSeq\": null,\r\n    \"appVersion\": null,\r\n    \"oSVersion\": null,\r\n    \"platform\": null,\r\n    \"userKind\": null,\r\n    \"bank\": null,\r\n    \"iFSCCode\": null,\r\n    \"corpId\": null,\r\n    \"userId\": null,\r\n    \"accountNumber\": null,\r\n    \"appPackage\": null,\r\n    \"enabled\": true,\r\n    \"verify\": true,\r\n    \"credentialsNonExpired\": true,\r\n    \"syncWithThirdParty\": true,\r\n    \"liveorderBlocked\": false,\r\n    \"accountNonExpired\": true,\r\n    \"admin\": true,\r\n    \"licenseExpire\": true,\r\n    \"syncWithEdxhub\": true,\r\n    \"accountNonLocked\": true\r\n}",
+							"raw": "{\r\n    \"changePasswordOnLogon\": false,\r\n    \"pictureId\": null,\r\n    \"userSerial\": null,\r\n    \"adhocSerial\": null,\r\n    \"username\": \"DUMMY129483\",\r\n    \"password\": \"girish125\",\r\n    \"role\": \"Customer\",\r\n    \"resetKey\": null,\r\n    \"name\": \"Girish Test 125\",\r\n    \"address1\": \"Test address1\",\r\n    \"address2\": \"Test address2\",\r\n    \"address3\": \"Test address3\",\r\n    \"cityId\": null,\r\n    \"stateId\": null,\r\n    \"country\": null,\r\n    \"phoneNo\": \"9492929344\",\r\n    \"mobile\": \"9492929344\",\r\n    \"email\": \"nobody113@nowhere.com\",\r\n    \"contactPerson\": \"938833883\",\r\n    \"awacsMTD\": true,\r\n    \"isAdminDelegate\": \"1\",\r\n    \"isAdhoc\": \"1\",\r\n    \"deviceId\": \"1111-cccc-bbb--ddd-eee\",\r\n    \"gCMRegisterKey\": null,\r\n    \"type\": null,\r\n    \"loginType\": null,\r\n    \"providerId\": null,\r\n    \"providerType\": null,\r\n    \"awacsId\": null,\r\n    \"pSPACode\": null,\r\n    \"uniqueMobileCode\": null,\r\n    \"thirdPartySoftware\": null,\r\n    \"thirdPartyCode\": null,\r\n    \"thirdPartyLUM\": null,\r\n    \"thirdPartyLUT\": null,\r\n    \"dlic1\": null,\r\n    \"dlic2\": null,\r\n    \"dlic3\": null,\r\n    \"dlic4\": null,\r\n    \"dlic5\": null,\r\n    \"dlic6\": null,\r\n    \"pOBOTP\": null,\r\n    \"gSTIN\": null,\r\n    \"pAN\": null,\r\n    \"xSource\": null,\r\n    \"pincode\": null,\r\n    \"remarks\": null,\r\n    \"registrationId\": null,\r\n    \"source\": null,\r\n    \"sourceType\": null,\r\n    \"signSource\": null,\r\n    \"signDetail\": null,\r\n    \"createdBy\": null,\r\n    \"createdOn\": null,\r\n    \"modifiedBy\": null,\r\n    \"modifiedOn\": null,\r\n    \"deleted\": \"1\",\r\n    \"deletedBy\": null,\r\n    \"deletedOn\": null,\r\n    \"licenseExpireMailOn\": null,\r\n    \"sync\": true,\r\n    \"lastActivity\": null,\r\n    \"orderSeq\": null,\r\n    \"appVersion\": null,\r\n    \"oSVersion\": null,\r\n    \"platform\": null,\r\n    \"userKind\": null,\r\n    \"bank\": null,\r\n    \"iFSCCode\": null,\r\n    \"corpId\": null,\r\n    \"userId\": null,\r\n    \"accountNumber\": null,\r\n    \"appPackage\": null,\r\n    \"enabled\": true,\r\n    \"verify\": true,\r\n    \"credentialsNonExpired\": true,\r\n    \"syncWithThirdParty\": true,\r\n    \"liveorderBlocked\": false,\r\n    \"accountNonExpired\": true,\r\n    \"admin\": true,\r\n    \"licenseExpire\": true,\r\n    \"syncWithEdxhub\": true,\r\n    \"accountNonLocked\": true\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -599,6 +599,189 @@
 			]
 		},
 		{
+			"name": "dashboard-service",
+			"item": [
+				{
+					"name": "005_dashboard_v1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{authserver}}/api/Dashboard/v1",
+							"host": [
+								"{{authserver}}"
+							],
+							"path": [
+								"api",
+								"Dashboard",
+								"v1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "004_dashboard",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{authserver}}/api/Dashboard/",
+							"host": [
+								"{{authserver}}"
+							],
+							"path": [
+								"api",
+								"Dashboard",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "001_dashboard_v1_graphql",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query {\r\n  dashboard(userName: \"MHTH200005\") {\r\n    workspaceId\r\n    loginInfo {key, value}\r\n    lastLogin\r\n    orders\t\r\n    orderStatus\r\n    schemes\r\n    invoices\r\n    bills\r\n  }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{authserver}}/graphql",
+							"host": [
+								"{{authserver}}"
+							],
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "001_dashboard_graphql",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query{\r\n  dashboard(userName: \"MHTH200005\"){\r\n    workspaceId\r\n    lastLogin\r\n    user{\r\n      username\r\n      role\r\n      userId\r\n      pAN\r\n      pictureId\r\n      pincode\r\n    }\r\n    schemes{\r\n      productName\r\n      quantity\r\n      schemeStartDate\r\n      schemePercentage\r\n    }\r\n    orders{\r\n      source\r\n      orderNumber\r\n      orderDate\r\n      supplierId\r\n      quantity\r\n      buyerProductName\r\n    }\r\n    payments{\r\n      billNumber\r\n      paymentDate\r\n      paymentAmount\r\n    }\r\n    invoices{\r\n      netInvoiceAmount\r\n      amount\r\n      sGST\r\n      cGST\r\n      reason\r\n      remarks\r\n    }\r\n    receipts{\r\n      buyerId\r\n      amount\r\n      id\r\n    }\r\n  }\r\n}\r\n",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{authserver}}/graphql",
+							"host": [
+								"{{authserver}}"
+							],
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "workspace-service",
 			"item": [
 				{
@@ -836,137 +1019,6 @@
 							"mode": "graphql",
 							"graphql": {
 								"query": "query {\r\n  orderByOrderNumber(orderNumber: \"AO187\"){\r\n    id\r\n    source\r\n    buyerId\r\n    orderNumber\r\n    buyerProductName\r\n    quantity\r\n  }\r\n}\r\n",
-								"variables": ""
-							}
-						},
-						"url": {
-							"raw": "{{authserver}}/graphql",
-							"host": [
-								"{{authserver}}"
-							],
-							"path": [
-								"graphql"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "004_dashboard",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{access_token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{authserver}}/api/Dashboard/",
-							"host": [
-								"{{authserver}}"
-							],
-							"path": [
-								"api",
-								"Dashboard",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "005_dashboard_v1",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{access_token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{authserver}}/api/Dashboard/v1",
-							"host": [
-								"{{authserver}}"
-							],
-							"path": [
-								"api",
-								"Dashboard",
-								"v1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "001_dashboard_v1_graphql",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{access_token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "graphql",
-							"graphql": {
-								"query": "query {\r\n  dashboard(userName: \"MHTH200005\") {\r\n    workspaceId\r\n    loginInfo {key, value}\r\n    lastLogin\r\n    orders\t\r\n    orderStatus\r\n    schemes\r\n    invoices\r\n    bills\r\n  }\r\n}",
 								"variables": ""
 							}
 						},
