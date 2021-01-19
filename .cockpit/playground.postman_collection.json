@@ -602,6 +602,100 @@
 			"name": "dashboard-service",
 			"item": [
 				{
+					"name": "001_dashboard_graphql",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query{\r\n  dashboard(userName: \"MHTH200005\"){\r\n    workspaceId\r\n    lastLogin\r\n    user{\r\n      username\r\n      role\r\n      userId\r\n      pAN\r\n      pictureId\r\n      pincode\r\n    }\r\n    schemes{\r\n      productName\r\n      quantity\r\n      schemeStartDate\r\n      schemePercentage\r\n    }\r\n    orders{\r\n      source\r\n      orderNumber\r\n      orderDate\r\n      supplierId\r\n      quantity\r\n      buyerProductName\r\n    }\r\n    payments{\r\n      billNumber\r\n      paymentDate\r\n      paymentAmount\r\n    }\r\n    invoices{\r\n      netInvoiceAmount\r\n      amount\r\n      sGST\r\n      cGST\r\n      reason\r\n      remarks\r\n    }\r\n    receipts{\r\n      buyerId\r\n      amount\r\n      id\r\n    }\r\n  }\r\n}\r\n",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{authserver}}/graphql",
+							"host": [
+								"{{authserver}}"
+							],
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "001_dashboard_v1_graphql",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query {\r\n  dashboardV1(userName: \"MHTH200005\") {\r\n    workspaceId\r\n    loginInfo {key, value}\r\n    lastLogin\r\n    orders\t\r\n    orderStatus\r\n    schemes\r\n    invoices\r\n    bills\r\n  }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{authserver}}/graphql",
+							"host": [
+								"{{authserver}}"
+							],
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "005_dashboard_v1",
 					"event": [
 						{
@@ -680,100 +774,6 @@
 								"api",
 								"Dashboard",
 								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "001_dashboard_v1_graphql",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{access_token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "graphql",
-							"graphql": {
-								"query": "query {\r\n  dashboard(userName: \"MHTH200005\") {\r\n    workspaceId\r\n    loginInfo {key, value}\r\n    lastLogin\r\n    orders\t\r\n    orderStatus\r\n    schemes\r\n    invoices\r\n    bills\r\n  }\r\n}",
-								"variables": ""
-							}
-						},
-						"url": {
-							"raw": "{{authserver}}/graphql",
-							"host": [
-								"{{authserver}}"
-							],
-							"path": [
-								"graphql"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "001_dashboard_graphql",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{access_token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "graphql",
-							"graphql": {
-								"query": "query{\r\n  dashboard(userName: \"MHTH200005\"){\r\n    workspaceId\r\n    lastLogin\r\n    user{\r\n      username\r\n      role\r\n      userId\r\n      pAN\r\n      pictureId\r\n      pincode\r\n    }\r\n    schemes{\r\n      productName\r\n      quantity\r\n      schemeStartDate\r\n      schemePercentage\r\n    }\r\n    orders{\r\n      source\r\n      orderNumber\r\n      orderDate\r\n      supplierId\r\n      quantity\r\n      buyerProductName\r\n    }\r\n    payments{\r\n      billNumber\r\n      paymentDate\r\n      paymentAmount\r\n    }\r\n    invoices{\r\n      netInvoiceAmount\r\n      amount\r\n      sGST\r\n      cGST\r\n      reason\r\n      remarks\r\n    }\r\n    receipts{\r\n      buyerId\r\n      amount\r\n      id\r\n    }\r\n  }\r\n}\r\n",
-								"variables": ""
-							}
-						},
-						"url": {
-							"raw": "{{authserver}}/graphql",
-							"host": [
-								"{{authserver}}"
-							],
-							"path": [
-								"graphql"
 							]
 						}
 					},
