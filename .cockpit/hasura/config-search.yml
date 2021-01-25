@@ -1,0 +1,46 @@
+url: 'http://localhost:8080/query'
+headers:
+  Authorization: bearer my-secret
+queries:
+  - name: SearchProduct
+    tools: [autocannon, k6]
+    # Execution Strategy: the type of the benchmark to run. Options are: 
+    # REQUESTS_PER_SECOND: Fixed duration, fixed rps. Example parameters:
+    #   duration: 10s
+    #   rps: 500
+    # FIXED_REQUEST_NUMBER: Complete requests as fast as possible, no duration. Example parameters:
+    #   requests: 10000
+    # MAX_REQUESTS_IN_DURATION: Make as many requests as possible in duration. Example parameters:
+    #   duration: 10s
+    # MULTI_STAGE: (K6 only currently) Several stages of REQUESTS_PER_SECOND benchmark. Example parameters:
+    #   initial_rps: 0
+    #   stages:
+    #     - duration: 5s
+    #       target: 100
+    #     - duration: 10s
+    #       target: 1000
+    # CUSTOM: Pass completely custom options to each tool (see full API spec for all supported options, very large)
+    execution_strategy: REQUESTS_PER_SECOND
+    rps: 2000
+    duration: 10s
+    connections: 50
+    initial_rps: 0
+    stages:
+      - duration: 5s
+        target: 100
+      - duration: 5s
+        target: 1000
+    query: |
+     query {
+	  products(productName: "abc"){
+	    productName
+	    company
+	    distributors{
+	      name
+	      mobile
+	      role
+	      gCMRegisterKey
+	    }
+	  }
+	}
+        

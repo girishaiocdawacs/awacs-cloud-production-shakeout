@@ -693,6 +693,51 @@
 			]
 		},
 		{
+			"name": "search-service",
+			"item": [
+				{
+					"name": "search-product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query {\r\n  products(productName: \"parac\"){\r\n    productName\r\n    company\r\n    distributors{\r\n      name\r\n      mobile\r\n      role\r\n      gCMRegisterKey\r\n    }\r\n  }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{searchserver}}/query",
+							"host": [
+								"{{searchserver}}"
+							],
+							"path": [
+								"query"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "workspace-service",
 			"item": [
 				{
@@ -1066,7 +1111,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "mutation{\r\n  \r\n  freshOrder(workspaceId: 123049, remarks: \"New Order\", \r\n    buyerId: \"1\", orderItems: [\r\n      {\r\n       quantity: 3.0\r\n       supplierId: \"10\"\r\n       buyerProductName: \"Cerafome 10\",\r\n       supplierProductCode: \"Cerafome Tab 10\"\r\n       buyerProductCode: \"AIOCD10\"\r\n      },\r\n      {\r\n        quantity: 3.0\r\n       supplierId: \"10\"\r\n       buyerProductName: \"Cerafome 10\",\r\n       supplierProductCode: \"Cerafome Tab 10\"\r\n       buyerProductCode: \"AIOCD10\"\r\n      }\r\n    ]\r\n  ) {\r\n    quantity\r\n    freeQuantity\r\n    buyerProductName\r\n    supplierId\r\n    id\r\n    source\r\n    orderNumber\r\n    orderDate\r\n  }\r\n  \r\n}",
+								"query": "mutation{ \r\n  freshOrder(workspaceId: 123049, remarks: \"New Order\", \r\n    buyerId: \"1\", orderItems: [\r\n      {\r\n       source: \"smartpharmcy\"\r\n       quantity: 3.0\r\n       supplierId: \"10\"\r\n       buyerProductName: \"Cerafome 10\",\r\n       supplierProductCode: \"Cerafome Tab 10\"\r\n       buyerProductCode: \"AIOCD10\"\r\n      },\r\n      {\r\n       source: \"smartpharmcy\"\r\n       quantity: 3.0\r\n       supplierId: \"10\"\r\n       buyerProductName: \"Cerafome 20\",\r\n       supplierProductCode: \"Cerafome Tab 20\"\r\n       buyerProductCode: \"AIOCD10\"\r\n      }\r\n    ]\r\n  ) {\r\n    quantity\r\n    freeQuantity\r\n    buyerProductName\r\n    supplierId\r\n    id\r\n    source\r\n    orderNumber\r\n    orderDate\r\n  }\r\n}",
 								"variables": ""
 							}
 						},
@@ -1113,7 +1158,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "mutation{\r\n  \r\n  updateOrder(orderNumber: \"AO35\", orderItems: [\r\n      {\r\n       quantity: 5.0\r\n       supplierId: \"10\"\r\n       buyerProductName: \"Cerafome 10\",\r\n       supplierProductCode: \"Cerafome Tab 10\"\r\n       buyerProductCode: \"AIOCD10\"\r\n      },\r\n      {\r\n       quantity: 8.0\r\n       supplierId: \"10\"\r\n       buyerProductName: \"Cerafome 10\",\r\n       supplierProductCode: \"Cerafome Tab 10\"\r\n       buyerProductCode: \"AIOCD09\"\r\n      },\r\n      {\r\n       quantity: 12.0\r\n       supplierId: \"10\"\r\n       buyerProductName: \"Sophramicine 10\",\r\n       supplierProductCode: \"Sophramicine 10\"\r\n       buyerProductCode: \"AIOCD11\"\r\n      }\r\n    \r\n    ]\r\n  ) {\r\n    quantity\r\n    freeQuantity\r\n    buyerProductName\r\n    supplierId\r\n    id\r\n    source\r\n    orderNumber\r\n    orderDate\r\n    remarks\r\n  }\r\n  \r\n}",
+								"query": "mutation{\r\n  \r\n  updateOrder(orderNumber: \"AO35\", orderItems: [\r\n      {\r\n       source: \"smartpharmcy\"\r\n       quantity: 5.0\r\n       supplierId: \"10\"\r\n       buyerProductName: \"Cerafome 10\",\r\n       supplierProductCode: \"Cerafome Tab 10\"\r\n       buyerProductCode: \"AIOCD10\"\r\n      },\r\n      {\r\n       source: \"smartpharmcy\"\r\n       quantity: 8.0\r\n       supplierId: \"10\"\r\n       buyerProductName: \"Cerafome 10\",\r\n       supplierProductCode: \"Cerafome Tab 10\"\r\n       buyerProductCode: \"AIOCD09\"\r\n      },\r\n      {\r\n       source: \"smartpharmcy\"\r\n       quantity: 12.0\r\n       supplierId: \"10\"\r\n       buyerProductName: \"Sophramicine 10\",\r\n       supplierProductCode: \"Sophramicine 10\"\r\n       buyerProductCode: \"AIOCD11\"\r\n      }\r\n    ]\r\n  ) {\r\n    quantity\r\n    freeQuantity\r\n    buyerProductName\r\n    supplierId\r\n    id\r\n    source\r\n    orderNumber\r\n    orderDate\r\n    remarks\r\n  }\r\n  \r\n}",
 								"variables": ""
 							}
 						},
