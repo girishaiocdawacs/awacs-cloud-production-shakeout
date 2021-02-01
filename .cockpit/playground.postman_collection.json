@@ -1095,6 +1095,9 @@
 							}
 						}
 					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -1106,7 +1109,7 @@
 								}
 							]
 						},
-						"method": "POST",
+						"method": "GET",
 						"header": [],
 						"body": {
 							"mode": "graphql",
@@ -1142,6 +1145,9 @@
 							}
 						}
 					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -1153,7 +1159,7 @@
 								}
 							]
 						},
-						"method": "POST",
+						"method": "GET",
 						"header": [],
 						"body": {
 							"mode": "graphql",
@@ -1189,6 +1195,9 @@
 							}
 						}
 					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -1200,7 +1209,7 @@
 								}
 							]
 						},
-						"method": "POST",
+						"method": "GET",
 						"header": [],
 						"body": {
 							"mode": "graphql",
@@ -1236,6 +1245,9 @@
 							}
 						}
 					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -1247,7 +1259,7 @@
 								}
 							]
 						},
-						"method": "POST",
+						"method": "GET",
 						"header": [],
 						"body": {
 							"mode": "graphql",
@@ -1283,6 +1295,9 @@
 							}
 						}
 					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -1294,7 +1309,7 @@
 								}
 							]
 						},
-						"method": "POST",
+						"method": "GET",
 						"header": [],
 						"body": {
 							"mode": "graphql",
@@ -1330,6 +1345,9 @@
 							}
 						}
 					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -1341,7 +1359,7 @@
 								}
 							]
 						},
-						"method": "POST",
+						"method": "GET",
 						"header": [],
 						"body": {
 							"mode": "graphql",
@@ -1544,7 +1562,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query {\r\n  paymentsBySupplierId(supplierId: \"MHTH200015\") {\r\n    id\r\n    urn\r\n    date\r\n    supplierId\r\n    buyerId\r\n    billNumber\r\n    billAmount\r\n    status\r\n    reason\r\n    reference\r\n  }\r\n}",
+								"query": "{\r\n  paymentsBySupplierId(supplierId: \"MHTH200015\", fromDate: \"01-01-2010\", toDate: \"01-02-2021\") {\r\n    supplier {\r\n      workspaceId\r\n      name\r\n      address1\r\n      cityId\r\n      stateId\r\n      lastActivity\r\n    }\r\n    payments {\r\n      retailer {\r\n        name\r\n        address1\r\n      }\r\n      transactions {\r\n        billDate\r\n        billNumber\r\n        billAmount\r\n        paymentDate\r\n        paymentAmount\r\n      }\r\n    }\r\n  }\r\n}",
 								"variables": ""
 							}
 						},
@@ -1591,7 +1609,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query {\r\n  paymentsByBuyerId(buyerId: \"DOM2001662\",\r\n  fromDate: \"01-01-2017\",\r\n  toDate: \"01-02-2021\"){\r\n    id\r\n    buyerId\r\n    billDate\r\n    billNumber\r\n    billAmount\r\n    supplierId\r\n    paymentDate\r\n    paymentAmount\r\n    urn\r\n    date\r\n  }\r\n}",
+								"query": "{\r\n  paymentsByBuyerId(buyerId: \"DOM2001662\", fromDate: \"01-01-2010\", toDate: \"01-02-2021\") {\r\n    buyer {\r\n      workspaceId\r\n      name\r\n      address1\r\n      cityId\r\n      stateId\r\n      lastActivity\r\n    }\r\n    payments {\r\n      distributor {\r\n        name\r\n        address1\r\n      }\r\n      transactions {\r\n        billDate\r\n        billNumber\r\n        billAmount\r\n        paymentDate\r\n        paymentAmount\r\n      }\r\n    }\r\n  }\r\n}\r\n",
 								"variables": ""
 							}
 						},
