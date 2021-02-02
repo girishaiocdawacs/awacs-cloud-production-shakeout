@@ -855,6 +855,46 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "awacsCity - aggregator",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query{\r\n  awacsCity(name: \"pun\"){\r\n    name\r\n    stateId\r\n    id\r\n  },\r\n  allCitiesByStateId(stateId: 19) {\r\n    id\r\n    name\r\n    stateId\r\n  }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{authserver}}/graphql",
+							"host": [
+								"{{authserver}}"
+							],
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -2374,10 +2414,10 @@
 			]
 		},
 		{
-			"name": "aggregator-retailer-service",
+			"name": "smart-aggregator-servie",
 			"item": [
 				{
-					"name": "retailer_by_cities_graphql",
+					"name": "retailer_by_cities_aggregator_graphql",
 					"event": [
 						{
 							"listen": "test",
@@ -2410,7 +2450,107 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "{\r\n  retailersByCities(userId: \"TES2104216\", cities: [\"10770\", \"10629\"]) {\r\n    regionName\r\n    city\r\n    retailers {\r\n      name\r\n      username\r\n      address1\r\n      cityId\r\n      stateId\r\n      lastActivity\r\n    }\r\n  }\r\n  distributorByCities(userId: \"TES2126252\", cities: [\"10770\", \"10629\"]) {\r\n    regionName\r\n    city\r\n    distributors {\r\n      name\r\n      username\r\n      address1\r\n      cityId\r\n      stateId\r\n      lastActivity\r\n    }\r\n  }\r\n}\r\n",
+								"query": "{\r\n  retailersByCitiesAggregator(userId: 429855, cities: [\"10770\", \"10629\"]) {\r\n    regionName\r\n    city\r\n    retailers {\r\n      name\r\n      username\r\n      address1\r\n      lastActivity\r\n    }\r\n  }\r\n}\r\n",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{authserver}}/graphql",
+							"host": [
+								"{{authserver}}"
+							],
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "aggregator_dashboard_graphql",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query{\r\n  aggregatorDashboard(aggregatorUserId: 429855, fromDate:\"01-11-2020\", toDate: \"01-03-2021\"){\r\n    distributors{\r\n      id\r\n      name\r\n      address\r\n      completedOrder\r\n      totalOrder\r\n    }\r\n    completedOrder\r\n    totalOrder\r\n  }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{authserver}}/graphql",
+							"host": [
+								"{{authserver}}"
+							],
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "aggregator_dashboard_deep_view_graphql",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query{\r\n  aggregatorDashboardDeepView(aggregatorUserId: 429855, fromDate:\"01-11-2020\", toDate: \"01-03-2021\"){\r\n    distributors{\r\n      id\r\n      name\r\n      address\r\n      completedOrder\r\n      totalOrder\r\n      orders{\r\n        source\r\n        supplierId\r\n        orderNumber\r\n        orderDate\r\n        buyerProductName\r\n        quantity\r\n        supplierId\r\n      }\r\n    }\r\n    completedOrder\r\n    totalOrder\r\n  }\r\n}",
 								"variables": ""
 							}
 						},
