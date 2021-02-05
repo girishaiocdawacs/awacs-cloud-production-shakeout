@@ -902,6 +902,53 @@
 			"name": "smart-aggregator-service",
 			"item": [
 				{
+					"name": "aggregator_purge_user_graphql",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation{\r\n  deleteUserFromMaster(specialAccessKey: \"d1c875f76ea6f061c5dc92a14c4bbd8e067a838411ba82608860edb21a160f50\", username:\"GirishAggr\")\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{authserver}}/graphql",
+							"host": [
+								"{{authserver}}"
+							],
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "aggregator_signup_graphql",
 					"event": [
 						{
@@ -932,7 +979,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "mutation {\r\n  signup(input: {username: \"GirishAggr\", email: \"girish.mahajan@aiocdawacs.com\", mobile: \"9423178879\", password: \"foo12345\", name: \"Girish Mahajan Services\", address1: \"Taramandal Milky way, India\", pinCode: 411045, application: \"awacs\", cityId: 5372, stateId: 19, deviceId: \"foo-bar-device-id\", appVersion: \"v1.1\", gcmRegisterKey: \"something-goes-here\"}) {\r\n    session\r\n    status\r\n    accessToken\r\n    refreshToken\r\n    expiryInSeconds\r\n    application {\r\n      appApplicationNameNm\r\n      appApplicationID\r\n      appDescriptiondesc\r\n    }\r\n    iam {\r\n      name\r\n      username\r\n      role\r\n      pictureId\r\n      accountNumber\r\n    }\r\n  }\r\n}",
+								"query": "mutation {\r\n  signup(input: { \r\n    username: \"GirishAggr\", \r\n    email: \"girish.mahajan@aiocdawacs.com\", \r\n    mobile: \"9423178879\", password: \"foo12345\", \r\n    name: \"Girish Mahajan Services\", \r\n    address1: \"Taramandal Milky way, India\",\r\n    address2: \"Post91 Baner Pune\"\r\n    pinCode: 411045, application: \"awacs\", \r\n    cityId: 5372, stateId: 19, \r\n    deviceId: \"11\", \r\n    appVersion: \"11\", \r\n    osVersion: \"3\",\r\n    platform: \"4\"\r\n    gcmRegisterKey: \"1\"}) {\r\n    session\r\n    status\r\n    accessToken\r\n    refreshToken\r\n    expiryInSeconds\r\n    application {\r\n      appApplicationNameNm\r\n      appApplicationID\r\n      appDescriptiondesc\r\n    }\r\n    iam {\r\n      userUserNamenm\r\n      userPasswordcd\r\n      platform\r\n    }\r\n  }\r\n}",
 								"variables": ""
 							}
 						},
@@ -1073,7 +1120,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "mutation{\r\n  login(username: \"MHTH200005\", password: \"1234\", application: \"foobar\"){\r\n    session\r\n    status\r\n    accessToken\r\n    refreshToken\r\n    expiryInSeconds\r\n    application{\r\n      appApplicationID\r\n      appApplicationNameNm\r\n      appDescriptiondesc\r\n    }\r\n    iam{\r\n      id\r\n      username\r\n      userId\r\n      role\r\n      pictureId\r\n      name\r\n      address1\r\n      isLicenseExpire\r\n      lastActivity  \r\n    }\r\n  }\r\n}",
+								"query": "mutation{\r\n  login(username: \"GirishAggr\", password: \"foo12345\", application: \"ksahd\"){\r\n    session\r\n    status\r\n    accessToken\r\n    refreshToken\r\n    expiryInSeconds\r\n    application{\r\n      appApplicationID\r\n      appApplicationNameNm\r\n      appDescriptiondesc\r\n    }\r\n    iam{\r\n      userUserNamenm\r\n      lastActivity  \r\n      userPasswordcd\r\n      installStatus\r\n      userEmailIdId\r\n      userAddress1cd\r\n      userAddress2cd\r\n      osVersion\r\n      platform\r\n      userApplicationIdcd\r\n    }\r\n  }\r\n}",
 								"variables": ""
 							}
 						},
@@ -1120,7 +1167,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "mutation{\r\n  login(username: \"MHTH200005\", password: \"12345\", application: \"AWACS\"){\r\n    session\r\n    status\r\n    accessToken\r\n    refreshToken\r\n    expiryInSeconds\r\n    application{\r\n      appApplicationID\r\n      appApplicationNameNm\r\n      appDescriptiondesc\r\n    }\r\n    iam{\r\n      id\r\n      username\r\n      userId\r\n      role\r\n      pictureId\r\n      name\r\n      address1\r\n      isLicenseExpire\r\n      lastActivity  \r\n    }\r\n  }\r\n}",
+								"query": "mutation{\r\n  login(username: \"GirishAggr\", password: \"foo12345\", application: \"AWACS\"){\r\n    session\r\n    status\r\n    accessToken\r\n    refreshToken\r\n    expiryInSeconds\r\n    application{\r\n      appApplicationID\r\n      appApplicationNameNm\r\n      appDescriptiondesc\r\n    }\r\n    iam{\r\n      userUserNamenm\r\n      lastActivity  \r\n      userPasswordcd\r\n      installStatus\r\n      userEmailIdId\r\n      userAddress1cd\r\n      userAddress2cd\r\n      osVersion\r\n      platform\r\n      userApplicationIdcd\r\n    }\r\n  }\r\n}",
 								"variables": ""
 							}
 						},
@@ -1308,7 +1355,101 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "{\r\n  myOrdersAggregator(aggregatorUserName: \"vishnuagg\", fromDate: \"01-11-2020\", toDate: \"03-02-2021\") {\r\n    iam {\r\n      userUserIdnbr\r\n      userUserNamenm\r\n      lastActivity\r\n      appVersion\r\n      osVersion\r\n      stockistType\r\n    }\r\n    aggregatorOrders {\r\n      orders {\r\n        orderNumber\r\n      }\r\n    }\r\n    allOrders {\r\n      retailer {\r\n        name\r\n      }\r\n      orders {\r\n        orderNumber\r\n        orderDate\r\n        buyerProductName\r\n        quantity\r\n      }\r\n    }\r\n  }\r\n}\r\n",
+								"query": "{\r\n  myOrdersAggregator(aggregatorUserName: \"vishnuagg\", fromDate: \"01-11-2020\", toDate: \"03-02-2021\") {\r\n    iam {\r\n      userUserIdnbr\r\n      userUserNamenm\r\n      lastActivity\r\n      appVersion\r\n      osVersion\r\n      stockistType\r\n    }\r\n    aggregatorOrders {\r\n      buyerId\r\n      supplier{\r\n        name\r\n      }\r\n      apps {\r\n        source{\r\n          appApplicationNameNm\r\n        }\r\n        orders {\r\n          retailerCode\r\n          orderNumber\r\n          orderDate\r\n          supplierId\r\n          buyerId\r\n          retailerCode\r\n          buyerProductName\r\n          quantity\r\n        }\r\n      }\r\n    }\r\n    allOrders {\r\n      retailer {\r\n        username\r\n        name\r\n        address1\r\n      }\r\n      apps {\r\n        source{\r\n          appApplicationNameNm\r\n        }\r\n        orders {\r\n          orderNumber\r\n          orderDate\r\n          supplierId\r\n          buyerId\r\n          retailerCode\r\n          buyerProductName\r\n          quantity\r\n        }\r\n      }\r\n    }\r\n  }\r\n}\r\n\r\n\r\n",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{authserver}}/graphql",
+							"host": [
+								"{{authserver}}"
+							],
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "aggregator_is_live_order_free_graphql",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query {\r\n  isLiveOrderFree(workspace: \"1345\", userName: \"THA2004445\", deviceId: \"abcd1234\", appVersion: \"smartaggreg.v3\")\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{authserver}}/graphql",
+							"host": [
+								"{{authserver}}"
+							],
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "aggregator_purge_user_graphql_again",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation{\r\n  deleteUserFromMaster(specialAccessKey: \"d1c875f76ea6f061c5dc92a14c4bbd8e067a838411ba82608860edb21a160f50\", username:\"GirishAggr\")\r\n}",
 								"variables": ""
 							}
 						},
