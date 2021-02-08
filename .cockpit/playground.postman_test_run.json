@@ -1,0 +1,421 @@
+{
+	"id": "c57f8cd6-7bdf-40a5-b3cf-6b9be9d60533",
+	"name": "playground",
+	"timestamp": "2021-02-08T09:54:13.496Z",
+	"collection_id": "4a456d37-21f4-4aed-bd1a-f661bc78f411",
+	"folder_id": "6d9fa657-0ea6-4062-be51-f96292665da4",
+	"environment_id": "5ed7b824-e7eb-4544-a149-0432a3206f8f",
+	"totalPass": 13,
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "fcbd83e7-672b-47d0-8778-1a201ae91ef8",
+			"name": "aggregator_purge_user_graphql",
+			"url": "https://qa.awacscloud.tech/authserver/graphql",
+			"time": 927,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				927
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "633d3217-3305-42a7-bdb2-b544e2f09aef",
+			"name": "aggregator_signup_graphql",
+			"url": "https://qa.awacscloud.tech/authserver/graphql",
+			"time": 5817,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				5817
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "8e3627f9-0dd8-4712-8d9e-15a212ac14f5",
+			"name": "aggregator_login_bad_credentials_graphql",
+			"url": "https://qa.awacscloud.tech/authserver/graphql",
+			"time": 345,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				345
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "37917298-0fea-4db0-943d-be669f03c275",
+			"name": "aggregator_login_invalid_application_graphql",
+			"url": "https://qa.awacscloud.tech/authserver/graphql",
+			"time": 1689,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				1689
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "366edb4d-c637-4577-9f3c-3fd4936ec213",
+			"name": "aggregator_forgot_password_graphql",
+			"url": "https://qa.awacscloud.tech/authserver/graphql",
+			"time": 4705,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				4705
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "04774a4e-69ce-4c9e-8c59-caac7307dff4",
+			"name": "aggregator_login_graphql",
+			"url": "https://qa.awacscloud.tech/authserver/graphql",
+			"time": 1691,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				1691
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "b22e55f6-2fe5-4eb4-be14-50391e4e4d5c",
+			"name": "aggregator_dashboard_graphql",
+			"url": "https://qa.awacscloud.tech/authserver/graphql",
+			"time": 14748,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				14748
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "a6e8fb04-1d7d-4698-bc81-be887f1552c0",
+			"name": "aggregator_dashboard_deep_view_graphql",
+			"url": "https://qa.awacscloud.tech/authserver/graphql",
+			"time": 14687,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				14687
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "d8a16305-53bd-4ad2-8ad3-cf04f8557b32",
+			"name": "aggregator_get_my_partners_details_graphql",
+			"url": "https://qa.awacscloud.tech/authserver/graphql",
+			"time": 1482,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				1482
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "64973f5e-eda2-473d-86d7-3173b013c1be",
+			"name": "retailer_by_cities_aggregator_graphql",
+			"url": "https://qa.awacscloud.tech/authserver/graphql",
+			"time": 11509,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				11509
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "8193c625-277c-40ab-bd76-4e623d82e1f0",
+			"name": "aggregator_my_orders_graphql",
+			"url": "https://qa.awacscloud.tech/authserver/graphql",
+			"time": 17086,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				17086
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "71b0adf4-23cd-4e84-824e-5f2a89010300",
+			"name": "aggregator_is_live_order_free_graphql",
+			"url": "https://qa.awacscloud.tech/authserver/graphql",
+			"time": 1216,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				1216
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "544b397d-af82-4c18-9916-dc538eb9c328",
+			"name": "aggregator_purge_user_graphql_again",
+			"url": "https://qa.awacscloud.tech/authserver/graphql",
+			"time": 2377,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				2377
+			],
+			"allTests": [
+				{
+					"Status code is 200": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 78279,
+	"collection": {
+		"requests": [
+			{
+				"id": "fcbd83e7-672b-47d0-8778-1a201ae91ef8",
+				"method": "POST"
+			},
+			{
+				"id": "633d3217-3305-42a7-bdb2-b544e2f09aef",
+				"method": "POST"
+			},
+			{
+				"id": "8e3627f9-0dd8-4712-8d9e-15a212ac14f5",
+				"method": "POST"
+			},
+			{
+				"id": "37917298-0fea-4db0-943d-be669f03c275",
+				"method": "POST"
+			},
+			{
+				"id": "366edb4d-c637-4577-9f3c-3fd4936ec213",
+				"method": "POST"
+			},
+			{
+				"id": "04774a4e-69ce-4c9e-8c59-caac7307dff4",
+				"method": "POST"
+			},
+			{
+				"id": "b22e55f6-2fe5-4eb4-be14-50391e4e4d5c",
+				"method": "POST"
+			},
+			{
+				"id": "a6e8fb04-1d7d-4698-bc81-be887f1552c0",
+				"method": "POST"
+			},
+			{
+				"id": "d8a16305-53bd-4ad2-8ad3-cf04f8557b32",
+				"method": "POST"
+			},
+			{
+				"id": "64973f5e-eda2-473d-86d7-3173b013c1be",
+				"method": "POST"
+			},
+			{
+				"id": "8193c625-277c-40ab-bd76-4e623d82e1f0",
+				"method": "POST"
+			},
+			{
+				"id": "71b0adf4-23cd-4e84-824e-5f2a89010300",
+				"method": "POST"
+			},
+			{
+				"id": "544b397d-af82-4c18-9916-dc538eb9c328",
+				"method": "POST"
+			}
+		]
+	}
+}

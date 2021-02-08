@@ -996,53 +996,6 @@
 					"response": []
 				},
 				{
-					"name": "retailer_by_cities_aggregator_graphql",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{access_token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "graphql",
-							"graphql": {
-								"query": "{\r\n  retailersByCitiesAggregator(userId: 429855, cities: [\"10629\"]) {\r\n    region\r\n    city\r\n    retailers {\r\n      name\r\n      username\r\n      address1\r\n      lastActivity\r\n    }\r\n  }\r\n}\r\n",
-								"variables": ""
-							}
-						},
-						"url": {
-							"raw": "{{authserver}}/graphql",
-							"host": [
-								"{{authserver}}"
-							],
-							"path": [
-								"graphql"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "aggregator_login_bad_credentials_graphql",
 					"event": [
 						{
@@ -1356,6 +1309,53 @@
 							"mode": "graphql",
 							"graphql": {
 								"query": "query {\r\n  getMyPartnersForAggregatorDetails(aggregatorUserId: 429826) {\r\n    iam {\r\n      userUserIdnbr\r\n      userUserNamenm\r\n      userBusinessNamenm\r\n      userOwnerNamenm\r\n      userStateCodeid\r\n      userCityNamenm\r\n      stockistType\r\n      gcmRegisterKey\r\n    }\r\n    partners {\r\n      retailerCode\r\n      name\r\n      city\r\n      address\r\n    }\r\n  }\r\n}\r\n",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{authserver}}/graphql",
+							"host": [
+								"{{authserver}}"
+							],
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "retailer_by_cities_aggregator_graphql",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "{\r\n  retailersByCitiesAggregator(userId: 429855, cities: [\"10629\"]) {\r\n    region\r\n    city\r\n    retailers {\r\n      name\r\n      username\r\n      address1\r\n      lastActivity\r\n    }\r\n  }\r\n}\r\n",
 								"variables": ""
 							}
 						},
@@ -3022,6 +3022,10 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "liveops-service",
+			"item": []
 		}
 	]
 }
