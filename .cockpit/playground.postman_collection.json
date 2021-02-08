@@ -979,7 +979,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "mutation {\r\n  signup(input: { \r\n    username: \"GirishAggr\", \r\n    email: \"girish.mahajan@aiocdawacs.com\", \r\n    mobile: \"9423178879\", password: \"foo12345\", \r\n    name: \"Girish Mahajan Services\", \r\n    address1: \"Taramandal Milky way, India\",\r\n    address2: \"Post91 Baner Pune\"\r\n    pinCode: 411045, application: \"awacs\", \r\n    cityId: 5372, stateId: 19, \r\n    deviceId: \"11\", \r\n    appVersion: \"11\", \r\n    osVersion: \"3\",\r\n    platform: \"4\"\r\n    gcmRegisterKey: \"1\"}) {\r\n    session\r\n    status\r\n    accessToken\r\n    refreshToken\r\n    expiryInSeconds\r\n    application {\r\n      appApplicationNameNm\r\n      appApplicationID\r\n      appDescriptiondesc\r\n    }\r\n    iam {\r\n      userUserNamenm\r\n      userPasswordcd\r\n      platform\r\n    }\r\n  }\r\n}",
+								"query": "mutation {\r\n  signup(input: { \r\n    username: \"GirishAggr1\", \r\n    email: \"girish.mahajan@yahoo.com\", \r\n    mobile: \"9168116879\", password: \"giri123\", \r\n    name: \"Girish Mahajan Services Inc\", \r\n    address1: \"Taramandal Colony, Baner road balewadi, India\",\r\n    address2: \"Post91 Baner Pune\"\r\n    pinCode: 411045, \r\n    application: \"awacs\", \r\n    cityId: 5372, \r\n    stateId: 19, \r\n    deviceId: \"11\", \r\n    appVersion: \"11\", \r\n    osVersion: \"3\",\r\n    platform: \"4\",\r\n    gcmRegisterKey: \"1\"\r\n  }) \r\n  {\r\n    session\r\n    status\r\n    accessToken\r\n    refreshToken\r\n    expiryInSeconds\r\n    application {\r\n      appApplicationNameNm\r\n      appApplicationID\r\n      appDescriptiondesc\r\n    }\r\n    iam {\r\n      userUserNamenm\r\n      platform\r\n    }\r\n  }\r\n}",
 								"variables": ""
 							}
 						},
@@ -1137,6 +1137,53 @@
 					"response": []
 				},
 				{
+					"name": "aggregator_forgot_password_graphql",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation{\r\n  forgotPassword(mobile: \"9168116879\", application: \"awacs\"){\r\n    session\r\n    status\r\n    application{\r\n      appApplicationNameNm\r\n    }\r\n    accessToken\r\n    refreshToken\r\n    iam{\r\n      userMobileNonbr\r\n    }\r\n  }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{authserver}}/graphql",
+							"host": [
+								"{{authserver}}"
+							],
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "aggregator_login_graphql",
 					"event": [
 						{
@@ -1167,7 +1214,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "mutation{\r\n  login(username: \"GirishAggr\", password: \"foo12345\", application: \"AWACS\"){\r\n    session\r\n    status\r\n    accessToken\r\n    refreshToken\r\n    expiryInSeconds\r\n    application{\r\n      appApplicationID\r\n      appApplicationNameNm\r\n      appDescriptiondesc\r\n    }\r\n    iam{\r\n      userUserNamenm\r\n      lastActivity  \r\n      userPasswordcd\r\n      installStatus\r\n      userEmailIdId\r\n      userAddress1cd\r\n      userAddress2cd\r\n      osVersion\r\n      platform\r\n      userApplicationIdcd\r\n    }\r\n  }\r\n}",
+								"query": "mutation{\r\n  login(username: \"GirishAggr\", password: \"giri123\", application: \"AWACS\"){\r\n    session\r\n    status\r\n    accessToken\r\n    refreshToken\r\n    expiryInSeconds\r\n    application{\r\n      appApplicationID\r\n      appApplicationNameNm\r\n      appDescriptiondesc\r\n    }\r\n    iam{\r\n      userUserNamenm\r\n      lastActivity  \r\n      userPasswordcd\r\n      installStatus\r\n      userEmailIdId\r\n      userAddress1cd\r\n      userAddress2cd\r\n      osVersion\r\n      platform\r\n      userApplicationIdcd\r\n    }\r\n  }\r\n}",
 								"variables": ""
 							}
 						},
@@ -2947,20 +2994,13 @@
 					},
 					"request": {
 						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{access_token}}",
-									"type": "string"
-								}
-							]
+							"type": "noauth"
 						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"numbers\": [\r\n    \"+919168116879\"\r\n  ],\r\n  \"message\": \"newman calling {{$isoTimestamp}}\"\r\n}",
+							"raw": "{\r\n  \"number\": \"+919168116879\",\r\n  \"message\": \"newman calling {{$isoTimestamp}}\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2968,13 +3008,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{otpservice}}/api/send-messages",
+							"raw": "{{otpservice}}/public/api/send-message",
 							"host": [
 								"{{otpservice}}"
 							],
 							"path": [
+								"public",
 								"api",
-								"send-messages"
+								"send-message"
 							]
 						}
 					},
