@@ -932,7 +932,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "mutation{\r\n  deleteUserFromMaster(specialAccessKey: \"d1c875f76ea6f061c5dc92a14c4bbd8e067a838411ba82608860edb21a160f50\", username:\"GirishAggr\")\r\n}",
+								"query": "mutation{\r\n  deleteUserFromMaster(specialAccessKey: \"d1c875f76ea6f061c5dc92a14c4bbd8e067a838411ba82608860edb21a160f50\", username:\"GirishAggr1\")\r\n}",
 								"variables": ""
 							}
 						},
@@ -1137,6 +1137,53 @@
 					"response": []
 				},
 				{
+					"name": "aggregator_otp_verification_graphql",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "mutation{\r\n  validateOneTimePassword(mobile: \"9168116879\", application: \"awacs\", otp: \"925844\"){\r\n    status\r\n    session\r\n    application{\r\n      appApplicationNameNm\r\n    }\r\n  }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{authserver}}/graphql",
+							"host": [
+								"{{authserver}}"
+							],
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "aggregator_login_graphql",
 					"event": [
 						{
@@ -1261,7 +1308,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query{\r\n  aggregatorDashboardDeepView(aggregatorUserId: 429855, fromDate:\"01-11-2020\", toDate: \"01-03-2021\"){\r\n    distributors{\r\n      id\r\n      name\r\n      address\r\n      completedOrder\r\n      totalOrder\r\n      orders{\r\n        source\r\n        supplierId\r\n        orderNumber\r\n        orderDate\r\n        buyerProductName\r\n        quantity\r\n        supplierId\r\n      }\r\n    }\r\n    completedOrder\r\n    totalOrder\r\n  }\r\n}",
+								"query": "{\r\n  aggregatorDashboardDeepView(aggregatorUserId: 429855, fromDate: \"01-11-2020\", toDate: \"01-03-2021\") {\r\n    distributors {\r\n      id\r\n      name\r\n      address\r\n      completedOrder\r\n      totalOrder\r\n      orders {\r\n        retailerCode\r\n        orderNumber\r\n        supplierId\r\n        receivedOn\r\n        invoiceNumber\r\n        buyerId\r\n        retailerCode\r\n        products {\r\n          productCode\r\n          productName\r\n          productPack\r\n          quantity\r\n          freeQuantity\r\n          suppliedQuantity\r\n          suppliedFreeQuantity\r\n        }\r\n      }\r\n    }\r\n    completedOrder\r\n    totalOrder\r\n  }\r\n}\r\n",
 								"variables": ""
 							}
 						},
@@ -1402,7 +1449,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "{\r\n  myOrdersAggregator(aggregatorUserName: \"vishnuagg\", fromDate: \"01-11-2020\", toDate: \"03-02-2021\") {\r\n    iam {\r\n      userUserIdnbr\r\n      userUserNamenm\r\n      lastActivity\r\n      appVersion\r\n      osVersion\r\n      stockistType\r\n    }\r\n    aggregatorOrders {\r\n      buyerId\r\n      supplier{\r\n        name\r\n      }\r\n      apps {\r\n        source{\r\n          appApplicationNameNm\r\n        }\r\n        orders {\r\n          retailerCode\r\n          orderNumber\r\n          orderDate\r\n          supplierId\r\n          buyerId\r\n          retailerCode\r\n          buyerProductName\r\n          quantity\r\n        }\r\n      }\r\n    }\r\n    allOrders {\r\n      retailer {\r\n        username\r\n        name\r\n        address1\r\n      }\r\n      apps {\r\n        source{\r\n          appApplicationNameNm\r\n        }\r\n        orders {\r\n          orderNumber\r\n          orderDate\r\n          supplierId\r\n          buyerId\r\n          retailerCode\r\n          buyerProductName\r\n          quantity\r\n        }\r\n      }\r\n    }\r\n  }\r\n}\r\n\r\n\r\n",
+								"query": "{\r\n  myOrdersAggregator(aggregatorUserName: \"vishnuagg\", fromDate: \"01-11-2020\", toDate: \"03-02-2021\") {\r\n    iam {\r\n      userUserIdnbr\r\n      userUserNamenm\r\n      lastActivity\r\n      appVersion\r\n      osVersion\r\n      stockistType\r\n    }\r\n    aggregatorOrders {\r\n      buyerId\r\n      supplier {\r\n        name\r\n      }\r\n      apps {\r\n        source {\r\n          appApplicationNameNm\r\n        }\r\n        orders {\r\n          retailerCode\r\n          orderNumber\r\n          supplierId\r\n          receivedOn\r\n          invoiceNumber\r\n          buyerId\r\n          retailerCode\r\n          products {\r\n            productCode\r\n            productName\r\n            productPack\r\n            quantity\r\n            freeQuantity\r\n            suppliedQuantity\r\n            suppliedFreeQuantity\r\n          }\r\n        }\r\n      }\r\n    }\r\n    allOrders {\r\n      retailer {\r\n        username\r\n        name\r\n        address1\r\n      }\r\n      apps {\r\n        source {\r\n          appApplicationNameNm\r\n        }\r\n        orders {\r\n          retailerCode\r\n          orderNumber\r\n          supplierId\r\n          receivedOn\r\n          invoiceNumber\r\n          buyerId\r\n          retailerCode\r\n          products {\r\n            productCode\r\n            productName\r\n            productPack\r\n            quantity\r\n            freeQuantity\r\n            suppliedQuantity\r\n            suppliedFreeQuantity\r\n          }\r\n        }\r\n      }\r\n    }\r\n  }\r\n}\r\n",
 								"variables": ""
 							}
 						},
@@ -1496,8 +1543,8 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "mutation{\r\n  deleteUserFromMaster(specialAccessKey: \"d1c875f76ea6f061c5dc92a14c4bbd8e067a838411ba82608860edb21a160f50\", username:\"GirishAggr\")\r\n}",
-								"variables": ""
+								"query": "mutation{\r\n  deleteUserFromMaster(specialAccessKey: \"$specialAccessKey\", username:\"GirishAggr1\")\r\n}",
+								"variables": "{ \"specialAccessKey\": \"d1c875f76ea6f061c5dc92a14c4bbd8e067a838411ba82608860edb21a160f50\"\r\n}"
 							}
 						},
 						"url": {
