@@ -11,18 +11,18 @@ services:
      - ./sqlproxy/gcp.json:/secrets/cloudsql/gcp.json
 
   config:
-    build: extras/awacs-cloud-config-server
+    image: gcr.io/awacs-dev/awacs-cloud-config-server:latest
     expose:
       - 80
     environment:
        PORT: 80
        debug: 'false'
-       GITHUB_TOKEN: df7b782bba762dfce870cd290d1960a1ea66e8a2
+       GITHUB_TOKEN: 47be97bfa6719d8069d21fced5a70d99847d90a7
        logging.level.org.springframework.cloud.config: debug
        spring.cloud.config.server.git.uri: https://github.com/girishaiocdawacs/scotch-repo
 
   authserver:
-    build: awacs-cloud-auth-server
+    image: gcr.io/awacs-dev/awacs-cloud-auth-server:latest
     restart: always
     expose:
      - 80
@@ -47,6 +47,32 @@ services:
         spring.cloud.config.fail-fast: 'true'
         eureka.client.service-url.defaultZone: http://admin:admin@peer1/eureka/
 
+  otpservice:
+    image:  gcr.io/awacs-dev/twilio-connector-service:latest
+    restart: always
+    expose:
+    - 80
+    links:
+    - config
+    - authserver
+    depends_on:
+    - config
+    environment:
+      PORT: 80
+      spring.cloud.config.uri: http://config/
+      awacs_grpc_host: authserver
+      grpc.client.__name__.negotiationType: 'PLAINTEXT'
+      spring.application.name: 'otpservice'
+      spring.profiles.active: prod
+      spring.cloud.config.enabled: 'true'
+      spring.cloud.discovery.enabled: 'false'
+      spring.cloud.service-registry.auto-registration.enabled: 'false'
+      server.forward-headers-strategy: native
+      spring.cloud.config.fail-fast: 'true'
+      eureka.client.service-url.defaultZone: http://admin:admin@peer1/eureka/
+      awacs_grpc_host: authserver
+      grpc.client.__name__.negotiationType: 'PLAINTEXT'
+
   nginx:
     build:
       context: awacs-nginx
@@ -61,9 +87,11 @@ services:
     - 443
     links:
     - authserver
+    - otpservice
     depends_on:
     - config
     - authserver
+    - otpservice
 
 networks:
   overlay:
