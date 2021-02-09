@@ -24,40 +24,40 @@ kubectl delete all --all
 kubectl create secret tls qa.awacscloud.tech --cert=zerossl/qa_certificate.crt --key=zerossl/qa_private.key
 
 
-kubectl apply -f config.yml
-kubectl apply -f hystrix.yml
-kubectl apply -f peer1.yml
+kubectl apply -f config-deployment.yml
+kubectl apply -f config-service.yml
+#kubectl apply -f hystrix.yml
+#kubectl apply -f peer1.yml
 
 sleep 30
 
-kubectl apply -f adminer-deployment.yaml
-kubectl apply -f adminer-service.yaml
+#kubectl apply -f adminer-deployment.yaml
+#kubectl apply -f adminer-service.yaml
 
-kubectl apply -f db-deployment.yaml
-kubectl apply -f db-service.yaml
+#kubectl apply -f db-deployment.yaml
+#kubectl apply -f db-service.yaml
 
-kubectl apply -f jms-deployment.yaml
-kubectl apply -f jms-service.yaml
+#kubectl apply -f jms-deployment.yaml
+#kubectl apply -f jms-service.yaml
 
 sleep 10
 
-kubectl apply -f productservice-deployment.yaml
-kubectl apply -f productservice-service.yaml
+#kubectl apply -f productservice-deployment.yaml
+#kubectl apply -f productservice-service.yaml
 
-kubectl apply -f socialweb-deployment.yaml
-kubectl apply -f socialweb-service.yaml
+#kubectl apply -f socialweb-deployment.yaml
+#kubectl apply -f socialweb-service.yaml
 
-kubectl apply -f adminserver-deployment.yaml
-kubectl apply -f adminserver-service.yaml
+#kubectl apply -f adminserver-deployment.yaml
+#kubectl apply -f adminserver-service.yaml
 
 kubectl apply -f authserver-deployment.yaml
 kubectl apply -f authserver-service.yaml
 
-kubectl apply -f otpservice.yaml
+kubectl apply -f otpservice-service.yaml
+kubectl apply -f otpservice-deployment.yaml
 
 sleep 30
-
-#kubectl create -f nginx.yaml
 
 kubectl apply -f nginx-deployment.yaml
 kubectl apply -f nginx-service.yaml
