@@ -49,7 +49,7 @@ spec:
           value: "false"
         - name: spring.profiles.active
           value: prod
-        image: gcr.io/awacs-dev/twilio-connector-service:latest
+        image: gcr.io/awacs-dev/txtnation-connector-service:latest
         imagePullPolicy: ""
         name: otpservice
         ports:

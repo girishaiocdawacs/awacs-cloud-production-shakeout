@@ -26,7 +26,7 @@ spec:
       containers:
       - env:
         - name: GITHUB_TOKEN
-          value: 47be97bfa6719d8069d21fced5a70d99847d90a7
+          value: f09139bdf78bf4b98e8a3d950eb106e8fa1443f1
         - name: PORT
           value: "80"
         - name: debug

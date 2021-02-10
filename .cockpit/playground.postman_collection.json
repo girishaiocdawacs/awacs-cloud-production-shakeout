@@ -1449,7 +1449,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "{\r\n  myOrdersAggregator(aggregatorUserName: \"9978143999\", fromDate: \"01-10-2020\", toDate: \"03-02-2021\") {\r\n    iam {\r\n      id\r\n      name\r\n      email\r\n      mobile\r\n      address1\r\n      address2\r\n      username\r\n      lastActivity\r\n    }\r\n    aggregatorOrders {\r\n      retailer {\r\n        username\r\n        name\r\n      }\r\n      apps {\r\n        source {\r\n          appId\r\n          appName\r\n        }\r\n        orders {\r\n          retailerCode\r\n          orderNumber\r\n          supplierId\r\n          receivedOn\r\n          invoiceNumber\r\n          buyerId\r\n          retailerCode\r\n          products {\r\n            productCode\r\n            productName\r\n            productPack\r\n            quantity\r\n            freeQuantity\r\n            suppliedQuantity\r\n            suppliedFreeQuantity\r\n            bounceOrderQuantity\r\n            shortOrderQuantity\r\n          }\r\n        }\r\n      }\r\n    }\r\n    allOrders {\r\n      retailer {\r\n        username\r\n        name\r\n      }\r\n      apps {\r\n        source {\r\n          appId\r\n          appName\r\n        }\r\n        orders {\r\n          retailerCode\r\n          orderNumber\r\n          supplierId\r\n          receivedOn\r\n          invoiceNumber\r\n          buyerId\r\n          retailerCode\r\n          products {\r\n            productCode\r\n            productName\r\n            productPack\r\n            quantity\r\n            freeQuantity\r\n            suppliedQuantity\r\n            suppliedFreeQuantity\r\n            bounceOrderQuantity\r\n            shortOrderQuantity\r\n          }\r\n        }\r\n      }\r\n    }\r\n  }\r\n}\r\n",
+								"query": "{\r\n  myOrdersAggregator(aggregatorUserName: \"9978143999\", fromDate: \"01-10-2020\", toDate: \"03-02-2021\") {\r\n    iam {\r\n      id\r\n      name\r\n      email\r\n      mobile\r\n      address1\r\n      address2\r\n      username\r\n      lastActivity\r\n    }\r\n    aggregatorOrders {\r\n      retailer {\r\n        username\r\n        name\r\n      }\r\n      apps {\r\n        source {\r\n          appId\r\n          appName\r\n        }\r\n        suppliers {\r\n          supplier\r\n          orders {\r\n            retailerCode\r\n            orderNumber\r\n            supplierId\r\n            receivedOn\r\n            invoiceNumber\r\n            buyerId\r\n            retailerCode\r\n            products {\r\n              productCode\r\n              productName\r\n              productPack\r\n              quantity\r\n              freeQuantity\r\n              suppliedQuantity\r\n              suppliedFreeQuantity\r\n              bounceOrderQuantity\r\n              shortOrderQuantity\r\n              isBounced\r\n            }\r\n          }\r\n        }\r\n      }\r\n    }\r\n    allOrders {\r\n      retailer {\r\n        username\r\n        name\r\n      }\r\n      apps {\r\n        source {\r\n          appId\r\n          appName\r\n        }\r\n        suppliers {\r\n          supplier\r\n          orders {\r\n            retailerCode\r\n            orderNumber\r\n            supplierId\r\n            receivedOn\r\n            invoiceNumber\r\n            buyerId\r\n            retailerCode\r\n            products {\r\n              productCode\r\n              productName\r\n              productPack\r\n              quantity\r\n              freeQuantity\r\n              suppliedQuantity\r\n              suppliedFreeQuantity\r\n              bounceOrderQuantity\r\n              shortOrderQuantity\r\n            }\r\n          }\r\n        }\r\n      }\r\n    }\r\n  }\r\n}\r\n",
 								"variables": ""
 							}
 						},
@@ -2962,67 +2962,6 @@
 			"name": "otp-service",
 			"item": [
 				{
-					"name": "send_success_whatsapp",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"\r",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"strictSSL": true,
-						"followAuthorizationHeader": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{access_token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{otpservice}}/api/whatsapp/pushText/+919168116879?text=postman_test_run_{{$isoTimestamp}}",
-							"host": [
-								"{{otpservice}}"
-							],
-							"path": [
-								"api",
-								"whatsapp",
-								"pushText",
-								"+919168116879"
-							],
-							"query": [
-								{
-									"key": "text",
-									"value": "postman_test_run_{{$isoTimestamp}}"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "send_success_sms_otp",
 					"event": [
 						{
@@ -3047,7 +2986,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"number\": \"+919168116879\",\r\n  \"message\": \"newman calling {{$isoTimestamp}}\"\r\n}",
+							"raw": "{\r\n  \"number\": \"9168116879a\",\r\n  \"message\": \"Your test message OTP for Smart Platform is abc123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3055,13 +2994,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{otpservice}}/public/api/send-message",
+							"raw": "{{otpservice}}/public/api/70d24f6f465ea405b5d59460a36a58716f34018acf237657ccb307381f717b7b/send-message",
 							"host": [
 								"{{otpservice}}"
 							],
 							"path": [
 								"public",
 								"api",
+								"70d24f6f465ea405b5d59460a36a58716f34018acf237657ccb307381f717b7b",
 								"send-message"
 							]
 						}
