@@ -15,49 +15,33 @@ jobs:
           github token: ${{ secrets.GITHUB_TOKEN }}
       - name: Interact with the cluster
         run: |
-            kubectl config get-contexts
             kubectl config use-context minikube
             kubectl get all
             kubectl config view
-            # known bug
-            #kubectl create secret tls app.awacscloud.tech --cert=zerossl/certificate.crt --key=zerossl/private.key
-
-            kubectl apply -f adminer-deployment.yaml
-            kubectl apply -f adminer-service.yaml
-
-            kubectl apply -f db-deployment.yaml
-            kubectl apply -f db-service.yaml
-
-            kubectl apply -f jms-deployment.yaml
-            kubectl apply -f jms-service.yaml
-
-            sleep 20
-
-            kubectl apply -f productservice-deployment.yaml
-            kubectl apply -f productservice-service.yaml
-
-            kubectl apply -f socialweb-deployment.yaml
-            kubectl apply -f socialweb-service.yaml
-
-            kubectl apply -f adminserver-deployment.yaml
-            kubectl apply -f adminserver-service.yaml
-
+            kubectl delete all --all
+            kubectl create secret tls qa.awacscloud.tech --cert=zerossl/qa_certificate.crt --key=zerossl/qa_private.key
+            kubectl apply -f config-deployment.yml
+            kubectl apply -f config-service.yml
             kubectl apply -f authserver-deployment.yaml
             kubectl apply -f authserver-service.yaml
-
-            sleep 20
-
+            kubectl apply -f otpservice-service.yaml
+            kubectl apply -f otpservice-deployment.yaml
+            kubectl create configmap nginx-config --from-file=awacs-nginx-qa.conf
+            kubectl create configmap nginx-ssl  --from-file=zerossl/qa.awacscloud.tech.crt --from-file=zerossl/qa.awacscloud.tech.key
+            sleep 60;
             kubectl apply -f nginx-deployment.yaml
             kubectl apply -f nginx-service.yaml
-
             sleep 60;
+            kubectl get all
+            #minikube service nginx
+
 
             # kubectl apply -f multi-app-ingress.yaml
             # kubectl expose service/nginx --port=80 --target-port=8080 --name=nginx-ingress --type=LoadBalancer
 
             # sudo apt-get -y install links2
              
-            kubectl get all
+          
 
             # minikube_host=$(minikube service nginx | grep 443 | sed -e 's/.*http/https/g' -e 's/ .*//g')
             # minikube_host=$(kubectl get services nginx --output jsonpath={.status.loadBalancer.ingress[0].ip})
@@ -76,6 +60,3 @@ jobs:
             #   https://192.168.42.71/authserver/oauth/token \
             #  -u "spring-security-oauth2-read-write-client:spring-security-oauth2-read-write-client-password1234*" \
             #  -F grant_type=client_credentials | json_pp
-            
-
-            # minikube service nginx
