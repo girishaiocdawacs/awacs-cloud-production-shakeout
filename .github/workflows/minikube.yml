@@ -27,7 +27,7 @@ jobs:
             kubectl apply -f otpservice-service.yaml
             kubectl apply -f otpservice-deployment.yaml
             kubectl create configmap nginx-config --from-file=awacs-nginx-qa.conf
-            kubectl create configmap nginx-ssl  --from-file=zerossl/qa.awacscloud.tech.crt --from-file=zerossl/qa.awacscloud.tech.key
+            #kubectl create configmap nginx-ssl  --from-file=zerossl/qa.awacscloud.tech.crt --from-file=zerossl/qa.awacscloud.tech.key
             sleep 60;
             kubectl apply -f nginx-deployment.yaml
             kubectl apply -f nginx-service.yaml
