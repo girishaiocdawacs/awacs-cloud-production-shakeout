@@ -1,4 +1,4 @@
-name: Stop SQL
+name: Stop Bastion In Night
 on:
   schedule:
     - cron: '30 16 * * *'
@@ -13,5 +13,5 @@ jobs:
       with:
         service_account_key: ${{ secrets.GKE_SA_KEY }}
         project_id: ${{ secrets.GKE_PROJECT }}
-    - run: gcloud sql instances patch awacs-test-db --activation-policy NEVER
-        
+    - run: | 
+        gcloud compute instances stop bastion-1        
