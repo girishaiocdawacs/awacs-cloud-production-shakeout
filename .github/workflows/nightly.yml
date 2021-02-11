@@ -1,7 +1,7 @@
 name: Stop Bastion In Night
 on:
   schedule:
-    - cron: '50 17 * * *'
+    - cron: '53 17 * * *'
 jobs:
   gcp:
     name: Stop Instance Nightly
@@ -14,4 +14,4 @@ jobs:
         service_account_key: ${{ secrets.GKE_SA_KEY }}
         project_id: ${{ secrets.GKE_PROJECT }}
     - run: | 
-        gcloud compute instances stop bastion-1        
+        gcloud compute instances stop bastion-1
