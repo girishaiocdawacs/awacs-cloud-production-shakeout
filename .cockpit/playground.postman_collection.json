@@ -939,7 +939,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "mutation {\r\n  signup(input: { \r\n    username: \"GirishAggr1\", \r\n    email: \"girish.mahajan@yahoo.com\", \r\n    mobile: \"9168116879\", password: \"giri123\",\r\n    name: \"Girish Mahajan Services Inc\", \r\n    address1: \"Taramandal Colony, Baner road balewadi, India\",\r\n    address2: \"Post91 Baner Pune\"\r\n    pinCode: 411045, \r\n    application: \"AWACS\", \r\n    cityId: 5374, \r\n    stateId: 19, \r\n    deviceId: \"11\", \r\n    appVersion: \"11\", \r\n    osVersion: \"3\",\r\n    platform: \"4\",\r\n    gcmRegisterKey: \"1\"\r\n  }) \r\n  {\r\n    session\r\n    status\r\n    accessToken\r\n    refreshToken\r\n    expiryInSeconds\r\n    application {\r\n     \tappId\r\n      appName\r\n      description\r\n    }\r\n    iam {\r\n      id\r\n      name\r\n      email\r\n      mobile\r\n      address1\r\n      address2\r\n      username\r\n      city\r\n      state\r\n      lastActivity\r\n      extraInfo\r\n    }\r\n  }\r\n}",
+								"query": "mutation {\r\n  signup(input: { \r\n    username: \"GirishAggr1\", \r\n    email: \"girish.mahajan@yahoo.com\", \r\n    mobile: \"9168116879\", password: \"giri123\",\r\n    name: \"Girish Mahajan Services Inc\", \r\n    address1: \"Taramandal Colony, Baner road balewadi, India\",\r\n    address2: \"Post91 Baner Pune\"\r\n    pinCode: 411045, \r\n    application: \"appl\", \r\n    cityId: 5374, \r\n    stateId: 19, \r\n    deviceId: \"11\", \r\n    appVersion: \"11\", \r\n    osVersion: \"3\",\r\n    platform: \"4\",\r\n    gcmRegisterKey: \"1\"\r\n  }) \r\n  {\r\n    session\r\n    status\r\n    accessToken\r\n    refreshToken\r\n    expiryInSeconds\r\n    application {\r\n     \tappId\r\n      appName\r\n      description\r\n    }\r\n    iam {\r\n      id\r\n      name\r\n      email\r\n      mobile\r\n      address1\r\n      address2\r\n      username\r\n      city\r\n      state\r\n      lastActivity\r\n      extraInfo\r\n    }\r\n  }\r\n}",
 								"variables": ""
 							}
 						},
@@ -1080,7 +1080,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "mutation{\r\n  forgotPassword(mobile: \"9168116879\", application: \"AWACS\"){\r\n    session\r\n    status\r\n    application{\r\n      appId\r\n      appName\r\n      description\r\n    }\r\n    iam{\r\n      id\r\n      username\r\n      name\r\n      email\r\n      address1\r\n      address2\r\n      otpValidated\r\n      city\r\n      state\r\n      lastActivity\r\n    }\r\n  }\r\n}",
+								"query": "mutation{\r\n  forgotPassword(mobile: \"9168116879\", application: \"abcd\"){\r\n    session\r\n    status\r\n    application{\r\n      appId\r\n      appName\r\n      description\r\n    }\r\n    iam{\r\n      id\r\n      username\r\n      name\r\n      email\r\n      address1\r\n      address2\r\n      otpValidated\r\n      city\r\n      state\r\n      lastActivity\r\n    }\r\n  }\r\n}",
 								"variables": ""
 							}
 						},
@@ -2207,6 +2207,246 @@
 			]
 		},
 		{
+			"name": "retailer-service",
+			"item": [
+				{
+					"name": "001_retailer_invoice_by_retailercode_graphql",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query{\r\n  retailerInvoice(retailerCode: \"DUMMY101\", fromDate: \"13-02-2020\", toDate: \"03-03-2021\"){\r\n    invoiceNumber\r\n    billDate\r\n    billDate\r\n    orderDate\r\n    orderNumber\r\n    netInvoiceAmount\r\n    paymentDueDate\r\n    sgstAmount\r\n    cgstAmount\r\n    products{\r\n      productCode\r\n      productName\r\n      productPack\r\n      quantity\r\n      freeQuantity\r\n    }\r\n  }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{authserver}}/graphql",
+							"host": [
+								"{{authserver}}"
+							],
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "001_retailer_smart_distributor_graphql",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "{\r\n  retailerSmartDistributorsList(userName: \"FooBar\") {\r\n    id\r\n    name\r\n    supplierId\r\n    city\r\n    showClosing\r\n    showHalfScheme\r\n    doNotShowPrice\r\n    doNotShowScheme\r\n    doNotShowToCustomer\r\n    doNotShowOutstanding\r\n    address1\r\n    address2\r\n    address3\r\n    enableSchemeEdit\r\n    enableSchemePEdit\r\n    enableSpeacialScheme\r\n  }\r\n}\r\n",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{authserver}}/graphql",
+							"host": [
+								"{{authserver}}"
+							],
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "001_retailer_outstandings_graphql",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "{\r\n  retailerOutstanding(supplierId: \"FooBar\", fromDate: \"01-01-2020\", toDate: \"01-03-2021\"){\r\n    userId\r\n    customerCode\r\n    documentDate\r\n    documentNumber\r\n    amount\r\n    adjustedAmount\r\n    dueDate\r\n    pendingAmount\r\n    workspaceId\r\n  }\r\n}\r\n",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{authserver}}/graphql",
+							"host": [
+								"{{authserver}}"
+							],
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "001_retailer_companion_linkages_graphql",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "query{\r\n  retailerCompanionLinkageByUsername(userName: \"vishnuagg\"){\r\n    retailerCode\r\n    retailerName\r\n    mappedStockistCount\r\n  }\r\n}",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{authserver}}/graphql",
+							"host": [
+								"{{authserver}}"
+							],
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "001_stockist_details_companions_graphql",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "graphql",
+							"graphql": {
+								"query": "{\r\n  stockistDetailsByStockistCodes(stockistCodes: [\"MHTH200007\", \"AIOCD2561\"]) {\r\n    username\r\n    name\r\n    email\r\n    mobile\r\n    address1\r\n    address2\r\n    city\r\n    extraInfo\r\n  }\r\n}\r\n",
+								"variables": ""
+							}
+						},
+						"url": {
+							"raw": "{{authserver}}/graphql",
+							"host": [
+								"{{authserver}}"
+							],
+							"path": [
+								"graphql"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "invoice-service",
 			"item": [
 				{
@@ -3012,7 +3252,64 @@
 		},
 		{
 			"name": "liveops-service",
-			"item": []
+			"item": [
+				{
+					"name": "recaptcha",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://qa.awacscloud.tech/recaptcha/api/captcha?g-recaptcha-response=abc123",
+							"protocol": "http",
+							"host": [
+								"qa",
+								"awacscloud",
+								"tech"
+							],
+							"path": [
+								"recaptcha",
+								"api",
+								"captcha"
+							],
+							"query": [
+								{
+									"key": "g-recaptcha-response",
+									"value": "abc123"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sendmail",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"from\":\"dev@aiocdawacs.com\",\n\t\"to\":\"dev@aiocdawacs.com\",\n\t\"subject\":\"Email Test Message | Integration\",\n\t\"content\":\"this is a email test for in house integration verification\",\n\t\"name\":\"Developer Awacs\"\n}"
+						},
+						"url": {
+							"raw": "{{emailservice}}/sendmail",
+							"host": [
+								"{{emailservice}}"
+							],
+							"path": [
+								"sendmail"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
