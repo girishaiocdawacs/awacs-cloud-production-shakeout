@@ -1695,7 +1695,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query {\r\n  myOrders(workspaceId:123049,  fromDate: \"01-12-2020\", toDate:\"20-12-2020\"){\r\n    orderDate,\r\n    orderNumber,\r\n    id,\r\n    supplierId,\r\n    buyerId,\r\n\t  buyerProductCode,\r\n    buyerProductName,\r\n    quantity\r\n  }\r\n}",
+								"query": "{\r\n  myOrders(workspaceId: 123049, fromDate: \"01-12-2020\", toDate: \"20-12-2020\") {\r\n    source\r\n    buyerId\r\n    orderNumber\r\n    supplierId\r\n    deliveryOption\r\n    remarks\r\n    receivedOn\r\n    retailerCode\r\n    createdBy\r\n    createdDate\r\n    products {\r\n      productCode\r\n      productName\r\n      productPack\r\n      freeQuantity\r\n      suppliedQuantity\r\n      suppliedFreeQuantity\r\n      shortOrderQuantity\r\n      bounceOrderQuantity\r\n      isBounced\r\n    }\r\n  }\r\n}\r\n",
 								"variables": ""
 							}
 						},
@@ -2240,7 +2240,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "query{\r\n  retailerInvoice(retailerCode: \"DUMMY101\", fromDate: \"13-02-2020\", toDate: \"03-03-2021\"){\r\n    invoiceNumber\r\n    billDate\r\n    billDate\r\n    orderDate\r\n    orderNumber\r\n    netInvoiceAmount\r\n    paymentDueDate\r\n    sgstAmount\r\n    cgstAmount\r\n    products{\r\n      productCode\r\n      productName\r\n      productPack\r\n      quantity\r\n      freeQuantity\r\n    }\r\n  }\r\n}",
+								"query": "query{\r\n  retailerInvoice(retailerCode: \"MHCH200030\", fromDate: \"13-02-2020\", toDate: \"03-03-2021\"){\r\n    invoiceNumber\r\n    billDate\r\n    billDate\r\n    orderDate\r\n    orderNumber\r\n    netInvoiceAmount\r\n    paymentDueDate\r\n    sgstAmount\r\n    cgstAmount\r\n    products{\r\n      productCode\r\n      productName\r\n      productPack\r\n      quantity\r\n      freeQuantity\r\n    }\r\n  }\r\n}",
 								"variables": ""
 							}
 						},
@@ -2428,7 +2428,7 @@
 						"body": {
 							"mode": "graphql",
 							"graphql": {
-								"query": "{\r\n  stockistDetailsByStockistCodes(stockistCodes: [\"MHTH200007\", \"AIOCD2561\"]) {\r\n    username\r\n    name\r\n    email\r\n    mobile\r\n    address1\r\n    address2\r\n    city\r\n    extraInfo\r\n  }\r\n}\r\n",
+								"query": "{\r\n  stockistDetailsByStockistCodes(stockistCodes: [\"MHTH200007\", \"AIOCD2561\"]) {\r\n    username\r\n    name\r\n    email\r\n    mobile\r\n    address1\r\n    address2\r\n    city\r\n  }\r\n}\r\n",
 								"variables": ""
 							}
 						},
