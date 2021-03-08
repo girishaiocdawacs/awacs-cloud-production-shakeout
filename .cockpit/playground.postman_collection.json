@@ -6,6 +6,166 @@
 	},
 	"item": [
 		{
+			"name": "healthchecks",
+			"item": [
+				{
+					"name": "otpservice",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{otpservice}}/actuator/health",
+							"host": [
+								"{{otpservice}}"
+							],
+							"path": [
+								"actuator",
+								"health"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "emailservice",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{emailservice}}/actuator/health",
+							"host": [
+								"{{emailservice}}"
+							],
+							"path": [
+								"actuator",
+								"health"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "authserver",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{authserver}}/actuator/health",
+							"host": [
+								"{{authserver}}"
+							],
+							"path": [
+								"actuator",
+								"health"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "smartfield",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{smartfield}}/actuator/health",
+							"host": [
+								"{{smartfield}}"
+							],
+							"path": [
+								"actuator",
+								"health"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "recaptcha",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{smartfield}}/actuator/health",
+							"host": [
+								"{{smartfield}}"
+							],
+							"path": [
+								"actuator",
+								"health"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "auth-service",
 			"item": [
 				{
@@ -595,6 +755,959 @@
 							""
 						]
 					}
+				}
+			]
+		},
+		{
+			"name": "smartfield-service",
+			"item": [
+				{
+					"name": "000_smartfield_Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{smartfield}}/api/POB/GetLoginDtlResult?UserName=8122074722&Password=SANSUJ",
+							"host": [
+								"{{smartfield}}"
+							],
+							"path": [
+								"api",
+								"POB",
+								"GetLoginDtlResult"
+							],
+							"query": [
+								{
+									"key": "UserName",
+									"value": "8122074722"
+								},
+								{
+									"key": "Password",
+									"value": "SANSUJ"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "000_smartfield_POBsalesRepClosevalue",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{smartfield}}/api/POB/POBsalesRepClosevalue?Username=8122074722&Password=SANSUJ&POBid=376065",
+							"host": [
+								"{{smartfield}}"
+							],
+							"path": [
+								"api",
+								"POB",
+								"POBsalesRepClosevalue"
+							],
+							"query": [
+								{
+									"key": "Username",
+									"value": "8122074722"
+								},
+								{
+									"key": "Password",
+									"value": "SANSUJ"
+								},
+								{
+									"key": "POBid",
+									"value": "376065"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "000_smartfield_ForceResetPassword",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{smartfield}}/api/POB/Password_ForceReset?UserName=8122074722&CurrentPassword=SANSUJ&NewPassword=SANSUJ",
+							"host": [
+								"{{smartfield}}"
+							],
+							"path": [
+								"api",
+								"POB",
+								"Password_ForceReset"
+							],
+							"query": [
+								{
+									"key": "UserName",
+									"value": "8122074722"
+								},
+								{
+									"key": "CurrentPassword",
+									"value": "SANSUJ"
+								},
+								{
+									"key": "NewPassword",
+									"value": "SANSUJ"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "000_smartfield_generateOTPLegacy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{smartfield}}/api/POB/OTPDetails?User_Id=376065&Retailer_Id=MEE2392136&Contact_No=9927442884&Contactno_Type=N",
+							"host": [
+								"{{smartfield}}"
+							],
+							"path": [
+								"api",
+								"POB",
+								"OTPDetails"
+							],
+							"query": [
+								{
+									"key": "User_Id",
+									"value": "376065"
+								},
+								{
+									"key": "Retailer_Id",
+									"value": "MEE2392136"
+								},
+								{
+									"key": "Contact_No",
+									"value": "9927442884"
+								},
+								{
+									"key": "Contactno_Type",
+									"value": "N"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "000_smartfield_confirmOneTimePassword",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{smartfield}}/api/POB/OTPConfirmation?OTP_Code=1921",
+							"host": [
+								"{{smartfield}}"
+							],
+							"path": [
+								"api",
+								"POB",
+								"OTPConfirmation"
+							],
+							"query": [
+								{
+									"key": "OTP_Code",
+									"value": "1921"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "001_smartfield_RetailerDetails",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{smartfield}}/api/POB/RetailerDetails?RepCode=376065&Type=RETAILER&RetailerName=Laxmi",
+							"host": [
+								"{{smartfield}}"
+							],
+							"path": [
+								"api",
+								"POB",
+								"RetailerDetails"
+							],
+							"query": [
+								{
+									"key": "RepCode",
+									"value": "376065"
+								},
+								{
+									"key": "Type",
+									"value": "RETAILER"
+								},
+								{
+									"key": "RetailerName",
+									"value": "Laxmi"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "002_smartfield_RetailerProductDetails",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{smartfield}}/api/POB/RetailerProductDetails?usercode=376065&productname=",
+							"host": [
+								"{{smartfield}}"
+							],
+							"path": [
+								"api",
+								"POB",
+								"RetailerProductDetails"
+							],
+							"query": [
+								{
+									"key": "usercode",
+									"value": "376065"
+								},
+								{
+									"key": "productname",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "003_smartfield_under_stock_HierarchicalReportingDetails",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{smartfield}}/api/POB/HierarchicalReportingDetails?RepCode=376065&Type=all&Category=US",
+							"host": [
+								"{{smartfield}}"
+							],
+							"path": [
+								"api",
+								"POB",
+								"HierarchicalReportingDetails"
+							],
+							"query": [
+								{
+									"key": "RepCode",
+									"value": "376065"
+								},
+								{
+									"key": "Type",
+									"value": "all"
+								},
+								{
+									"key": "Category",
+									"value": "US"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "004_smartfield_overstock_HierarchicalReportingDetails",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{smartfield}}/api/POB/HierarchicalReportingDetails?RepCode=376065&Type=child&Category=OS",
+							"host": [
+								"{{smartfield}}"
+							],
+							"path": [
+								"api",
+								"POB",
+								"HierarchicalReportingDetails"
+							],
+							"query": [
+								{
+									"key": "RepCode",
+									"value": "376065"
+								},
+								{
+									"key": "Type",
+									"value": "child"
+								},
+								{
+									"key": "Category",
+									"value": "OS"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "005_smartfield_non_moving_HierarchicalReportingDetails",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{smartfield}}/api/POB/HierarchicalReportingDetails?RepCode=376065&Type=child&Category=NM",
+							"host": [
+								"{{smartfield}}"
+							],
+							"path": [
+								"api",
+								"POB",
+								"HierarchicalReportingDetails"
+							],
+							"query": [
+								{
+									"key": "RepCode",
+									"value": "376065"
+								},
+								{
+									"key": "Type",
+									"value": "child"
+								},
+								{
+									"key": "Category",
+									"value": "NM"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "006_smartfield_non_expiry_HierarchicalReportingDetails",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{smartfield}}/api/POB/HierarchicalReportingDetails?RepCode=376065&Type=child&Category=NE",
+							"host": [
+								"{{smartfield}}"
+							],
+							"path": [
+								"api",
+								"POB",
+								"HierarchicalReportingDetails"
+							],
+							"query": [
+								{
+									"key": "RepCode",
+									"value": "376065"
+								},
+								{
+									"key": "Type",
+									"value": "child"
+								},
+								{
+									"key": "Category",
+									"value": "NE"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "007_smartfield_under_stock_StockDetails",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{smartfield}}/api/POB/StockDetails?StockistCode=PHARM8840&RepCode=376065&Category=US",
+							"host": [
+								"{{smartfield}}"
+							],
+							"path": [
+								"api",
+								"POB",
+								"StockDetails"
+							],
+							"query": [
+								{
+									"key": "StockistCode",
+									"value": "PHARM8840"
+								},
+								{
+									"key": "RepCode",
+									"value": "376065"
+								},
+								{
+									"key": "Category",
+									"value": "US"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "008_smartfield_over_stock_StockDetails",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{smartfield}}/api/POB/StockDetails?StockistCode=MHWS200001&RepCode=376065&Category=OS",
+							"host": [
+								"{{smartfield}}"
+							],
+							"path": [
+								"api",
+								"POB",
+								"StockDetails"
+							],
+							"query": [
+								{
+									"key": "StockistCode",
+									"value": "MHWS200001"
+								},
+								{
+									"key": "RepCode",
+									"value": "376065"
+								},
+								{
+									"key": "Category",
+									"value": "OS"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "009_smartfield_non_moving_StockDetails",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{smartfield}}/api/POB/StockDetails?StockistCode=PHARM8840&RepCode=376065&Category=NM",
+							"host": [
+								"{{smartfield}}"
+							],
+							"path": [
+								"api",
+								"POB",
+								"StockDetails"
+							],
+							"query": [
+								{
+									"key": "StockistCode",
+									"value": "PHARM8840"
+								},
+								{
+									"key": "RepCode",
+									"value": "376065"
+								},
+								{
+									"key": "Category",
+									"value": "NM"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "010_smartfield_non_expiry_StockDetails",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{smartfield}}/api/POB/StockDetails?StockistCode=PHARM8840&RepCode=376065&Category=NE",
+							"host": [
+								"{{smartfield}}"
+							],
+							"path": [
+								"api",
+								"POB",
+								"StockDetails"
+							],
+							"query": [
+								{
+									"key": "StockistCode",
+									"value": "PHARM8840"
+								},
+								{
+									"key": "RepCode",
+									"value": "376065"
+								},
+								{
+									"key": "Category",
+									"value": "NE"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "011_smartfield_GetDistrictwiseRetailers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{smartfield}}/api/POB/GetDistrictwiseRetailers?urlNonInstalled=NO&CityCode=39&Filter=start~0~limit~200000&Rep_Code=376065",
+							"host": [
+								"{{smartfield}}"
+							],
+							"path": [
+								"api",
+								"POB",
+								"GetDistrictwiseRetailers"
+							],
+							"query": [
+								{
+									"key": "urlNonInstalled",
+									"value": "NO"
+								},
+								{
+									"key": "CityCode",
+									"value": "39"
+								},
+								{
+									"key": "Filter",
+									"value": "start~0~limit~200000"
+								},
+								{
+									"key": "Rep_Code",
+									"value": "376065"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "012_smartfield_StockistByRetailer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{access_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{smartfield}}/api/POB/StockistByRetailer?urlInstalled=YES&Repcode=376065&Filter=start~0~limit~200000&StockistCode=PHARM8840",
+							"host": [
+								"{{smartfield}}"
+							],
+							"path": [
+								"api",
+								"POB",
+								"StockistByRetailer"
+							],
+							"query": [
+								{
+									"key": "urlInstalled",
+									"value": "YES"
+								},
+								{
+									"key": "Repcode",
+									"value": "376065"
+								},
+								{
+									"key": "Filter",
+									"value": "start~0~limit~200000"
+								},
+								{
+									"key": "StockistCode",
+									"value": "PHARM8840"
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
